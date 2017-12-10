@@ -29,8 +29,8 @@ public class RequestUser {
         String user = "";
         String roll = "";
 
-        /*HttpHandlerUser httpRequestUser = new HttpHandlerUser(request, context);
-        httpRequestUser.connectToResource((LoginActivity) context);*/
+        HttpHandlerUser httpRequestUser = new HttpHandlerUser(request, context);
+        httpRequestUser.connectToResource((LoginActivity) context);
 
         SharedPreferences loginPreferences = context.getSharedPreferences("LoginPreferences", Context.MODE_PRIVATE);
 

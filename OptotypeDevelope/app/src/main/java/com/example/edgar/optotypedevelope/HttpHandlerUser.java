@@ -123,6 +123,10 @@ public class HttpHandlerUser {
         tr.start();
     }
 
+    /**
+     * This metod process the JSON with information user
+     * @param result
+     */
     public void procesingJson (String result){
 
         JSONArray array = null;
