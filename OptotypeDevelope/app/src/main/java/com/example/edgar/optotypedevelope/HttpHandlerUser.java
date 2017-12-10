@@ -24,7 +24,7 @@ public class HttpHandlerUser {
 
     private String request;
     private Context context;
-    //ServerPath serverPath = new ServerPath();
+    ServerPath serverPath = new ServerPath();
 
     public HttpHandlerUser(String request, Context context) {
         this.request = request;
