@@ -79,5 +79,17 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
 
     }
 
+    /**
+     * This metohd initialize database App
+     */
+    public void initializeApp (){
+        /*OptoTypeDbAppInitialize newTables = new OptoTypeDbAppInitialize(contextActivity);
+
+        newTables.findOrCreteTablePatients();
+        newTables.findOrCreateTableOptotypes();
+        newTables.findOrCreateTableTest();
+        newTables.findOrCreateTableInteraction();*/
+    }
+
 
 }
