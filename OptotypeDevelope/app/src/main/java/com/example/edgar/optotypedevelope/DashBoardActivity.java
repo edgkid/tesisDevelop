@@ -7,9 +7,11 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.ListView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 public class DashBoardActivity extends AppCompatActivity implements View.OnClickListener {
@@ -91,8 +93,7 @@ public class DashBoardActivity extends AppCompatActivity implements View.OnClick
         PatientsToday patients[] = reuquestPatient.TakePatientsToday();
 
         while (countValue < reuquestPatient.CountPatinetsToday() ){
-            Log.d("menssage: ","llenando lista");
-            patientsData[countValue] = new PatientsToday(patients[countValue].getName(), patients[countValue].getYearsOld(),patients[countValue].getPhoto());
+            patientsData[countValue] = new PatientsToday(patients[countValue].getName(), patients[countValue].getYearsOld(),patients[countValue].getPhoto(),patients[countValue].getIdPatient());
             countValue ++;
         }
 
@@ -100,7 +101,7 @@ public class DashBoardActivity extends AppCompatActivity implements View.OnClick
         PatientsTodayAdapter patientsAdapter = new PatientsTodayAdapter(this,R.layout.listview_item_patients_today_row, patientsData);
         listViewMenu.setAdapter(patientsAdapter);
 
-        //callInteractionActivityByPatient ();
+        callInteractionActivityByPatient ();
 
     }
 
@@ -136,6 +137,28 @@ public class DashBoardActivity extends AppCompatActivity implements View.OnClick
         }else if(preferences.getString("roll", "defaultroll").equals("Paciente Infantil")){
             loadListPatientsToday();
         }
+
+    }
+
+    public void callInteractionActivityByPatient (){
+
+        final Intent interactionActivity = new Intent(this, InteractionActivity.class);
+
+        listViewMenu.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+
+                TextView textName  = (TextView)view.findViewById(R.id.namePatientToday);
+                TextView textyears = (TextView)view.findViewById(R.id.yearsOldPatientToday);
+                TextView textCode  = (TextView) view.findViewById(R.id.codePatient);
+
+                interactionActivity.putExtra("Patient", textName.getText().toString());
+                interactionActivity.putExtra("YearsOld", textyears.getText().toString());
+                interactionActivity.putExtra("IdPatient", textCode.getText().toString());
+
+                startActivity(interactionActivity);
+            }
+        });
 
     }
 

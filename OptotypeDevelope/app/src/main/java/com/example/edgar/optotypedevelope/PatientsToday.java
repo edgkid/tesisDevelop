@@ -25,6 +25,14 @@ public class PatientsToday {
         this.photo = photo;
     }
 
+    public PatientsToday(String name, String yearsOld, Bitmap photo, int idPatient) {
+        super();
+        this.name = name;
+        this.yearsOld = yearsOld;
+        this.photo = photo;
+        this.idPatient = idPatient;
+    }
+
     public String getName() {
         return name;
     }

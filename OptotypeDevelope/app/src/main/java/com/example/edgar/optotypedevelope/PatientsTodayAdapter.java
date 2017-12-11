@@ -40,6 +40,7 @@ public class PatientsTodayAdapter extends ArrayAdapter<PatientsToday> {
             holder.photo = (ImageView) row.findViewById(R.id.photoPatientToday);
             holder.name = (TextView) row.findViewById(R.id.namePatientToday);
             holder.yearsOld = (TextView) row.findViewById(R.id.yearsOldPatientToday);
+            holder.code = (TextView) row.findViewById(R.id.codePatient);
 
             row.setTag(holder);
         }else{
@@ -51,8 +52,10 @@ public class PatientsTodayAdapter extends ArrayAdapter<PatientsToday> {
             holder.photo.setImageBitmap(patients.getPhoto());
         else
             holder.photo.setImageResource(R.drawable.usuario_icon);
+
         holder.name.setText(patients.getName());
         holder.yearsOld.setText(patients.getYearsOld());
+        holder.code.setText(String.valueOf(patients.getIdPatient()));
 
         return row;
 
@@ -62,6 +65,7 @@ public class PatientsTodayAdapter extends ArrayAdapter<PatientsToday> {
         ImageView photo;
         TextView name;
         TextView yearsOld;
+        TextView code;
     }
 
 }

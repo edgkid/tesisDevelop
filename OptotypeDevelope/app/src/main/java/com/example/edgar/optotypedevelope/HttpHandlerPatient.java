@@ -140,9 +140,8 @@ public class HttpHandlerPatient {
 
             for(int i=0; i<array.length(); i++){
 
-                Log.d("cuenta: ", ("Insert" + Integer.toString(i)));
-
                 JSONObject jsonObj  = array.getJSONObject(i);
+                Log.d("cuenta: ", ("Insert " + Integer.toString(i)+ " " + jsonObj.getString("idPatient")));
 
                 values.put(PatientDbContract.PatientEntry._ID, Integer.parseInt(jsonObj.getString("idPatient")));
                 values.put(PatientDbContract.PatientEntry.ID, jsonObj.getString("idPatient"));

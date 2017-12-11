@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Optotype Application</string>
+    <string name="app_name">TEG-Optotipos-UCAB</string>
     <string name="user_name_default">User Name or Email</string>
     <string name="password_default">Password</string>
     <string name="button_login">Aceptar</string>
