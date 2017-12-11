@@ -87,7 +87,7 @@ public class DashBoardActivity extends AppCompatActivity implements View.OnClick
         reuquestPatient.findPatientsToDay();
 
         PatientsToday patientsData[] = new PatientsToday[reuquestPatient.CountPatinetsToday()];
-        /*Log.d("message: ", Integer.toString(reuquestPatient.CountPatinetsToday()));
+        Log.d("message: ", Integer.toString(reuquestPatient.CountPatinetsToday()));
         PatientsToday patients[] = reuquestPatient.TakePatientsToday();
 
         while (countValue < reuquestPatient.CountPatinetsToday() ){
@@ -100,7 +100,7 @@ public class DashBoardActivity extends AppCompatActivity implements View.OnClick
         PatientsTodayAdapter patientsAdapter = new PatientsTodayAdapter(this,R.layout.listview_item_patients_today_row, patientsData);
         listViewMenu.setAdapter(patientsAdapter);
 
-        callInteractionActivityByPatient ();*/
+        //callInteractionActivityByPatient ();
 
     }
 

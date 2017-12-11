@@ -60,7 +60,7 @@ public class RequestPatient {
         return number;
     }
 
-    /*public PatientsToday [] TakePatientsToday (){
+    public PatientsToday [] TakePatientsToday (){
 
         Log.d("message: ", "Metodo para obtener pacientes ya en local");
         int value = 0;
@@ -76,8 +76,8 @@ public class RequestPatient {
             do {
                 PatientsToday patient = new PatientsToday();
                 patient.setIdPatient(Integer.parseInt(cursor.getString(5)));
-                patient.setName(cursor.getString(0) + " " + cursor.getString(1) + " " + cursor.getString(2) + " " + cursor.getString(3));
-                patient.setYearsOld(cursor.getString(4));
+                patient.setName("Paciente: \n" + cursor.getString(0) + " " + cursor.getString(1) + " " + cursor.getString(2) + " " + cursor.getString(3));
+                patient.setYearsOld("Edad:\n" + cursor.getString(4) + " años");
                 byte[] byteCode = Base64.decode(cursor.getString(6), Base64.DEFAULT);
                 image = BitmapFactory.decodeByteArray(byteCode, 0 , byteCode.length);
                 patient.setPhoto(image);
@@ -86,7 +86,7 @@ public class RequestPatient {
             } while(cursor.moveToNext());
         }
         return patientsData;
-    }*/
+    }
 
 
 
