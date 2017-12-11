@@ -27,14 +27,11 @@ public class RequestPatient {
 
         PatientDbHelper PatientDb = new PatientDbHelper(this.context);
         SQLiteDatabase db = PatientDb.getReadableDatabase();
-
-        Log.d("message: ","Entro en metodo para consultar tabla local");
         Cursor cursor = db.rawQuery("SELECT name FROM " + PatientDbContract.PatientEntry.TABLE_NAME, null);
 
         if (cursor.moveToFirst()){
-            Log.d("message: ","existen datos en la tabla local");
+            ;
         }else{
-            Log.d("message: ","NO existen datos en la tabla local");
             HttpHandlerPatient httpRequestPatient = new HttpHandlerPatient(request, context);
             httpRequestPatient.connectToResource((DashBoardActivity) context);
         }
@@ -49,7 +46,6 @@ public class RequestPatient {
 
         Cursor cursor = db.rawQuery("SELECT name FROM " + PatientDbContract.PatientEntry.TABLE_NAME, null);
 
-        Log.d("message: ", "Entra en metodo para comprar registros de tabla local");
         if (cursor.moveToFirst()) {
             do {
                 number = cursor.getCount();
@@ -62,7 +58,6 @@ public class RequestPatient {
 
     public PatientsToday [] TakePatientsToday (){
 
-        Log.d("message: ", "Metodo para obtener pacientes ya en local");
         int value = 0;
         Bitmap image = null;
         PatientsToday patientsData[] = new PatientsToday[CountPatinetsToday ()];

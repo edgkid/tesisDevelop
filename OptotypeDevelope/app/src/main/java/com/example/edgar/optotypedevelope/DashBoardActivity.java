@@ -110,7 +110,7 @@ public class DashBoardActivity extends AppCompatActivity implements View.OnClick
      */
     public void loadListMenuDoctor(){
 
-        /*ItemMenuDoctor itemsData[] = new ItemMenuDoctor[]{
+        ItemMenuDoctor itemsData[] = new ItemMenuDoctor[]{
                 new ItemMenuDoctor(R.drawable.icon_appoinment, "Nueva Consulta"),
                 new ItemMenuDoctor(R.drawable.icon_modify, "Modificar Consulta"),
                 new ItemMenuDoctor(R.drawable.icon_garbage, "Eliminar Consulta"),
@@ -121,7 +121,7 @@ public class DashBoardActivity extends AppCompatActivity implements View.OnClick
         ItemMenuDoctorAdapter itemMenuDoctorAdapter = new ItemMenuDoctorAdapter(this, R.layout.listview_item_doctor_row, itemsData);
         listViewMenu.setAdapter(itemMenuDoctorAdapter);
 
-        callActivitiesByDoctor();*/
+        callActivitiesByDoctor();
 
     }
 
@@ -140,6 +140,9 @@ public class DashBoardActivity extends AppCompatActivity implements View.OnClick
 
     }
 
+    /**
+     * This metohd fill a list for Patients
+     */
     public void callInteractionActivityByPatient (){
 
         final Intent interactionActivity = new Intent(this, InteractionActivity.class);
@@ -159,6 +162,47 @@ public class DashBoardActivity extends AppCompatActivity implements View.OnClick
                 startActivity(interactionActivity);
             }
         });
+
+    }
+
+    /**
+     * this metohd fill a list type menu for doctor
+     */
+    public void callActivitiesByDoctor (){
+
+        listViewMenu.setOnItemClickListener(new AdapterView.OnItemClickListener(){
+
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                Intent newActivity = null;
+                switch (position){
+
+                    case 0:
+                        //newActivity = new Intent(contextActivity, AppoinmentListActivity.class);
+                        Toast.makeText(contextActivity, "opcion A", Toast.LENGTH_SHORT).show();
+                        break;
+                    case 1:
+                        //newActivity = new Intent(contextActivity, ModifyAppoinmentActivity.class);
+                        Toast.makeText(contextActivity, "opcion B", Toast.LENGTH_SHORT).show();
+                        break;
+                    case 2:
+                        //newActivity = new Intent(contextActivity, DeleteAppoinmentActivity.class);
+                        Toast.makeText(contextActivity, "opcion C", Toast.LENGTH_SHORT).show();
+                        break;
+                    case 3:
+                        //newActivity = new Intent(contextActivity, AppoinmentActivity.class);
+                        Toast.makeText(contextActivity, "opcion D", Toast.LENGTH_SHORT).show();
+                        break;
+                    case 4:
+                        //Toast.makeText(contextActivity,"Nuevo Paciente",Toast.LENGTH_SHORT).show();
+                        Toast.makeText(contextActivity, "opcion E", Toast.LENGTH_SHORT).show();
+                        break;
+                }
+                if (newActivity != null)
+                    startActivity(newActivity);
+            }
+        });
+
 
     }
 
