@@ -33,6 +33,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         buttonLogin = (Button) findViewById(R.id.buttonLogin);
         buttonLogin.setOnClickListener((View.OnClickListener) contextActivity);
 
+        initializeApp();
         verifyPreferencesLogin();
 
     }
