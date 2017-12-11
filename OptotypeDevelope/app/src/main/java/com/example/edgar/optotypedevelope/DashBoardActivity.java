@@ -86,7 +86,7 @@ public class DashBoardActivity extends AppCompatActivity implements View.OnClick
         RequestPatient reuquestPatient = new RequestPatient("patients", this);
         reuquestPatient.findPatientsToDay();
 
-        //PatientsToday patientsData[] = new PatientsToday[reuquestPatient.CountPatinetsToday()];
+        PatientsToday patientsData[] = new PatientsToday[reuquestPatient.CountPatinetsToday()];
         /*Log.d("message: ", Integer.toString(reuquestPatient.CountPatinetsToday()));
         PatientsToday patients[] = reuquestPatient.TakePatientsToday();
 
