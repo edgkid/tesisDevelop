@@ -22,6 +22,11 @@ public class RequestPatient {
         this.context = context;
     }
 
+    public RequestPatient(Context context) {
+
+        this.context = context;
+    }
+
     public void findPatientsToDay(){
 
 
@@ -71,8 +76,8 @@ public class RequestPatient {
             do {
                 PatientsToday patient = new PatientsToday();
                 patient.setIdPatient(Integer.parseInt(cursor.getString(5)));
-                patient.setName("Paciente: \n" + cursor.getString(0) + " " + cursor.getString(1) + " " + cursor.getString(2) + " " + cursor.getString(3));
-                patient.setYearsOld("Edad:\n" + cursor.getString(4) + " años");
+                patient.setName("Paciente: " + cursor.getString(0) + " " + cursor.getString(1) + " " + cursor.getString(2) + " " + cursor.getString(3));
+                patient.setYearsOld("Edad: " + cursor.getString(4) + " años");
                 byte[] byteCode = Base64.decode(cursor.getString(6), Base64.DEFAULT);
                 image = BitmapFactory.decodeByteArray(byteCode, 0 , byteCode.length);
                 patient.setPhoto(image);
@@ -83,6 +88,17 @@ public class RequestPatient {
         return patientsData;
     }
 
+    public String getPhoto (String idPatient){
+        PatientDbHelper PatientDb = new PatientDbHelper(this.context);
+        SQLiteDatabase db = PatientDb.getReadableDatabase();
+
+        Cursor cursor = db.rawQuery("SELECT photo  FROM " + PatientDbContract.PatientEntry.TABLE_NAME + " WHERE idPatient = " + idPatient, null);
+
+        if (cursor.moveToFirst())
+            return cursor.getString(0);
+        else
+            return null;
+    }
 
 
 }
