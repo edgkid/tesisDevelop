@@ -14,11 +14,11 @@ public class ElementsInteraction {
     private ArrayList<Optotype> elements = new ArrayList<Optotype>();
     private Context context;
 
-    public InteractionElements(Context context) {
+    public ElementsInteraction(Context context) {
         this.context = context;
     }
 
-    public InteractionElements() {
+    public ElementsInteraction() {
     }
 
     public ArrayList<Optotype> getElements() {
