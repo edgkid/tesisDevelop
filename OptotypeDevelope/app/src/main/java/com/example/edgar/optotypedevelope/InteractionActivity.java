@@ -70,10 +70,89 @@ public class InteractionActivity extends AppCompatActivity {
         if (patientExtras != null){
             proccessBundle();
             proccessPhoto((String)patientExtras.get("IdPatient"));
-            //refreshInteractionActivity();
+            refreshInteractionActivity();
 
         }
 
+    }
+
+    public void refreshInteractionActivity(){
+
+        String image = "";
+        int position = 0;
+        int sizeElements = 0;
+
+        Double number = Math.floor(Math.random() * elements.getElements().size());
+        position = number.intValue();
+        sizeElements = elements.getElements().size();
+        Log.d("message: ", String.valueOf(position));
+
+
+        image = elements.getElements().get(position).getOptotypeCode();
+        Log.d("message: ", image);
+        assingBipmapImage(image, imageOptotype);
+        assignOptotypeOptions(position, sizeElements, image);
+
+    }
+
+    public void assignOptotypeOptions(int position, int size, String image/*, String resource*/){
+
+        if (elements.primeNumber(position, size) && elements.evenNumber(position)){
+
+            assingBipmapImage(image, imageOptotypeA);
+
+            position ++;
+            image = elements.getElements().get(elements.validateElements(position, size)).getOptotypeCode();
+            assingBipmapImage(image, imageOptotypeB);
+
+            position ++;
+            image = elements.getElements().get(elements.validateElements(position, size)).getOptotypeCode();
+            assingBipmapImage(image, imageOptotypeC);
+
+        }else if (elements.primeNumber(position, size) || ! elements.evenNumber(position)){
+
+            assingBipmapImage(image, imageOptotypeC);
+
+            position ++;
+            image = elements.getElements().get(elements.validateElements(position, size)).getOptotypeCode();
+            assingBipmapImage(image, imageOptotypeB);
+
+            position ++;
+
+            image = elements.getElements().get(elements.validateElements(position, size)).getOptotypeCode();
+            assingBipmapImage(image, imageOptotypeA);
+
+        }else{
+            assingBipmapImage(image, imageOptotypeB);
+
+            position ++;
+            image = elements.getElements().get(elements.validateElements(position, size)).getOptotypeCode();
+            assingBipmapImage(image, imageOptotypeA);
+
+            position ++;
+            image = elements.getElements().get(elements.validateElements(position, size)).getOptotypeCode();
+            assingBipmapImage(image, imageOptotypeC);
+        }
+
+    }
+
+    public void assingBipmapImage (String image, ImageView optotypeOption) {
+
+        byte[] byteCode = Base64.decode(elements.getImageOptotype(image),Base64.DEFAULT);
+        Bitmap imageCode = null;
+
+        try{
+            imageCode = BitmapFactory.decodeByteArray(byteCode, 0 , byteCode.length);
+        }catch (Exception e){
+            Log.d("message: ","Erro al convertir imagen");
+            imageCode = null;
+        }
+        if (imageCode != null)
+            optotypeOption.setImageBitmap(imageCode);
+        else
+            optotypeOption.setImageResource(R.drawable.usuario_icon);
+
+        optotypeOption.setTag(image);
     }
 
 
