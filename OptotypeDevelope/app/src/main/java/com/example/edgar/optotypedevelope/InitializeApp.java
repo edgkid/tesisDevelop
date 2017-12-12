@@ -29,4 +29,16 @@ public class InitializeApp {
         }
     }
 
+    public void findOrCreateTableOptotypes () {
+
+        OptotypeDbHelper optotypeDb = new OptotypeDbHelper(this.context);
+        SQLiteDatabase db = optotypeDb.getReadableDatabase();
+
+        try{
+            cursor = db.rawQuery("SELECT idOptotype FROM " + OptotypeDbContract.OptotypeEntry.TABLE_NAME, null);
+        }catch (Exception e){
+            optotypeDb.onCreate(db);
+        }
+    }
+
 }
