@@ -32,12 +32,12 @@ public class RequestOptotype {
         Cursor cursor = null;
 
         cursor = db.rawQuery("SELECT optotypeName FROM " + OptotypeDbContract.OptotypeEntry.TABLE_NAME, null);
-        Log.d("message: ","Entro en metodo para consultar tabla local de Optotipos");
+        Log.d("message: ", "va a verificar que existan o no elementos locales");
 
         if (cursor.moveToFirst()){
             Log.d("message: ","existen datos en la tabla local");
         }else{
-            Log.d("message: ","NO existen datos en la tabla local");
+            Log.d("message: ","NO existen Elementos, solicitar al servidor");
             HttpHandlerOptotype httpRequestOptotype = new HttpHandlerOptotype(request,context);
             httpRequestOptotype.connectToResource((InteractionActivity)context);
         }

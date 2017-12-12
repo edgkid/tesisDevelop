@@ -30,7 +30,7 @@ public class ElementsInteraction {
         ArrayList <String> optotypes = new ArrayList<String>();
         Optotype optotype;
         int count = 1;
-
+        Log.d("message: ", "ingresa en la carga de de optotipos");
         RequestOptotype requestOptotype = new RequestOptotype("optotypes",context);
         requestOptotype.findOptotypes();
         optotypes = requestOptotype.takeOptotypes();

@@ -27,8 +27,8 @@ public class InteractionActivity extends AppCompatActivity {
     TextView textDebug;
     TextView textDebugB;
 
+    ElementsInteraction elements;
     /*Interaction controlInteraction;
-    InteractionElements elements;
     Patient patient;*/
     Bundle patientExtras;
 
@@ -37,9 +37,9 @@ public class InteractionActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_interaction);
 
-        /*controlInteraction = new Interaction();
-        elements = new InteractionElements(this);
-        elements.fillInteractionElements();*/
+        /*controlInteraction = new Interaction();*/
+        elements = new ElementsInteraction(this);
+        elements.fillInteractionElements();
 
 
         textDebug = (TextView) findViewById(R.id.textDebug);

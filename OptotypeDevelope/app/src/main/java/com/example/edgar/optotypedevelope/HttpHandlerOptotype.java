@@ -42,13 +42,13 @@ public class HttpHandlerOptotype {
         String retunrValue = "";
 
         try{
-            Log.d("path: ", path);
+            Log.d("message: ", path);
 
             url = new URL (path);
             HttpURLConnection connection = (HttpURLConnection) url.openConnection();
             responseCode = connection.getResponseCode();// en caso de que halla respuesta el valor es 200
 
-            Log.d("code paciente: ", Integer.toString(responseCode));
+            Log.d("message: ", Integer.toString(responseCode));
             // equivalente a preguntar si la respuesta es igual a 200
             if (responseCode == HttpURLConnection.HTTP_OK){
 
@@ -80,7 +80,7 @@ public class HttpHandlerOptotype {
     public boolean verifyRespondeServer (String result){
 
         boolean value = false;
-        Log.d("message: ", "Metodo para verificar");
+        Log.d("message: ", "Verificando espuesta del servidor");
 
         try{
 
@@ -95,7 +95,7 @@ public class HttpHandlerOptotype {
 
     public void connectToResource (final InteractionActivity ctx){
 
-        Log.d("message: ", "Entra en la solicitu de conexion");
+        Log.d("message: ", "Genera solicitud de conexion");
         Thread tr = new Thread(){
             @Override
             public void run() {
@@ -126,12 +126,10 @@ public class HttpHandlerOptotype {
         String sql = "";
         ContentValues values = new ContentValues();
 
-        Log.d("message: ", "Metodo para procesar JSON");
-        Log.d("JSON: ", result.toString());
+        Log.d("message: ", "JSON");
+        Log.d("message ", result.toString());
 
         try {
-
-            Log.d("trabajando: ", "SQLite");
 
             array = new JSONArray(result);
 
@@ -150,7 +148,7 @@ public class HttpHandlerOptotype {
 
                 db.insert(OptotypeDbContract.OptotypeEntry.TABLE_NAME, null, values);
 
-                Log.d("cuenta: ", ("Insert " + Integer.toString(i)) + jsonObj.getString("optotypeCode"));
+                Log.d("message: ", ("Insert " + Integer.toString(i)) + jsonObj.getString("optotypeCode"));
 
             }
 
