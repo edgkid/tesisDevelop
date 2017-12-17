@@ -48,6 +48,7 @@ public class RequestOptotype {
             Log.d("message: ", "error SQLite");
         }finally{
             cursor.close();
+            db.close();
         }
 
 
@@ -80,6 +81,7 @@ public class RequestOptotype {
 
         }finally {
             cursor.close();
+            db.close();
         }
 
         return optotypesCode;
@@ -106,6 +108,7 @@ public class RequestOptotype {
             Log.d("message: ", "SQLite");
         }finally{
             cursor.close();
+            db.close();
         }
 
 
