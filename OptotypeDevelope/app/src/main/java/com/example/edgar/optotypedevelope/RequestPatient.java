@@ -51,6 +51,7 @@ public class RequestPatient {
 
         }finally {
             cursor.close();
+            db.close();
         }
 
     }
@@ -77,6 +78,7 @@ public class RequestPatient {
             Log.d("message: ", "SQLite");
         }finally {
             cursor.close();
+            db.close();
         }
 
         return number;
@@ -113,6 +115,7 @@ public class RequestPatient {
             Log.d("message: ", "SQLite");
         }finally {
             cursor.close();
+            db.close();
         }
 
         return patientsData;
@@ -134,6 +137,7 @@ public class RequestPatient {
 
         }catch ( Exception e){}finally {
             cursor.close();
+            db.close();
         }
 
         return value;
