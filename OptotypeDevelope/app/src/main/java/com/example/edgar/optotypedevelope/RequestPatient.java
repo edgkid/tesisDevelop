@@ -32,13 +32,25 @@ public class RequestPatient {
 
         PatientDbHelper PatientDb = new PatientDbHelper(this.context);
         SQLiteDatabase db = PatientDb.getReadableDatabase();
-        Cursor cursor = db.rawQuery("SELECT name FROM " + PatientDbContract.PatientEntry.TABLE_NAME, null);
+        Cursor cursor = null;
 
-        if (cursor.moveToFirst()){
-            ;
-        }else{
-            HttpHandlerPatient httpRequestPatient = new HttpHandlerPatient(request, context);
-            httpRequestPatient.connectToResource((DashBoardActivity) context);
+        try{
+
+            cursor = db.rawQuery("SELECT name FROM " + PatientDbContract.PatientEntry.TABLE_NAME, null);
+
+            if (cursor.moveToFirst()){
+                ;
+            }else{
+                HttpHandlerPatient httpRequestPatient = new HttpHandlerPatient(request, context);
+                httpRequestPatient.connectToResource((DashBoardActivity) context);
+            }
+
+        }catch (Exception e){
+
+            Log.d("message: ", "SQLite");
+
+        }finally {
+            cursor.close();
         }
 
     }
@@ -48,14 +60,23 @@ public class RequestPatient {
         int number = 0;
         PatientDbHelper PatientDb = new PatientDbHelper(this.context);
         SQLiteDatabase db = PatientDb.getReadableDatabase();
+        Cursor cursor   = null;
 
-        Cursor cursor = db.rawQuery("SELECT name FROM " + PatientDbContract.PatientEntry.TABLE_NAME, null);
+        try{
 
-        if (cursor.moveToFirst()) {
-            do {
-                number = cursor.getCount();
-            } while(cursor.moveToNext());
+            cursor = db.rawQuery("SELECT name FROM " + PatientDbContract.PatientEntry.TABLE_NAME, null);
 
+            if (cursor.moveToFirst()) {
+                do {
+                    number = cursor.getCount();
+                } while(cursor.moveToNext());
+
+            }
+
+        }catch (Exception e){
+            Log.d("message: ", "SQLite");
+        }finally {
+            cursor.close();
         }
 
         return number;
@@ -69,35 +90,53 @@ public class RequestPatient {
 
         PatientDbHelper PatientDb = new PatientDbHelper(this.context);
         SQLiteDatabase db = PatientDb.getReadableDatabase();
+        Cursor cursor = null;
 
-        Cursor cursor = db.rawQuery("SELECT name, middleName, lastName, maidenName, yearsOld, idPatient, photo  FROM " + PatientDbContract.PatientEntry.TABLE_NAME, null);
+        try{
 
-        if (cursor.moveToFirst()) {
-            do {
-                PatientsToday patient = new PatientsToday();
-                patient.setIdPatient(Integer.parseInt(cursor.getString(5)));
-                patient.setName("Paciente: " + cursor.getString(0) + " " + cursor.getString(1) + " " + cursor.getString(2) + " " + cursor.getString(3));
-                patient.setYearsOld("Edad: " + cursor.getString(4) + " años");
-                byte[] byteCode = Base64.decode(cursor.getString(6), Base64.DEFAULT);
-                image = BitmapFactory.decodeByteArray(byteCode, 0 , byteCode.length);
-                patient.setPhoto(image);
-                patientsData[value] = patient;
-                value ++;
-            } while(cursor.moveToNext());
+            cursor = db.rawQuery("SELECT name, middleName, lastName, maidenName, yearsOld, idPatient, photo  FROM " + PatientDbContract.PatientEntry.TABLE_NAME, null);
+
+            if (cursor.moveToFirst()) {
+                do {
+                    PatientsToday patient = new PatientsToday();
+                    patient.setIdPatient(Integer.parseInt(cursor.getString(5)));
+                    patient.setName("Paciente: " + cursor.getString(0) + " " + cursor.getString(1) + " " + cursor.getString(2) + " " + cursor.getString(3));
+                    patient.setYearsOld("Edad: " + cursor.getString(4) + " años");
+                    byte[] byteCode = Base64.decode(cursor.getString(6), Base64.DEFAULT);
+                    image = BitmapFactory.decodeByteArray(byteCode, 0 , byteCode.length);
+                    patient.setPhoto(image);
+                    patientsData[value] = patient;
+                    value ++;
+                } while(cursor.moveToNext());
+            }
+        }catch (Exception e){
+            Log.d("message: ", "SQLite");
+        }finally {
+            cursor.close();
         }
+
         return patientsData;
     }
 
     public String getPhoto (String idPatient){
         PatientDbHelper PatientDb = new PatientDbHelper(this.context);
         SQLiteDatabase db = PatientDb.getReadableDatabase();
+        Cursor cursor = null;
+        String value = "";
 
-        Cursor cursor = db.rawQuery("SELECT photo  FROM " + PatientDbContract.PatientEntry.TABLE_NAME + " WHERE idPatient = " + idPatient, null);
+        try{
+            cursor = db.rawQuery("SELECT photo  FROM " + PatientDbContract.PatientEntry.TABLE_NAME + " WHERE idPatient = " + idPatient, null);
 
-        if (cursor.moveToFirst())
-            return cursor.getString(0);
-        else
-            return null;
+            if (cursor.moveToFirst())
+                value = cursor.getString(0);
+            else
+                value = null;
+
+        }catch ( Exception e){}finally {
+            cursor.close();
+        }
+
+        return value;
     }
 
 
