@@ -129,12 +129,12 @@ public class HttpHandlerOptotype {
         Log.d("message: ", "JSON");
         Log.d("message ", result.toString());
 
+        OptotypeDbHelper optotypeDb = new OptotypeDbHelper(this.context);
+        SQLiteDatabase db = optotypeDb.getWritableDatabase();
+
         try {
 
             array = new JSONArray(result);
-
-            OptotypeDbHelper optotypeDb = new OptotypeDbHelper(this.context);
-            SQLiteDatabase db = optotypeDb.getWritableDatabase();
 
             for(int i=0; i<array.length(); i++){
 
@@ -155,6 +155,8 @@ public class HttpHandlerOptotype {
         } catch (JSONException e) {
             e.printStackTrace();
             Log.d("json: ", "No hay valor para procesar");
+        }finally{
+            db.close();
         }
 
     }

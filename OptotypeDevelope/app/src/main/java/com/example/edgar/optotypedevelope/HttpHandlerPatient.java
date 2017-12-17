@@ -129,14 +129,13 @@ public class HttpHandlerPatient {
         Log.d("message: ", "Metodo para procesar JSON");
         Log.d("JSON: ", result.toString());
 
+        PatientDbHelper PatientDb = new PatientDbHelper(this.context);
+        SQLiteDatabase db = PatientDb.getWritableDatabase();
         try {
 
             Log.d("trabajando: ", "SQLite");
 
             array = new JSONArray(result);
-
-            PatientDbHelper PatientDb = new PatientDbHelper(this.context);
-            SQLiteDatabase db = PatientDb.getWritableDatabase();
 
             for(int i=0; i<array.length(); i++){
 
@@ -159,6 +158,8 @@ public class HttpHandlerPatient {
         } catch (JSONException e) {
             e.printStackTrace();
             Log.d("json: ", "No hay valor para procesar");
+        }finally{
+            db.close();
         }
 
     }

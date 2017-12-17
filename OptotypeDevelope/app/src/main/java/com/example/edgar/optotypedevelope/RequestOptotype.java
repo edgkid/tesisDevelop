@@ -31,16 +31,26 @@ public class RequestOptotype {
         SQLiteDatabase db = optotypeDb.getReadableDatabase();
         Cursor cursor = null;
 
-        cursor = db.rawQuery("SELECT optotypeName FROM " + OptotypeDbContract.OptotypeEntry.TABLE_NAME, null);
-        Log.d("message: ", "va a verificar que existan o no elementos locales");
+        try{
+            cursor = db.rawQuery("SELECT optotypeName FROM " + OptotypeDbContract.OptotypeEntry.TABLE_NAME, null);
+            Log.d("message: ", "va a verificar que existan o no elementos locales");
 
-        if (cursor.moveToFirst()){
-            Log.d("message: ","existen datos en la tabla local");
-        }else{
-            Log.d("message: ","NO existen Elementos, solicitar al servidor");
-            HttpHandlerOptotype httpRequestOptotype = new HttpHandlerOptotype(request,context);
-            httpRequestOptotype.connectToResource((InteractionActivity)context);
+            if (cursor.moveToFirst()){
+                Log.d("message: ","existen datos en la tabla local");
+            }else{
+                Log.d("message: ","NO existen Elementos, solicitar al servidor");
+                db.close();
+                HttpHandlerOptotype httpRequestOptotype = new HttpHandlerOptotype(request,context);
+                httpRequestOptotype.connectToResource((InteractionActivity)context);
+            }
+
+        }catch (Exception e){
+            Log.d("message: ", "error SQLite");
+        }finally{
+            cursor.close();
         }
+
+
     }
 
     public ArrayList<String> takeOptotypes (){
@@ -51,15 +61,25 @@ public class RequestOptotype {
         ArrayList<String> optotypesCode = new ArrayList<String>();
         String value = "";
 
-        cursor = db.rawQuery("SELECT optotypeCode FROM " + OptotypeDbContract.OptotypeEntry.TABLE_NAME, null);
+        try{
 
-        if (cursor.moveToFirst()) {
-            do {
-                value = String.valueOf(cursor.getString(0));
-                optotypesCode.add(value);
-            } while(cursor.moveToNext());
-        }else {
-            Log.d("message: ", "NO se lee registro");
+
+            cursor = db.rawQuery("SELECT optotypeCode FROM " + OptotypeDbContract.OptotypeEntry.TABLE_NAME, null);
+
+            if (cursor.moveToFirst()) {
+                do {
+                    value = String.valueOf(cursor.getString(0));
+                    optotypesCode.add(value);
+                } while(cursor.moveToNext());
+            }else {
+                Log.d("message: ", "NO se lee registro");
+            }
+
+        }catch (Exception e){
+            Log.d("message: ", "SQLite");
+
+        }finally {
+            cursor.close();
         }
 
         return optotypesCode;
@@ -72,11 +92,22 @@ public class RequestOptotype {
         SQLiteDatabase db = optotypeDb.getReadableDatabase();
         Cursor cursor = null;
         String sql = "SELECT image FROM " + OptotypeDbContract.OptotypeEntry.TABLE_NAME + " WHERE optotypeCode = '" + code +"'";
-        cursor = db.rawQuery(sql, null);
 
-        if (cursor.moveToFirst()) {
-            value = cursor.getString(0);
+
+        try{
+
+            cursor = db.rawQuery(sql, null);
+
+            if (cursor.moveToFirst()) {
+                value = cursor.getString(0);
+            }
+
+        }catch (Exception e){
+            Log.d("message: ", "SQLite");
+        }finally{
+            cursor.close();
         }
+
 
         return value;
     }

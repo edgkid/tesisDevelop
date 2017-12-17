@@ -93,11 +93,11 @@ public class InteractionActivity extends AppCompatActivity {
         int position = 0;
         int sizeElements = 0;
 
+
         Double number = Math.floor(Math.random() * elements.getElements().size());
         position = number.intValue();
         sizeElements = elements.getElements().size();
         Log.d("message: ", String.valueOf(position));
-
 
         image = elements.getElements().get(position).getOptotypeCode();
         Log.d("message: ", image);
