@@ -42,6 +42,7 @@ public class InteractionActivity extends AppCompatActivity {
     /*
     Patient patient;*/
     Bundle patientExtras;
+    boolean flag = true;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -50,8 +51,6 @@ public class InteractionActivity extends AppCompatActivity {
 
         controlInteraction = new Interaction();
         elements = new ElementsInteraction(this);
-        elements.fillInteractionElements();
-
 
         textDebug = (TextView) findViewById(R.id.textDebug);
         textDebugB = (TextView) findViewById(R.id.textDebug2);
@@ -87,23 +86,68 @@ public class InteractionActivity extends AppCompatActivity {
 
     }
 
+    public void initializeActivity(){
+        ArrayList<String> startingInitials = new ArrayList<String>();
+        int position = 0;
+
+        startingInitials.add("barco_1");
+        startingInitials.add("sol_1");
+        startingInitials.add("estrella_1");
+
+        Double number = Math.floor(Math.random() * startingInitials.size());
+        position = number.intValue();
+
+        switch (startingInitials.get(position)){
+            case "barco_1":
+                imageOptotype.setImageResource(R.drawable.barco_1);
+                imageOptotype.setTag("barco_1");
+                break;
+            case "estrella_1":
+                imageOptotype.setImageResource(R.drawable.estrella_1);
+                imageOptotype.setTag("estrella_1");
+                break;
+            case "sol_1":
+                imageOptotype.setImageResource(R.drawable.sol_1);
+                imageOptotype.setTag("sol_1");
+                break;
+        }
+
+        imageOptotypeA.setImageResource(R.drawable.barco_1);
+        imageOptotypeA.setTag("barco_1");
+        imageOptotypeB.setImageResource(R.drawable.estrella_1);
+        imageOptotypeB.setTag("estrella_1");
+        imageOptotypeC.setImageResource(R.drawable.sol_1);
+        imageOptotypeC.setTag("sol_1");
+
+
+
+    }
+
     public void refreshInteractionActivity(){
 
         String image = "";
         int position = 0;
         int sizeElements = 0;
 
-
+        elements.fillInteractionElements();
         Double number = Math.floor(Math.random() * elements.getElements().size());
         position = number.intValue();
         sizeElements = elements.getElements().size();
         Log.d("message: ", String.valueOf(position));
 
-        image = elements.getElements().get(position).getOptotypeCode();
-        Log.d("message: ", image);
-        assingBipmapImage(image, imageOptotype);
-        assignOptotypeOptions(position, sizeElements, image);
-
+        try{
+            image = elements.getElements().get(position).getOptotypeCode();
+            Log.d("message: ", image);
+            assingBipmapImage(image, imageOptotype);
+            assignOptotypeOptions(position, sizeElements, image);
+        }catch (Exception e){
+            Log.d("message: ", "problemas con el llenado de la lista (Vacia)");
+            if(this.flag){
+                initializeActivity();
+                this.flag = false;
+                elements.fillInteractionElements();
+            }
+        }
     }
 
     public void assignOptotypeOptions(int position, int size, String image){

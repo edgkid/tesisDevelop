@@ -4,4 +4,11 @@
     <string name="password_default">Password</string>
     <string name="button_login">Aceptar</string>
     <string name="title_activity_dash_board">DashBoardActivity</string>
+
+    <!--initias values for interaction Activity-->
+    <string name="option">barco_1</string>
+    <string name="optionA">barco_1</string>
+    <string name="optionB">estrella_1</string>
+    <string name="optionC">sol_1</string>
+
 </resources>

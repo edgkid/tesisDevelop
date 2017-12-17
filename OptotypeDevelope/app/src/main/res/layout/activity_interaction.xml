@@ -101,7 +101,8 @@
                 android:layout_height="350dp"
                 android:layout_gravity="center"
                 android:layout_marginLeft="150dp"
-                android:src= "@drawable/ojo_icon" />
+                android:src= "@drawable/barco_1"
+                android:tag="@string/option"/>
 
             <TextView
                 android:id="@+id/textDebug"
@@ -123,7 +124,8 @@
                 android:layout_height="150dp"
                 android:layout_marginLeft="100dp"
                 android:layout_marginTop="50dp"
-                android:src="@drawable/ojo_icon"/>
+                android:src="@drawable/sol_1"
+                android:tag="@string/optionA"/>
 
             <ImageView
                 android:id="@+id/imageOptotypeOptionB"
@@ -131,7 +133,8 @@
                 android:layout_height="150dp"
                 android:layout_marginLeft="100dp"
                 android:layout_marginTop="50dp"
-                android:src="@drawable/ojo_icon"/>
+                android:src="@drawable/estrella_1"
+                android:tag="@string/optionB"/>
 
             <ImageView
                 android:id="@+id/imageOptotypeOptionC"
@@ -139,7 +142,8 @@
                 android:layout_height="150dp"
                 android:layout_marginLeft="100dp"
                 android:layout_marginTop="50dp"
-                android:src="@drawable/ojo_icon"/>
+                android:src="@drawable/barco_1"
+                android:tag="@string/optionC"/>
 
             <TextView
                 android:id="@+id/textDebug2"
