@@ -88,8 +88,8 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
 
         newTables.findOrCreteTablePatients();
         newTables.findOrCreateTableOptotypes();
-        /*newTables.findOrCreateTableTest();
-        newTables.findOrCreateTableInteraction();*/
+        newTables.findOrCreateTableTest();
+        newTables.findOrCreateTableInteraction();
     }
 
 

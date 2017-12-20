@@ -48,7 +48,7 @@ public class InitializeApp {
         }
     }
 
-    public void faindOrCreateTableTest (){
+    public void findOrCreateTableTest (){
 
         MedicalTestDbHelper testDb = new MedicalTestDbHelper(this.context);
         SQLiteDatabase db = testDb.getReadableDatabase();
@@ -61,6 +61,23 @@ public class InitializeApp {
             cursor.close();
             db.close();
         }
+    }
+
+    public void findOrCreateTableInteraction (){
+
+        InteractionDbHelper interactionDb = new InteractionDbHelper(this.context);
+        SQLiteDatabase db = interactionDb.getReadableDatabase();
+
+        try{
+            cursor = db.rawQuery("SELECT idInteraction FROM " + InteractionDbContract.InteractionEntry.TABLE_NAME, null);
+        }catch (Exception e){
+            interactionDb.onCreate(db);
+        }finally {
+            cursor.close();
+            db.close();
+        }
+
+
     }
 
 
