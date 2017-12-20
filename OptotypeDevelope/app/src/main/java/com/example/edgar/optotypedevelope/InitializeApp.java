@@ -3,6 +3,7 @@ package com.example.edgar.optotypedevelope;
 import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
+import android.database.sqlite.SQLiteOpenHelper;
 
 /**
  * Created by Edgar on 10/12/2017.
@@ -26,6 +27,9 @@ public class InitializeApp {
             cursor = db.rawQuery("SELECT idPatient FROM " + PatientDbContract.PatientEntry.TABLE_NAME, null);
         }catch (Exception e){
             patientDb.onCreate(db);
+        }finally{
+            cursor.close();
+            db.close();
         }
     }
 
@@ -38,7 +42,26 @@ public class InitializeApp {
             cursor = db.rawQuery("SELECT idOptotype FROM " + OptotypeDbContract.OptotypeEntry.TABLE_NAME, null);
         }catch (Exception e){
             optotypeDb.onCreate(db);
+        }finally{
+            cursor.close();
+            db.close();
         }
     }
+
+    public void faindOrCreateTableTest (){
+
+        MedicalTestDbHelper testDb = new MedicalTestDbHelper(this.context);
+        SQLiteDatabase db = testDb.getReadableDatabase();
+
+        try{
+            cursor = db.rawQuery("SELECT idTest FROM " + MedicalTestDbContract.MedicalTestEntry.TABLE_NAME, null);
+        }catch (Exception e){
+            testDb.onCreate(db);
+        }finally{
+            cursor.close();
+            db.close();
+        }
+    }
+
 
 }
