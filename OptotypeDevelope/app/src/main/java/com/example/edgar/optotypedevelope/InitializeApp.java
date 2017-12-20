@@ -69,7 +69,7 @@ public class InitializeApp {
         SQLiteDatabase db = interactionDb.getReadableDatabase();
 
         try{
-            cursor = db.rawQuery("SELECT idInteraction FROM " + InteractionDbContract.InteractionEntry.TABLE_NAME, null);
+            cursor = db.rawQuery("SELECT idInterection FROM " + InteractionDbContract.InteractionEntry.TABLE_NAME, null);
         }catch (Exception e){
             interactionDb.onCreate(db);
         }finally {

@@ -40,8 +40,8 @@ public class InteractionActivity extends AppCompatActivity {
 
     ElementsInteraction elements;
     Interaction controlInteraction;
-    /*
-    Patient patient;*/
+
+    Patient patient = new Patient();
     Bundle patientExtras;
     boolean flag = true;
 
@@ -82,6 +82,8 @@ public class InteractionActivity extends AppCompatActivity {
             proccessBundle();
             proccessPhoto((String)patientExtras.get("IdPatient"));
             refreshInteractionActivity();
+
+            patient.setIdPatient((String)patientExtras.get("IdPatient"));
 
         }
 
@@ -217,12 +219,16 @@ public class InteractionActivity extends AppCompatActivity {
         Log.d("message: ", patientExtras.get("Patient").toString() );
         String []completeName = patientExtras.get("Patient").toString().split(" ");
         String [] years = patientExtras.get("YearsOld").toString().split(" ");
-        String name = completeName[1] + " " + completeName[2];
-        String lastName = completeName[3] + " " + completeName[4];
-        String yearsOld = years[1];
-        textNames.setText(name);
-        textLastNames.setText(lastName);
-        textYearsOld.setText(yearsOld);
+
+        patient.setName(completeName[1]);
+        patient.setMiddleName(completeName[2]);
+        patient.setLastName(completeName[3]);
+        patient.setMaidenName(completeName[4]);
+        patient.setYearsOld(years[1]);
+
+        textNames.setText("Nombre: " + patient.getName() + " " + patient.getMiddleName());
+        textLastNames.setText("Apellido: " + patient.getLastName() + " " + patient.getMaidenName());
+        textYearsOld.setText("Edad: " + patient.getYearsOld()+ " años");
     }
 
     public void proccessPhoto (String idPatient){
@@ -396,7 +402,6 @@ public class InteractionActivity extends AppCompatActivity {
                 /*RequestInteraction requestInteraction = new RequestInteraction(this);
                 requestInteraction.insertInteractionActivityData(controlInteraction.getOptotypes(), patient);*/
                 Toast.makeText(this, "fin de la interacción", Toast.LENGTH_SHORT).show();
-                //pruebaOptotypes();
             }
         }
     }
