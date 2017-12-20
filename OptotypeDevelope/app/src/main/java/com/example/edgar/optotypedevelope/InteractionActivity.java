@@ -7,6 +7,7 @@ import android.graphics.BitmapFactory;
 import android.graphics.Color;
 import android.os.Build;
 import android.support.annotation.RequiresApi;
+import android.support.annotation.StringDef;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Base64;
@@ -395,6 +396,7 @@ public class InteractionActivity extends AppCompatActivity {
                 /*RequestInteraction requestInteraction = new RequestInteraction(this);
                 requestInteraction.insertInteractionActivityData(controlInteraction.getOptotypes(), patient);*/
                 Toast.makeText(this, "fin de la interacción", Toast.LENGTH_SHORT).show();
+                //pruebaOptotypes();
             }
         }
     }
@@ -403,6 +405,17 @@ public class InteractionActivity extends AppCompatActivity {
         option.setBackgroundColor(Color.rgb(255, 255, 255));
     }
 
+    public void pruebaOptotypes () {
 
+        int value = controlInteraction.getOptotypes().size();
+        Log.d("message: --> ", String.valueOf(value));
 
+        Iterator<Optotype> iterator = controlInteraction.getOptotypes().iterator();
+
+        while (iterator.hasNext()){
+
+            Log.d("message: ", iterator.next().getOptotypeCode());
+        }
+
+    }
 }
