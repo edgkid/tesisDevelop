@@ -399,9 +399,10 @@ public class InteractionActivity extends AppCompatActivity {
 
             if (controlInteraction.getTotalOptotypes() >= 12){
 
-                /*RequestInteraction requestInteraction = new RequestInteraction(this);
-                requestInteraction.insertInteractionActivityData(controlInteraction.getOptotypes(), patient);*/
                 Toast.makeText(this, "fin de la interacción", Toast.LENGTH_SHORT).show();
+                RequestInteraction requestInteraction = new RequestInteraction(this);
+                requestInteraction.saveInteraction(controlInteraction, patient);
+
             }
         }
     }

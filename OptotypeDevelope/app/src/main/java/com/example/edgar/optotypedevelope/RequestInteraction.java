@@ -17,6 +17,10 @@ public class RequestInteraction {
     public RequestInteraction() {
     }
 
+    public RequestInteraction(Context context) {
+        this.context = context;
+    }
+
     public RequestInteraction(String request, Context context) {
         this.request = request;
         this.context = context;
