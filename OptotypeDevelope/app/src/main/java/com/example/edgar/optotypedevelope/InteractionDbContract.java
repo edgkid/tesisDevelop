@@ -16,7 +16,6 @@ public class InteractionDbContract {
         public static final String IDOPTOTYPE = "idOptotype";
         public static final String IDTEST = "idTest";
 
-
     }
 
 
