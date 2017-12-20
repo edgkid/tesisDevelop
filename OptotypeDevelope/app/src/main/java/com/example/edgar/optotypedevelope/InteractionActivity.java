@@ -122,8 +122,6 @@ public class InteractionActivity extends AppCompatActivity {
         imageOptotypeC.setImageResource(R.drawable.sol_1);
         imageOptotypeC.setTag("sol_1");
 
-
-
     }
 
     public void refreshInteractionActivity(){
@@ -401,7 +399,7 @@ public class InteractionActivity extends AppCompatActivity {
 
                 Toast.makeText(this, "fin de la interacción", Toast.LENGTH_SHORT).show();
                 RequestInteraction requestInteraction = new RequestInteraction(this);
-                requestInteraction.saveInteraction(controlInteraction, patient);
+                requestInteraction.processInteraction(controlInteraction, patient);
 
             }
         }

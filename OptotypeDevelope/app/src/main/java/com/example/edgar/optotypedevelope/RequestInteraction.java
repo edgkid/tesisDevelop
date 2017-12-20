@@ -26,7 +26,9 @@ public class RequestInteraction {
         this.context = context;
     }
 
-    public void saveInteraction (Interaction newData, Patient patient){
+    public void processInteraction (Interaction newData, Patient patient){
+
+        int elementsToTest = 0;
 
         Log.d("message: ", "metodo para salvar datos de interacción");
 
@@ -35,6 +37,10 @@ public class RequestInteraction {
         Log.d("message: ",patient.getMiddleName());
         Log.d("message: ",patient.getLastName());
         Log.d("message: ", patient.getMaidenName());
+
+        elementsToTest = newData.getOptotypes().size() / 2;
+
+        Log.d("message: ", String.valueOf(elementsToTest));
 
         Iterator<Optotype> iterator = newData.getOptotypes().iterator();
         Optotype optotype = new Optotype();
