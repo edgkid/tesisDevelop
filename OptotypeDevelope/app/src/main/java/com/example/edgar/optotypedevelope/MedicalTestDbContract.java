@@ -17,7 +17,6 @@ public class MedicalTestDbContract {
         public static final String EYE = "eye";
         public static final String IDPATIENT = "idPatient";
 
-
     }
 
 
