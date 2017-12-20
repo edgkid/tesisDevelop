@@ -27,21 +27,21 @@ public class ElementsInteraction {
 
     public void fillInteractionElements (){
 
-        ArrayList <String> optotypes = new ArrayList<String>();
-        Optotype optotype;
+        ArrayList <Optotype> optotypes = new ArrayList<Optotype>();
+        //Optotype optotype;
         int count = 1;
         Log.d("message: ", "ingresa en la carga de de optotipos");
         RequestOptotype requestOptotype = new RequestOptotype("optotypes",context);
         requestOptotype.findOptotypes();
         optotypes = requestOptotype.takeOptotypes();
 
-        for (String element : optotypes){
-            optotype = new Optotype();
-            optotype.setIdOptotype(Integer.toString(count));
+        for (Optotype element : optotypes){
+            //optotype = new Optotype();
+            /*optotype.setIdOptotype(Integer.toString(count));
             optotype.setOptotypeName(element);
             optotype.setOptotypeCode(element);
-            count++;
-            elements.add(optotype);
+            count++;*/
+            elements.add(element);
         }
 
 
