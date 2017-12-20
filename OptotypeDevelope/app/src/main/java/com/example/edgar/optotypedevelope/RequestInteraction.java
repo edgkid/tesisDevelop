@@ -37,9 +37,11 @@ public class RequestInteraction {
         Log.d("message: ", patient.getMaidenName());
 
         Iterator<Optotype> iterator = newData.getOptotypes().iterator();
+        Optotype optotype = new Optotype();
 
         while (iterator.hasNext()){
-            Log.d("message: ", iterator.next().getOptotypeCode().toString());
+            optotype = iterator.next();
+            Log.d("message: ", optotype.getOptotypeCode().toString() + " " + String.valueOf(optotype.getIdOptotype()));
         }
 
     }

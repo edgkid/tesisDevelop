@@ -54,23 +54,26 @@ public class RequestOptotype {
 
     }
 
-    public ArrayList<String> takeOptotypes (){
+    public ArrayList<Optotype> takeOptotypes (){
 
         OptotypeDbHelper optotypeDb = new OptotypeDbHelper( this.context);
         SQLiteDatabase db = optotypeDb.getReadableDatabase();
         Cursor cursor = null;
-        ArrayList<String> optotypesCode = new ArrayList<String>();
+        Optotype optotype = null;
+        ArrayList<Optotype> optotypes = new ArrayList<Optotype>();
         String value = "";
 
         try{
 
 
-            cursor = db.rawQuery("SELECT optotypeCode FROM " + OptotypeDbContract.OptotypeEntry.TABLE_NAME, null);
+            cursor = db.rawQuery("SELECT optotypeCode, idOptotype FROM " + OptotypeDbContract.OptotypeEntry.TABLE_NAME, null);
 
             if (cursor.moveToFirst()) {
                 do {
-                    value = String.valueOf(cursor.getString(0));
-                    optotypesCode.add(value);
+                    optotype = new Optotype();
+                    optotype.setIdOptotype(cursor.getString(1));
+                    optotype.setOptotypeCode(cursor.getString(0));
+                    optotypes.add(optotype);
                 } while(cursor.moveToNext());
             }else {
                 Log.d("message: ", "NO se lee registro");
@@ -84,7 +87,7 @@ public class RequestOptotype {
             db.close();
         }
 
-        return optotypesCode;
+        return optotypes;
     }
 
     public String getBipmapOptotype (String code){
