@@ -28,7 +28,6 @@ public class ElementsInteraction {
     public void fillInteractionElements (){
 
         ArrayList <Optotype> optotypes = new ArrayList<Optotype>();
-        //Optotype optotype;
         int count = 1;
         Log.d("message: ", "ingresa en la carga de de optotipos");
         RequestOptotype requestOptotype = new RequestOptotype("optotypes",context);
@@ -36,15 +35,9 @@ public class ElementsInteraction {
         optotypes = requestOptotype.takeOptotypes();
 
         for (Optotype element : optotypes){
-            //optotype = new Optotype();
-            /*optotype.setIdOptotype(Integer.toString(count));
-            optotype.setOptotypeName(element);
-            optotype.setOptotypeCode(element);
-            count++;*/
+
             elements.add(element);
         }
-
-
 
     }
 
