@@ -14,11 +14,10 @@ public class InteractionDbContract {
 
         public static final String ID = "idInterection";
         public static final String IDOPTOTYPE = "idOptotype";
-        public static final String IDTEST = "idTest";
+        public static final String IDPATIENT = "idPatient";
+        public static final String TESTCODE = "testCode";
+        public static final String EYE = "eye";
 
     }
-
-
-
 
 }

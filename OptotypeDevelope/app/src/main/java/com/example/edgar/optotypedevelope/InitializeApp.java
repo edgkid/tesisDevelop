@@ -48,7 +48,7 @@ public class InitializeApp {
         }
     }
 
-    public void findOrCreateTableTest (){
+    /*public void findOrCreateTableTest (){
 
         MedicalTestDbHelper testDb = new MedicalTestDbHelper(this.context);
         SQLiteDatabase db = testDb.getReadableDatabase();
@@ -61,7 +61,7 @@ public class InitializeApp {
             cursor.close();
             db.close();
         }
-    }
+    }*/
 
     public void findOrCreateTableInteraction (){
 
