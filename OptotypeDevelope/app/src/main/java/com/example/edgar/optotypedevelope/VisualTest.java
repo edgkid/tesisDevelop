@@ -88,7 +88,7 @@ public class VisualTest {
 
         Log.d("message: ", "llego al metodo save de visual test");
         RequestMedicalTest requestMedicalTest = new RequestMedicalTest(context);
-        requestMedicalTest.saveTest(this);
+        requestMedicalTest.saveTest(this, context);
     }
 
 }
