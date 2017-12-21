@@ -29,25 +29,36 @@ public class RequestInteraction {
     public void processInteraction (Interaction newData, Patient patient){
 
         int elementsToTest = 0;
+        String rTestCode = "";
+        String lTestCode = "";
+        Iterator<Optotype> iterator = newData.getOptotypes().iterator();
+        VisualTest rVisualTest = new VisualTest("R");
+        VisualTest lVisualTest = new VisualTest("L");
 
-        Log.d("message: ", "metodo para salvar datos de interacción");
+        rTestCode = patient.getName().substring(0,1) + patient.getLastName().substring(0,1);
+        rTestCode = rTestCode + rVisualTest.getTestCodeByInteraction() + rVisualTest.getTestEye();
+        rTestCode = rTestCode + patient.getIdPatient();
 
-        Log.d("message: ",String.valueOf(patient.getIdPatient()));
-        Log.d("message: ",patient.getName());
-        Log.d("message: ",patient.getMiddleName());
-        Log.d("message: ",patient.getLastName());
-        Log.d("message: ", patient.getMaidenName());
+        lTestCode = patient.getName().substring(0,1) + patient.getLastName().substring(0,1);
+        lTestCode = lTestCode + lVisualTest.getTestCodeByInteraction() + lVisualTest.getTestEye();
+        lTestCode = lTestCode + patient.getIdPatient();
+
+        rVisualTest.setIdPatient(Integer.parseInt(patient.getIdPatient()));
+        rVisualTest.setTestCode(rTestCode);
+
+        lVisualTest.setIdPatient(Integer.parseInt(patient.getIdPatient()));
+        lVisualTest.setTestCode(lTestCode);
 
         elementsToTest = newData.getOptotypes().size() / 2;
 
-        Log.d("message: ", String.valueOf(elementsToTest));
-
-        Iterator<Optotype> iterator = newData.getOptotypes().iterator();
-        Optotype optotype = new Optotype();
+        Log.d("message: ", rTestCode);
+        Log.d("message: ", lTestCode);
 
         while (iterator.hasNext()){
-            optotype = iterator.next();
-            Log.d("message: ", optotype.getOptotypeCode().toString() + " " + String.valueOf(optotype.getIdOptotype()));
+            if (elementsToTest < newData.getOptotypes().size() / 2)
+                rVisualTest.getOptotypes().add(iterator.next());
+            else
+                lVisualTest.getOptotypes().add(iterator.next());
         }
 
     }

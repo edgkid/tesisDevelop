@@ -1,5 +1,6 @@
 package com.example.edgar.optotypedevelope;
 
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.GregorianCalendar;
 
@@ -11,16 +12,22 @@ public class VisualTest {
 
     private int id;
     private int idPatient;
+    private ArrayList<Optotype> optotypes = new ArrayList<Optotype>();
     private String testCode;
     private String testEye;
 
     public VisualTest() {
     }
 
-    public VisualTest(int id, int idPatient, String testCode, String testEye) {
+    public VisualTest(int id, int idPatient, ArrayList<Optotype> optotypes, String testCode, String testEye) {
         this.id = id;
         this.idPatient = idPatient;
+        this.optotypes = optotypes;
         this.testCode = testCode;
+        this.testEye = testEye;
+    }
+
+    public VisualTest(String testEye) {
         this.testEye = testEye;
     }
 
@@ -54,6 +61,14 @@ public class VisualTest {
 
     public void setIdPatient(int idPatient) {
         this.idPatient = idPatient;
+    }
+
+    public ArrayList<Optotype> getOptotypes() {
+        return optotypes;
+    }
+
+    public void setOptotypes(ArrayList<Optotype> optotypes) {
+        this.optotypes = optotypes;
     }
 
     public String getTestCodeByInteraction (){
