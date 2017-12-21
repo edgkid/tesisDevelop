@@ -1,5 +1,8 @@
 package com.example.edgar.optotypedevelope;
 
+import android.content.Context;
+import android.util.Log;
+
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.GregorianCalendar;
@@ -79,6 +82,13 @@ public class VisualTest {
         String year = String.valueOf(date.get(Calendar.YEAR));
 
         return day+month+year;
+    }
+
+    public void save (Context context){
+
+        Log.d("message: ", "llego al metodo save de visual test");
+        RequestMedicalTest requestMedicalTest = new RequestMedicalTest(context);
+        requestMedicalTest.saveTest(this);
     }
 
 }

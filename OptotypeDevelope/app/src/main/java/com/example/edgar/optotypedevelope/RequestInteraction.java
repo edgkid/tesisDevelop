@@ -61,5 +61,10 @@ public class RequestInteraction {
                 lVisualTest.getOptotypes().add(iterator.next());
         }
 
+        if (rVisualTest.getOptotypes() != null && lVisualTest.getOptotypes() != null){
+            rVisualTest.save(this.context);
+            lVisualTest.save(this.context);
+        }
+
     }
 }
