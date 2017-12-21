@@ -48,20 +48,6 @@ public class InitializeApp {
         }
     }
 
-    /*public void findOrCreateTableTest (){
-
-        MedicalTestDbHelper testDb = new MedicalTestDbHelper(this.context);
-        SQLiteDatabase db = testDb.getReadableDatabase();
-
-        try{
-            cursor = db.rawQuery("SELECT idTest FROM " + MedicalTestDbContract.MedicalTestEntry.TABLE_NAME, null);
-        }catch (Exception e){
-            testDb.onCreate(db);
-        }finally{
-            cursor.close();
-            db.close();
-        }
-    }*/
 
     public void findOrCreateTableInteraction (){
 
