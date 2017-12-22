@@ -1,6 +1,8 @@
 package com.example.edgar.optotypedevelope;
 
 import android.content.Context;
+import android.database.Cursor;
+import android.database.sqlite.SQLiteDatabase;
 import android.util.Log;
 
 import java.util.Iterator;
@@ -67,4 +69,33 @@ public class RequestInteraction {
         }
 
     }
+
+    public boolean validateInteraction (Patient patient){
+
+        Cursor cursor = null;
+        String query = "";
+        boolean value = false;
+        InteractionDbHelper interactionDbHelper = new InteractionDbHelper(context);
+        SQLiteDatabase db = interactionDbHelper.getWritableDatabase();
+
+        query = "SELECT MAX (idInterection) FROM " + InteractionDbContract.InteractionEntry.TABLE_NAME;
+        query = query + "WHERE idPatient = " + patient.getIdPatient();
+
+        try{
+
+            cursor = db.rawQuery(query,null);
+            if (cursor.moveToFirst())
+                value = true;
+
+        }catch (Exception e){
+           e.printStackTrace();
+           Log.d("error: ", "problema con el cursor");
+        }finally{
+            cursor.close();
+            db.close();
+        }
+
+        return value;
+    }
+
 }

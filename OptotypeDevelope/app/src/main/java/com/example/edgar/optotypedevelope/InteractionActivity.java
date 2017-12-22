@@ -401,6 +401,9 @@ public class InteractionActivity extends AppCompatActivity {
                 RequestInteraction requestInteraction = new RequestInteraction(this);
                 requestInteraction.processInteraction(controlInteraction, patient);
 
+                Intent dashboardActivity = new Intent(this, DashBoardActivity.class);
+                startActivity(dashboardActivity);
+
             }
         }
     }
