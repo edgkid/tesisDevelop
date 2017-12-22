@@ -101,7 +101,7 @@ public class DashBoardActivity extends AppCompatActivity implements View.OnClick
         PatientsTodayAdapter patientsAdapter = new PatientsTodayAdapter(this,R.layout.listview_item_patients_today_row, patientsData);
         listViewMenu.setAdapter(patientsAdapter);
 
-        callInteractionActivityByPatient ();
+        callNewActivity();
 
     }
 
@@ -204,6 +204,17 @@ public class DashBoardActivity extends AppCompatActivity implements View.OnClick
         });
 
 
+    }
+
+    public void callNewActivity () {
+
+        RequestInteraction interaction = new RequestInteraction();
+        Patient patient = new Patient ();
+
+        if(interaction.validateInteraction(patient))
+            callInteractionActivityByPatient ();
+        else
+            Toast.makeText(this, "el apciente ya ejecuto la interacción", Toast.LENGTH_SHORT).show();
     }
 
 
