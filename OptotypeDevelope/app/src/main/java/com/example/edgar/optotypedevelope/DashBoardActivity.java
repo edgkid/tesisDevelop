@@ -214,7 +214,12 @@ public class DashBoardActivity extends AppCompatActivity implements View.OnClick
         RequestInteraction interaction = new RequestInteraction(this.contextActivity);
 
         if(interaction.validateInteraction(patient)){
-            Toast.makeText(this, "el paciente ya ejecuto la interacción", Toast.LENGTH_SHORT).show();
+            //Toast.makeText(this, "el paciente ya ejecuto la interacción", Toast.LENGTH_SHORT).show();
+            Intent resultInteraction = new Intent(this, ResultInteractionActivity.class);
+            resultInteraction .putExtra("Patient", patient.getName());
+            resultInteraction .putExtra("YearsOld", patient.getYearsOld());
+            resultInteraction .putExtra("IdPatient", patient.getIdPatient());
+            startActivity(resultInteraction);
         } else{
             activity.putExtra("Patient", patient.getName());
             activity.putExtra("YearsOld", patient.getYearsOld());

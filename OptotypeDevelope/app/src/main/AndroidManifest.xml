@@ -20,7 +20,8 @@
             </intent-filter>
         </activity>
         <activity android:name=".DashBoardActivity" />
-        <activity android:name=".InteractionActivity"></activity>
+        <activity android:name=".InteractionActivity" />
+        <activity android:name=".ResultInteractionActivity"></activity>
     </application>
 
 </manifest>
