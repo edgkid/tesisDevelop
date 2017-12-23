@@ -3,6 +3,8 @@ package com.example.edgar.optotypedevelope;
 import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
+import android.graphics.BitmapFactory;
+import android.util.Base64;
 import android.util.Log;
 
 import java.util.Iterator;
@@ -72,28 +74,42 @@ public class RequestInteraction {
 
     public boolean validateInteraction (Patient patient){
 
+        Log.d("message: ", "validateInteraction");
         Cursor cursor = null;
         String query = "";
+        String id = "";
         boolean value = false;
-        InteractionDbHelper interactionDbHelper = new InteractionDbHelper(context);
-        SQLiteDatabase db = interactionDbHelper.getWritableDatabase();
 
-        query = "SELECT MAX (idInterection) FROM " + InteractionDbContract.InteractionEntry.TABLE_NAME;
-        query = query + "WHERE idPatient = " + patient.getIdPatient();
+        InteractionDbHelper interactionDbHelper = new InteractionDbHelper(context);
+        SQLiteDatabase db = interactionDbHelper.getReadableDatabase();
+
+        query = "SELECT testCode FROM " + InteractionDbContract.InteractionEntry.TABLE_NAME;
+        query = query + " WHERE idPatient = " + patient.getIdPatient();
+
+        Log.d("message: ", query);
 
         try{
 
             cursor = db.rawQuery(query,null);
-            if (cursor.moveToFirst())
-                value = true;
+
+            if (cursor.moveToFirst()) {
+                do {
+                    Log.d("message: ", cursor.getString(0));
+                    value = true;
+                } while(cursor.moveToNext());
+            }
+
 
         }catch (Exception e){
            e.printStackTrace();
            Log.d("error: ", "problema con el cursor");
         }finally{
-            cursor.close();
+            if (cursor != null)
+                cursor.close();
             db.close();
         }
+
+        Log.d("message: ", String.valueOf(value));
 
         return value;
     }

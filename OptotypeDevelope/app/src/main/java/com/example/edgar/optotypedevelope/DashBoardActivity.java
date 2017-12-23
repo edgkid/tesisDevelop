@@ -101,8 +101,7 @@ public class DashBoardActivity extends AppCompatActivity implements View.OnClick
         PatientsTodayAdapter patientsAdapter = new PatientsTodayAdapter(this,R.layout.listview_item_patients_today_row, patientsData);
         listViewMenu.setAdapter(patientsAdapter);
 
-        callNewActivity();
-
+        callInteractionActivityByPatient ();
     }
 
     /**
@@ -151,15 +150,19 @@ public class DashBoardActivity extends AppCompatActivity implements View.OnClick
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
 
+
                 TextView textName  = (TextView)view.findViewById(R.id.namePatientToday);
                 TextView textyears = (TextView)view.findViewById(R.id.yearsOldPatientToday);
                 TextView textCode  = (TextView) view.findViewById(R.id.codePatient);
 
-                interactionActivity.putExtra("Patient", textName.getText().toString());
-                interactionActivity.putExtra("YearsOld", textyears.getText().toString());
-                interactionActivity.putExtra("IdPatient", textCode.getText().toString());
+                Patient patient = new Patient();
+                patient.setIdPatient(textCode.getText().toString());
+                patient.setName(textName.getText().toString());
+                patient.setYearsOld(textyears.getText().toString());
 
-                startActivity(interactionActivity);
+                callNewActivity(patient, interactionActivity);
+
+
             }
         });
 
@@ -206,16 +209,17 @@ public class DashBoardActivity extends AppCompatActivity implements View.OnClick
 
     }
 
-    public void callNewActivity () {
+    public void callNewActivity (Patient patient, Intent activity) {
 
-        RequestInteraction interaction = new RequestInteraction();
-        Patient patient = new Patient ();
+        RequestInteraction interaction = new RequestInteraction(this.contextActivity);
 
-        if(interaction.validateInteraction(patient))
-            callInteractionActivityByPatient ();
-        else
-            Toast.makeText(this, "el apciente ya ejecuto la interacción", Toast.LENGTH_SHORT).show();
+        if(interaction.validateInteraction(patient)){
+            Toast.makeText(this, "el paciente ya ejecuto la interacción", Toast.LENGTH_SHORT).show();
+        } else{
+            activity.putExtra("Patient", patient.getName());
+            activity.putExtra("YearsOld", patient.getYearsOld());
+            activity.putExtra("IdPatient", patient.getIdPatient());
+            startActivity(activity);
+        }
     }
-
-
 }

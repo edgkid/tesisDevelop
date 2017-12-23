@@ -12,7 +12,7 @@ public class InteractionDbContract {
 
         public static final String TABLE_NAME = "interaction_db_app";
 
-        public static final String ID = "idInterection";
+        public static final String ID = "idInteraction";
         public static final String IDOPTOTYPE = "idOptotype";
         public static final String IDPATIENT = "idPatient";
         public static final String TESTCODE = "testCode";
