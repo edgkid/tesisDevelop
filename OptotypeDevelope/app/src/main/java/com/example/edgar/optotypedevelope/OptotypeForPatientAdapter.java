@@ -52,7 +52,7 @@ public class OptotypeForPatientAdapter extends ArrayAdapter<OptotypeForPatient> 
             holder.photo.setImageBitmap(optotypes.getImage());
         else
             holder.photo.setImageResource(R.drawable.usuario_icon);
-        
+
         holder.name.setText(optotypes.getOptotypeCode());
         return row;
 

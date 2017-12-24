@@ -74,6 +74,9 @@ public class ResultInteractionActivity extends AppCompatActivity {
         }
     }
 
+    public void loadListOptotypes (){
+        
+    }
 
 
 
