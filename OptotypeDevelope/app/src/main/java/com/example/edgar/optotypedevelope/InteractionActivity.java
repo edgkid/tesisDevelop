@@ -411,18 +411,4 @@ public class InteractionActivity extends AppCompatActivity {
     public void workWithBackOption (ImageView optotype, ImageView option){
         option.setBackgroundColor(Color.rgb(255, 255, 255));
     }
-
-    public void pruebaOptotypes () {
-
-        int value = controlInteraction.getOptotypes().size();
-        Log.d("message: --> ", String.valueOf(value));
-
-        Iterator<Optotype> iterator = controlInteraction.getOptotypes().iterator();
-
-        while (iterator.hasNext()){
-
-            Log.d("message: ", iterator.next().getOptotypeCode());
-        }
-
-    }
 }
