@@ -11,6 +11,9 @@ import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
 
+import java.util.ArrayList;
+
+
 
 public class ResultInteractionActivity extends AppCompatActivity {
 
@@ -80,9 +83,24 @@ public class ResultInteractionActivity extends AppCompatActivity {
 
     public void loadListOptotypes (){
 
-        RequestMedicalTest request = new RequestMedicalTest(this);
-        request.takeOptotypesByTest(idPatient);
+        int countValue = 0;
+        ArrayList<String> optotypesId = new ArrayList<String>();
 
+        RequestMedicalTest request = new RequestMedicalTest(this);
+        optotypesId = request.takeOptotypesByTest(idPatient);
+
+        OptotypeForPatient optotypesData[] = new OptotypeForPatient[optotypesId.size()];
+        OptotypeForPatient optotypes[] = request.takeOptotypesByTest(optotypesId.size(), optotypesId);
+
+        while (countValue < optotypesId.size() ){
+
+            optotypesData[countValue] = new OptotypeForPatient (optotypes[countValue].getIdOptotype(),optotypes[countValue].getOptotypeCode(),optotypes[countValue].getImage());
+            countValue ++;
+
+        }
+
+        OptotypeForPatientAdapter optotypesAdtapter = new OptotypeForPatientAdapter(this, R.layout.listview_item_optotypes_row,optotypesData);
+        interactionResult.setAdapter(optotypesAdtapter);
     }
 
 }

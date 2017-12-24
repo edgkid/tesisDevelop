@@ -30,21 +30,21 @@ public class OptotypeForPatientAdapter extends ArrayAdapter<OptotypeForPatient> 
     public View getView (int position, View convertView, ViewGroup parent){
 
         View row = convertView;
-        //PatientsTodayAdapter.PatientsTodayHolder holder = null;
-        OptotypeForPatientAdapter.OptotypeForPatientHolder holder = null;
+        OptotypeForPatientHolder holder = null;
+
 
         //verificar entrada de los datos
         if (row == null){
             LayoutInflater inflater = ((Activity)context).getLayoutInflater();
             row = inflater.inflate(layoutResourceId, parent, false);
 
-            holder = new OptotypeForPatientAdapter.OptotypeForPatientHolder();
-            holder.photo = (ImageView) row.findViewById(R.id.photoPatientToday);
-            holder.name = (TextView) row.findViewById(R.id.namePatientToday);
+            holder = new OptotypeForPatientHolder();
+            holder.photo = (ImageView) row.findViewById(R.id.imageoptotypeResult);
+            holder.name = (TextView) row.findViewById(R.id.optotypeName);
 
             row.setTag(holder);
         }else{
-            holder = (OptotypeForPatientAdapter.OptotypeForPatientHolder) row.getTag();
+            holder = (OptotypeForPatientHolder) row.getTag();
         }
 
         OptotypeForPatient optotypes = data[position];
@@ -54,6 +54,7 @@ public class OptotypeForPatientAdapter extends ArrayAdapter<OptotypeForPatient> 
             holder.photo.setImageResource(R.drawable.usuario_icon);
 
         holder.name.setText(optotypes.getOptotypeCode());
+
         return row;
 
     }
