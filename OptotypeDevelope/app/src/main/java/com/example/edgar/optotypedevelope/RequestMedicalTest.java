@@ -2,6 +2,7 @@ package com.example.edgar.optotypedevelope;
 
 import android.content.ContentValues;
 import android.content.Context;
+import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.util.Log;
 
@@ -51,6 +52,35 @@ public class RequestMedicalTest {
             e.printStackTrace();
             Log.d("Error: ", "Problema al guardar");
         }finally {
+            db.close();
+        }
+
+    }
+
+
+    public void takeOptotypesByTest (String idPatient){
+
+        InteractionDbHelper interaction = new InteractionDbHelper(this.context);
+        SQLiteDatabase db = interaction.getReadableDatabase();
+        Cursor cursor = null;
+        String query = "SELECT DISTINCT(idOptotype) FROM " + InteractionDbContract.InteractionEntry.TABLE_NAME;
+        query = query + " WHERE idPatient = " + idPatient;
+
+        Log.d("message: ", query);
+
+        try{
+            cursor = db.rawQuery(query, null);
+            if (cursor.moveToFirst()) {
+                do {
+                    Log.d("message: ", cursor.getString(0));
+                } while(cursor.moveToNext());
+            }
+
+        }catch (Exception e){
+            Log.d("message: ", "Problema en requesMedicalTest (takeOptotypeByTest)");
+            e.printStackTrace();
+        }finally{
+            cursor.close();
             db.close();
         }
 

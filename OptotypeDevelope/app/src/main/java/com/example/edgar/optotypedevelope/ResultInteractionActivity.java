@@ -23,6 +23,8 @@ public class ResultInteractionActivity extends AppCompatActivity {
 
     Bundle patientExtras;
 
+    String idPatient;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -38,11 +40,13 @@ public class ResultInteractionActivity extends AppCompatActivity {
         patientExtras = intentData.getExtras();
 
         if (patientExtras != null){
+
+            idPatient = (String)patientExtras.get("IdPatient");
             proccessBundle();
-            proccessPhoto((String)patientExtras.get("IdPatient"));
+            proccessPhoto(idPatient);
+
+            loadListOptotypes ();
         }
-
-
     }
 
     public void proccessBundle(){
@@ -75,10 +79,10 @@ public class ResultInteractionActivity extends AppCompatActivity {
     }
 
     public void loadListOptotypes (){
-        
+
+        RequestMedicalTest request = new RequestMedicalTest(this);
+        request.takeOptotypesByTest(idPatient);
+
     }
-
-
-
 
 }
