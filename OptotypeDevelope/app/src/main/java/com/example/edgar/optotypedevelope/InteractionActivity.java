@@ -395,20 +395,22 @@ public class InteractionActivity extends AppCompatActivity {
             }
             sizeElements ++;
 
-            if (controlInteraction.getTotalOptotypes() >= 12){
-
-                Toast.makeText(this, "fin de la interacción", Toast.LENGTH_SHORT).show();
-                /*RequestInteraction requestInteraction = new RequestInteraction(this);
-                requestInteraction.processInteraction(controlInteraction, patient);*/
-
-                RequestMedicalTest requestMedicalTest = new RequestMedicalTest(this);
-                requestMedicalTest.sendDataInteraction();
-
-                Intent dashboardActivity = new Intent(this, DashBoardActivity.class);
-                startActivity(dashboardActivity);
-
-            }
+            if (controlInteraction.getTotalOptotypes() >= 12)
+                break;
         }
+
+        if (controlInteraction.getTotalOptotypes() >= 12){
+            Toast.makeText(this, "fin de la interacción", Toast.LENGTH_SHORT).show();
+            RequestInteraction requestInteraction = new RequestInteraction(this);
+            requestInteraction.processInteraction(controlInteraction, patient);
+
+            RequestMedicalTest requestMedicalTest = new RequestMedicalTest(this);
+            requestMedicalTest.sendDataInteraction(patient);
+
+            Intent dashboardActivity = new Intent(this, DashBoardActivity.class);
+            startActivity(dashboardActivity);
+        }
+
     }
 
     public void workWithBackOption (ImageView optotype, ImageView option){

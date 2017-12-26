@@ -1,6 +1,10 @@
 package com.example.edgar.optotypedevelope;
 
 import android.content.Context;
+import android.database.Cursor;
+import android.database.sqlite.SQLiteDatabase;
+import android.graphics.BitmapFactory;
+import android.util.Base64;
 import android.util.Log;
 
 import org.json.JSONArray;
@@ -30,7 +34,7 @@ public class HttpHandlerInteraction {
         this.context = context;
     }
 
-    public void sendRequestPOST (){
+    public void sendRequestPOST (Patient patient){
 
         URL url = null;
         int responseCode;
@@ -42,10 +46,9 @@ public class HttpHandlerInteraction {
         try{
             url = new URL (path);
             Log.d("message: ", path);
+            Log.d("messafe: ", patient.getIdPatient());
             HttpURLConnection connection = (HttpURLConnection) url.openConnection();
-            //responseCode = connection.getResponseCode();// en caso de que halla respuesta el valor es 200;
 
-            //Log.d("code paciente: ", Integer.toString(responseCode));
             connection.setRequestMethod("POST");
             connection.setRequestProperty("Content-Type", "application/JSON");
             connection.setRequestProperty("charset", "utf-8");
@@ -53,10 +56,8 @@ public class HttpHandlerInteraction {
 
             //Create JSONObject here
             JSONArray listParam = new JSONArray();
-            getJsonData(listParam);
+            getJsonData(listParam, patient.getIdPatient());
 
-            //DataOutputStream dataOutputStream = new DataOutputStream(connection.getOutputStream());
-            //dataOutputStream.write(Integer.parseInt(listParam.toString()));
             OutputStreamWriter wr = new OutputStreamWriter(connection.getOutputStream());
             wr.write(listParam.toString());
             wr.flush();
@@ -93,42 +94,55 @@ public class HttpHandlerInteraction {
 
     }
 
-    public void connectToResource (final InteractionActivity ctx){
+    public void connectToResource (final InteractionActivity ctx, final Patient patient){
 
         Log.d("message: ", "Genera solicitud de conexion");
         Thread tr = new Thread(){
             @Override
             public void run() {
-                sendRequestPOST();
+                sendRequestPOST(patient);
             }
         };
         tr.start();
 
     }
 
-    public void getJsonData (JSONArray  listParam ){
+    public void getJsonData (JSONArray  listParam, String idPatient ){
 
-        JSONObject jsonParam = new JSONObject();
+        JSONObject jsonParam = null;
+        Cursor cursor = null;
+        String query = "";
+
+        InteractionDbHelper interactionDbHelper = new InteractionDbHelper(this.context);
+        SQLiteDatabase db = interactionDbHelper.getReadableDatabase();
+
+        query = "SELECT idOptotype, idPatient, testCode, eye FROM " + InteractionDbContract.InteractionEntry.TABLE_NAME;
+        query = query + " WHERE idPatient = " + idPatient;
 
         try{
-            jsonParam.put("idPatient", "1");
-            jsonParam.put("idOptotype", "1");
-            jsonParam.put("testCode", "JL25112017L1");
-            jsonParam.put("eye", "L");
-            listParam.put(jsonParam);
+            cursor = db.rawQuery(query, null);
 
-            JSONObject jsonParam2 = new JSONObject();
-            jsonParam2.put("idPatient", "1");
-            jsonParam2.put("idOptotype", "11");
-            jsonParam2.put("testCode", "JL25112017L1");
-            jsonParam2.put("eye", "L");
-            listParam.put(jsonParam2);
+            if (cursor.moveToFirst()) {
+                do {
 
+                    jsonParam = new JSONObject();
+                    jsonParam.put("idPatient", cursor.getString(1));
+                    jsonParam.put("idOptotype", cursor.getString(0));
+                    jsonParam.put("testCode", cursor.getString(2));
+                    jsonParam.put("eye", cursor.getString(3));
+                    listParam.put(jsonParam);
+
+                } while (cursor.moveToNext());
+            }
         }catch (Exception e){
+
             e.printStackTrace();
+            Log.d("message: ", "Exception cursor o DB");
+        }finally{
+            if(cursor != null)
+                cursor.close();
+            db.close();
         }
 
     }
-
-
 }
