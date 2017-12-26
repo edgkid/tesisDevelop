@@ -144,4 +144,12 @@ public class RequestMedicalTest {
         return optotypesData;
     }
 
+
+    public void sendDataInteraction(){
+
+        HttpHandlerInteraction httpHandlerInteraction = new HttpHandlerInteraction("test",this.context);
+        httpHandlerInteraction.connectToResource((InteractionActivity) context);
+
+    }
+
 }
