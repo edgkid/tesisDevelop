@@ -94,7 +94,7 @@ public class InteractionActivity extends AppCompatActivity {
         int position = 0;
 
         startingInitials.add("barco_1");
-        startingInitials.add("sol_1");
+        startingInitials.add("cuadrado_1");
         startingInitials.add("estrella_1");
 
         Double number = Math.floor(Math.random() * startingInitials.size());
@@ -109,9 +109,9 @@ public class InteractionActivity extends AppCompatActivity {
                 imageOptotype.setImageResource(R.drawable.estrella_1);
                 imageOptotype.setTag("estrella_1");
                 break;
-            case "sol_1":
-                imageOptotype.setImageResource(R.drawable.sol_1);
-                imageOptotype.setTag("sol_1");
+            case "cuadrado_1":
+                imageOptotype.setImageResource(R.drawable.cuadrado_1);
+                imageOptotype.setTag("cuadrado_1");
                 break;
         }
 
@@ -119,8 +119,8 @@ public class InteractionActivity extends AppCompatActivity {
         imageOptotypeA.setTag("barco_1");
         imageOptotypeB.setImageResource(R.drawable.estrella_1);
         imageOptotypeB.setTag("estrella_1");
-        imageOptotypeC.setImageResource(R.drawable.sol_1);
-        imageOptotypeC.setTag("sol_1");
+        imageOptotypeC.setImageResource(R.drawable.cuadrado_1);
+        imageOptotypeC.setTag("cuadrado_1");
 
     }
 

@@ -9,6 +9,6 @@
     <string name="option">barco_1</string>
     <string name="optionA">barco_1</string>
     <string name="optionB">estrella_1</string>
-    <string name="optionC">sol_1</string>
+    <string name="optionC">cuadrado_1</string>
 
 </resources>

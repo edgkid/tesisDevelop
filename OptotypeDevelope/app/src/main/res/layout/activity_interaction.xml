@@ -124,7 +124,7 @@
                 android:layout_height="150dp"
                 android:layout_marginLeft="100dp"
                 android:layout_marginTop="50dp"
-                android:src="@drawable/sol_1"
+                android:src="@drawable/cuadrado_1"
                 android:tag="@string/optionA"/>
 
             <ImageView
