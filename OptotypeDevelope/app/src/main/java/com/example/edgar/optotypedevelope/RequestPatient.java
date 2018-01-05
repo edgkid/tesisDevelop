@@ -122,6 +122,7 @@ public class RequestPatient {
     }
 
     public String getPhoto (String idPatient){
+
         PatientDbHelper PatientDb = new PatientDbHelper(this.context);
         SQLiteDatabase db = PatientDb.getReadableDatabase();
         Cursor cursor = null;
@@ -143,5 +144,29 @@ public class RequestPatient {
         return value;
     }
 
+    public void getPatientById (String idPatient, Patient patient){
+
+
+        PatientDbHelper PatientDb = new PatientDbHelper(this.context);
+        SQLiteDatabase db = PatientDb.getReadableDatabase();
+        Cursor cursor = null;
+
+        try{
+            cursor = db.rawQuery("SELECT name, lastName, middleName, maidenName, yearsOld  FROM " + PatientDbContract.PatientEntry.TABLE_NAME + " WHERE idPatient = " + idPatient, null);
+
+            if (cursor.moveToFirst()){
+                patient.setName(cursor.getString(0));
+                patient.setLastName(cursor.getString(1));
+                patient.setMiddleName(cursor.getString(2));
+                patient.setMaidenName(cursor.getString(3));
+                patient.setYearsOld(cursor.getString(4));
+            }
+
+        }catch ( Exception e){}finally {
+            cursor.close();
+            db.close();
+        }
+
+    }
 
 }
