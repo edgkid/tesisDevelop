@@ -22,7 +22,8 @@
         <activity android:name=".DashBoardActivity" />
         <activity android:name=".InteractionActivity" />
         <activity android:name=".ResultInteractionActivity" />
-        <activity android:name=".CrudReadAppointmentActivity"></activity>
+        <activity android:name=".CrudReadAppointmentActivity" />
+        <activity android:name=".CrudDeleteAppointmentActivity"></activity>
     </application>
 
 </manifest>
