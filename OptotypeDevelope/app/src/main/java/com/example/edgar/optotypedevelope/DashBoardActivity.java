@@ -113,8 +113,7 @@ public class DashBoardActivity extends AppCompatActivity implements View.OnClick
                 new ItemMenuDoctor(R.drawable.icon_appoinment, "Nueva Consulta"),
                 new ItemMenuDoctor(R.drawable.icon_modify, "Modificar Consulta"),
                 new ItemMenuDoctor(R.drawable.icon_garbage, "Eliminar Consulta"),
-                new ItemMenuDoctor(R.drawable.icon_calendar, "Consulta del Día"),
-                new ItemMenuDoctor(R.drawable.icon_new, "Nuevo Paciente")
+                new ItemMenuDoctor(R.drawable.icon_calendar, "Consulta del Día")
         };
 
         ItemMenuDoctorAdapter itemMenuDoctorAdapter = new ItemMenuDoctorAdapter(this, R.layout.listview_item_doctor_row, itemsData);
@@ -193,11 +192,6 @@ public class DashBoardActivity extends AppCompatActivity implements View.OnClick
                         break;
                     case 3:
                         newActivity = new Intent(contextActivity, CrudReadAppointmentActivity.class);
-                        //Toast.makeText(contextActivity, "opcion D", Toast.LENGTH_SHORT).show();
-                        break;
-                    case 4:
-                        //Toast.makeText(contextActivity,"Nuevo Paciente",Toast.LENGTH_SHORT).show();
-                        Toast.makeText(contextActivity, "opcion E", Toast.LENGTH_SHORT).show();
                         break;
                 }
                 if (newActivity != null)

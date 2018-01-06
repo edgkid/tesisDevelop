@@ -1,6 +1,7 @@
 package com.example.edgar.optotypedevelope;
 
 import android.content.Context;
+import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.support.v7.app.AppCompatActivity;
@@ -24,6 +25,8 @@ public class CrudDeleteAppointmentActivity extends AppCompatActivity implements 
 
     Patient patient;
     Context contextActivity;
+
+    int pos;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -49,8 +52,13 @@ public class CrudDeleteAppointmentActivity extends AppCompatActivity implements 
     @Override
     public void onClick(View v) {
 
-        Toast.makeText(contextActivity, "acion de borrado", Toast.LENGTH_SHORT).show();
+        RequestAppointment requestAppointment = new RequestAppointment("appointment",this);
+        requestAppointment.requestDeleteActualAppointment(patient);
 
+        refreshPatientData();
+
+        finish();
+        startActivity(getIntent());
     }
 
     /**
@@ -88,13 +96,17 @@ public class CrudDeleteAppointmentActivity extends AppCompatActivity implements 
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
 
+                pos = position;
+
                 TextView textCode  = (TextView) view.findViewById(R.id.codePatient);
                 proccessPhoto(textCode.getText().toString());
 
                 patient = new Patient();
 
                 RequestPatient requestPatient = new RequestPatient(contextActivity);
+                patient.setIdPatient(textCode.getText().toString());
                 requestPatient.getPatientById(textCode.getText().toString(), patient);
+
 
                 showPatientData();
 
@@ -102,7 +114,6 @@ public class CrudDeleteAppointmentActivity extends AppCompatActivity implements 
         });
 
     }
-
 
 
     public void proccessPhoto (String idPatient){
@@ -133,6 +144,19 @@ public class CrudDeleteAppointmentActivity extends AppCompatActivity implements 
         messageText.setText(messageDelete);
         messageText.setVisibility(View.VISIBLE);
         actionDelete.setVisibility(View.VISIBLE);
+
+    }
+
+    public void refreshPatientData(){
+
+        String messageDelete = " La cita a sido eliminada con exito";
+
+        listPatients.removeViewAt(pos);
+
+        actionDelete.setVisibility(View.INVISIBLE);
+
+        perfil.setImageResource(R.drawable.ok);
+        messageText.setText(messageDelete);
 
     }
 
