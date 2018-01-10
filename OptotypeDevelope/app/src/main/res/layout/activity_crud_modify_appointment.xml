@@ -81,7 +81,7 @@
                     android:orientation="vertical">
 
                     <ImageView
-                        android:id="@+id/idCrudImagePerilM"
+                        android:id="@+id/idCrudImagePerfilM"
                         android:layout_width="100dp"
                         android:layout_height="120dp"
                         android:src="@drawable/usuario_icon" />
@@ -95,14 +95,14 @@
                     android:orientation="vertical">
 
                     <TextView
-                        android:id="@+id/idCrudRTextNamesM"
+                        android:id="@+id/idCrudTextNamesM"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:text="Edgar Rafel"
                         android:textSize="25dp"/>
 
                     <TextView
-                        android:id="@+id/idCrudRTextLastNamesM"
+                        android:id="@+id/idCrudTextLastNamesM"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:text="Landaeta Malave"
@@ -146,12 +146,13 @@
                 android:orientation="vertical">
 
                 <View
+                    android:id="@+id/separatorM"
                     android:layout_width="fill_parent"
                     android:layout_height="1dp"
                     android:background="@android:color/black"/>
 
                 <DatePicker
-                    android:id="@+id/idCrudMDatePieckerM"
+                    android:id="@+id/idCrudDatePieckerM"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content">
                 </DatePicker>
