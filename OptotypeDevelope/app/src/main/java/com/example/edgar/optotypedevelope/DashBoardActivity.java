@@ -113,7 +113,8 @@ public class DashBoardActivity extends AppCompatActivity implements View.OnClick
                 new ItemMenuDoctor(R.drawable.icon_appoinment, "Nueva Consulta"),
                 new ItemMenuDoctor(R.drawable.icon_modify, "Modificar Consulta"),
                 new ItemMenuDoctor(R.drawable.icon_garbage, "Eliminar Consulta"),
-                new ItemMenuDoctor(R.drawable.icon_calendar, "Consulta del Día")
+                new ItemMenuDoctor(R.drawable.icon_calendar, "Consulta del Día"),
+                new ItemMenuDoctor(R.drawable.ojo_icon, "Test de Consulta")
         };
 
         ItemMenuDoctorAdapter itemMenuDoctorAdapter = new ItemMenuDoctorAdapter(this, R.layout.listview_item_doctor_row, itemsData);
@@ -191,6 +192,9 @@ public class DashBoardActivity extends AppCompatActivity implements View.OnClick
                         break;
                     case 3:
                         newActivity = new Intent(contextActivity, CrudReadAppointmentActivity.class);
+                        break;
+                    case 4:
+                        // llamod a la solicitud de test de consulta
                         break;
                 }
                 if (newActivity != null)
