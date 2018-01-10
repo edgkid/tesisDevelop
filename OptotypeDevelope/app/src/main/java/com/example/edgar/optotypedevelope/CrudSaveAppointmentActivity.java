@@ -3,6 +3,7 @@ package com.example.edgar.optotypedevelope;
 import android.content.Context;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.DatePicker;
@@ -56,6 +57,7 @@ public class CrudSaveAppointmentActivity extends AppCompatActivity implements Vi
 
     @Override
     public void onClick(View v) {
-        
+
     }
+    
 }
