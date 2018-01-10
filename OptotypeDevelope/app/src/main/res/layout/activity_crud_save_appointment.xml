@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.example.edgar.optotypedevelope.CrudModifyAppointmentActivity"
+    tools:context="com.example.edgar.optotypedevelope.CrudSaveAppointmentActivity"
     android:orientation="vertical">
 
     <LinearLayout
@@ -55,7 +55,7 @@
             android:orientation="vertical">
 
             <ListView
-                android:id="@+id/listPatienCrudM"
+                android:id="@+id/listPatienCrudC"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
 
@@ -81,7 +81,7 @@
                     android:orientation="vertical">
 
                     <ImageView
-                        android:id="@+id/idCrudImagePerfilM"
+                        android:id="@+id/idCrudImagePerfilC"
                         android:layout_width="100dp"
                         android:layout_height="120dp"
                         android:src="@drawable/usuario_icon" />
@@ -95,21 +95,21 @@
                     android:orientation="vertical">
 
                     <TextView
-                        android:id="@+id/idCrudTextNamesM"
+                        android:id="@+id/idCrudTextNamesC"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:text="Edgar Rafel"
                         android:textSize="25dp"/>
 
                     <TextView
-                        android:id="@+id/idCrudTextLastNamesM"
+                        android:id="@+id/idCrudTextLastNamesC"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:text="Landaeta Malave"
                         android:textSize="25dp"/>
 
                     <TextView
-                        android:id="@+id/idCrudTextYearsM"
+                        android:id="@+id/idCrudTextYearsC"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:text="Edad"
@@ -123,14 +123,7 @@
                     android:orientation="vertical">
 
                     <TextView
-                        android:id="@+id/idCrudLastAppointmentM"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:text="Anterior Fecha de Consulta: DD/MM/YYYY"
-                        android:textSize="25dp"/>
-
-                    <TextView
-                        android:id="@+id/idCrudNewAppointmentM"
+                        android:id="@+id/idCrudLastAppointmentC"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:text="Nueva Fecha de Consulta: DD/MM/YYYY"
@@ -146,19 +139,19 @@
                 android:orientation="vertical">
 
                 <View
-                    android:id="@+id/separatorM"
+                    android:id="@+id/separatorC"
                     android:layout_width="fill_parent"
                     android:layout_height="1dp"
                     android:background="@android:color/black"/>
 
                 <DatePicker
-                    android:id="@+id/idCrudDatePieckerM"
+                    android:id="@+id/idCrudDatePieckerC"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content">
                 </DatePicker>
 
                 <Button
-                    android:id="@+id/idCrudButtonAceptedM"
+                    android:id="@+id/idCrudButtonAceptedC"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="Aceptar"/>
@@ -166,11 +159,9 @@
 
             </LinearLayout>
 
-
-
         </LinearLayout>
 
-
     </LinearLayout>
+
 
 </LinearLayout>
