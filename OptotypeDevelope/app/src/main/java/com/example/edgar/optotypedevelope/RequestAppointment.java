@@ -22,11 +22,24 @@ public class RequestAppointment {
     }
 
 
-    public void requestDeleteActualAppointment (Patient patient){
+    public void requestDeleteActualAppointment (Patient patient, int option){
 
         HttpHandlerAppointment httpHandlerAppointment = new HttpHandlerAppointment(request,context);
-        httpHandlerAppointment.connectToResource((CrudDeleteAppointmentActivity) context, patient);
+        switch (option){
+            case 1:
+                httpHandlerAppointment.connectToResource((CrudModifyAppointmentActivity) context, patient, option);
+                break;
+            case 2:
+                httpHandlerAppointment.connectToResource((CrudDeleteAppointmentActivity) context, patient, option);
+                break;
+        }
+
+
+
+
+
 
     }
+
 
 }

@@ -31,7 +31,7 @@ public class HttpHandlerAppointment {
         this.context = context;
     }
 
-    public boolean sendRequestDelete (Patient patient){
+    public boolean sendRequestDelete (Patient patient, int option){
 
         URL url = null;
         boolean value = false;
@@ -56,7 +56,7 @@ public class HttpHandlerAppointment {
 
             //Create JSONObject here
             JSONArray listParam = new JSONArray();
-            getJsonData(listParam, patient.getIdPatient());
+            getJsonData(listParam, patient.getIdPatient(), option);
 
             OutputStreamWriter wr = new OutputStreamWriter(connection.getOutputStream());
 
@@ -99,14 +99,28 @@ public class HttpHandlerAppointment {
     }
 
 
-    public void connectToResource (final CrudDeleteAppointmentActivity ctx, final Patient patient){
+    public void connectToResource (final CrudDeleteAppointmentActivity ctx, final Patient patient, final int option){
 
         Thread tr = new Thread(){
 
             @Override
             public void run() {
 
-                if(sendRequestDelete(patient))
+                if(sendRequestDelete(patient,option))
+                    delePatientToday(patient);
+            }
+        };
+        tr.start();
+    }
+
+    public void connectToResource (final CrudModifyAppointmentActivity ctx, final Patient patient, final int option){
+
+        Thread tr = new Thread(){
+
+            @Override
+            public void run() {
+
+                if(sendRequestDelete(patient,option))
                     delePatientToday(patient);
             }
         };
@@ -114,13 +128,16 @@ public class HttpHandlerAppointment {
     }
 
 
-    public void getJsonData (JSONArray  listParam, String idPatient ){
+    public void getJsonData (JSONArray  listParam, String idPatient, int option ){
 
         JSONObject jsonParam = new JSONObject();
 
         try {
             jsonParam.put("idPatient", idPatient);
             jsonParam.put("status", "N");
+            jsonParam.put("action",option);
+            if (option == 1)
+                jsonParam.put("appointmentDate","1/3/2018");
             listParam.put(jsonParam);
         }catch (Exception e){
             e.printStackTrace();

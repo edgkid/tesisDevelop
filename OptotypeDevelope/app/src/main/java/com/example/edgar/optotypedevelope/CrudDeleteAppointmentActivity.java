@@ -26,6 +26,8 @@ public class CrudDeleteAppointmentActivity extends AppCompatActivity implements 
     Patient patient;
     Context contextActivity;
 
+    int action = 2;
+
     int pos;
 
     @Override
@@ -53,12 +55,8 @@ public class CrudDeleteAppointmentActivity extends AppCompatActivity implements 
     public void onClick(View v) {
 
         RequestAppointment requestAppointment = new RequestAppointment("appointment",this);
-        requestAppointment.requestDeleteActualAppointment(patient);
+        requestAppointment.requestDeleteActualAppointment(patient, action);
 
-        refreshPatientData();
-
-        finish();
-        startActivity(getIntent());
     }
 
     /**
@@ -146,20 +144,5 @@ public class CrudDeleteAppointmentActivity extends AppCompatActivity implements 
         actionDelete.setVisibility(View.VISIBLE);
 
     }
-
-    public void refreshPatientData(){
-
-        String messageDelete = " La cita a sido eliminada con exito";
-
-        listPatients.removeViewAt(pos);
-
-        actionDelete.setVisibility(View.INVISIBLE);
-
-        perfil.setImageResource(R.drawable.ok);
-        messageText.setText(messageDelete);
-
-    }
-
-
 
 }

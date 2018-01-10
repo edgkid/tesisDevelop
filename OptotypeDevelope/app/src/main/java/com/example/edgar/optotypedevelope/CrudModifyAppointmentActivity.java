@@ -14,6 +14,7 @@ import android.widget.DatePicker;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 public class CrudModifyAppointmentActivity extends AppCompatActivity implements View.OnClickListener {
 
@@ -32,6 +33,7 @@ public class CrudModifyAppointmentActivity extends AppCompatActivity implements 
     ImageView perfil;
 
     View line;
+    int action = 1;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -59,6 +61,8 @@ public class CrudModifyAppointmentActivity extends AppCompatActivity implements 
         calendar.setVisibility(View.INVISIBLE);
         updated.setVisibility(View.INVISIBLE);
         line.setVisibility(View.INVISIBLE);
+
+        updated.setOnClickListener(this);
 
         loadListPatientsToday();
 
@@ -153,6 +157,13 @@ public class CrudModifyAppointmentActivity extends AppCompatActivity implements 
 
     @Override
     public void onClick(View v) {
+
+        String date = "";
+        date = String.valueOf(calendar.getDayOfMonth()) + "/" + String.valueOf(calendar.getMonth()+1) + "/" + String.valueOf(calendar.getYear());
+        newDate.setText(date);
+
+        RequestAppointment requestAppointment = new RequestAppointment("appointment",this);
+        requestAppointment.requestDeleteActualAppointment(patient, action);
 
     }
 }
