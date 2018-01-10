@@ -123,7 +123,7 @@
                     android:orientation="vertical">
 
                     <TextView
-                        android:id="@+id/idCrudLastAppointmentC"
+                        android:id="@+id/idCrudNewAppointmentC"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:text="Nueva Fecha de Consulta: DD/MM/YYYY"

@@ -181,8 +181,7 @@ public class DashBoardActivity extends AppCompatActivity implements View.OnClick
                 switch (position){
 
                     case 0:
-                        //newActivity = new Intent(contextActivity, AppoinmentListActivity.class);
-                        Toast.makeText(contextActivity, "opcion A", Toast.LENGTH_SHORT).show();
+                        newActivity = new Intent(contextActivity, CrudSaveAppointmentActivity.class);
                         break;
                     case 1:
                         newActivity = new Intent(contextActivity,CrudModifyAppointmentActivity.class);
