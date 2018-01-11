@@ -4,6 +4,9 @@ import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.util.Base64;
 import android.util.Log;
 import android.widget.ListView;
 import android.widget.Toast;
@@ -280,6 +283,37 @@ public class HttpHandlerPatient {
     public void fillList(ListView list, String result){
 
         Log.d("message:", result);
+
+        JSONArray array = null;
+
+        try{
+
+            array = new JSONArray(result);
+
+            PatientsToday patientsData[] = new PatientsToday[array.length()];
+
+            for(int i=0; i<array.length(); i++){
+
+                JSONObject jsonObj  = array.getJSONObject(i);
+                Patient patient = new Patient ( jsonObj.getString("idPatient"),
+                                                jsonObj.getString("firstName"),
+                                                jsonObj.getString("lastName"),
+                                                jsonObj.getString("middleName"),
+                                                jsonObj.getString("maidenName"),
+                                                jsonObj.getString("yearsOld"),
+                                                jsonObj.getString("image"),null);
+
+                byte[] byteCode = Base64.decode(patient.getPhoto(), Base64.DEFAULT);
+                Bitmap image = BitmapFactory.decodeByteArray(byteCode, 0 , byteCode.length);
+                patientsData[i] = new PatientsToday(patient.getName(), patient.getYearsOld(),image, Integer.parseInt(patient.getIdPatient()));
+            }
+
+            PatientsTodayAdapter patientsAdapter = new PatientsTodayAdapter(context,R.layout.listview_item_patients_today_row, patientsData);
+            list.setAdapter(patientsAdapter);
+
+        }catch(JSONException e){
+            e.printStackTrace();
+        }
 
     }
 
