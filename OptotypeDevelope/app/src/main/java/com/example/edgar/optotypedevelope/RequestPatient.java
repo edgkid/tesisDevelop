@@ -7,6 +7,7 @@ import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.util.Base64;
 import android.util.Log;
+import android.widget.ListView;
 
 /**
  * Created by Edgar on 10/12/2017.
@@ -166,6 +167,13 @@ public class RequestPatient {
             cursor.close();
             db.close();
         }
+
+    }
+
+    public void getSomePatientForNewAppointment (ListView list, Patient patient, int action){
+
+        HttpHandlerPatient httpHandlerPatient = new HttpHandlerPatient(request,context);
+        httpHandlerPatient.connectToResource((CrudSaveAppointmentActivity) context, list, patient, action);
 
     }
 

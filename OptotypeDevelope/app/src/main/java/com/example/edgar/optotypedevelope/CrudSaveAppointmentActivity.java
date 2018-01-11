@@ -10,22 +10,29 @@ import android.widget.DatePicker;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 public class CrudSaveAppointmentActivity extends AppCompatActivity implements View.OnClickListener {
 
     Context contextActivity;
 
-    ListView listPatientsM;
+    ListView listPatientsC;
+
     TextView textNames;
     TextView textLastNames;
     TextView textyears;
     TextView newDate;
+    TextView textShared;
+
     Button save;
+    Button shared;
+
     DatePicker calendar;
     ImageView perfil;
 
     View line;
     int action = 0;
+    Patient patient;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -33,7 +40,7 @@ public class CrudSaveAppointmentActivity extends AppCompatActivity implements Vi
         setContentView(R.layout.activity_crud_save_appointment);
 
         contextActivity = this;
-        listPatientsM = (ListView) findViewById(R.id.listPatienCrudC);
+        listPatientsC = (ListView) findViewById(R.id.listPatienCrudC);
         perfil = (ImageView) findViewById(R.id.idCrudImagePerfilC);
         textNames = (TextView) findViewById(R.id.idCrudTextNamesC);
         textLastNames = (TextView) findViewById(R.id.idCrudTextLastNamesC);
@@ -42,6 +49,9 @@ public class CrudSaveAppointmentActivity extends AppCompatActivity implements Vi
         calendar = (DatePicker) findViewById(R.id.idCrudDatePieckerC);
         save= (Button) findViewById(R.id.idCrudButtonAceptedC);
         line = (View) findViewById(R.id.separatorC);
+
+        shared = (Button) findViewById(R.id.idCrudButtonShareC);
+        textShared = (TextView) findViewById(R.id.idCrudButtonShareC);
 
         /*perfil.setVisibility(View.INVISIBLE);
         textNames.setVisibility(View.INVISIBLE);
@@ -53,11 +63,23 @@ public class CrudSaveAppointmentActivity extends AppCompatActivity implements Vi
         line.setVisibility(View.INVISIBLE);*/
 
         save.setOnClickListener(this);
+        shared.setOnClickListener(this);
     }
 
     @Override
     public void onClick(View v) {
 
+        switch (v.getId()){
+            case R.id.idCrudButtonShareC:
+                action = 3;
+                patient.setName(textShared.getText().toString());
+                RequestPatient requestPatient = new RequestPatient("patients",contextActivity);
+                requestPatient.getSomePatientForNewAppointment(listPatientsC, patient, action);
+                break;
+            case R.id.idCrudButtonAceptedC:
+                Toast.makeText(contextActivity,"calendario", Toast.LENGTH_SHORT).show();
+                break;
+        }
     }
-    
+
 }

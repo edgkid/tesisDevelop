@@ -4,6 +4,7 @@ import android.content.ContentValues;
 import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
 import android.util.Log;
+import android.widget.ListView;
 import android.widget.Toast;
 
 import org.json.JSONArray;
@@ -12,8 +13,11 @@ import org.json.JSONObject;
 
 import java.io.BufferedInputStream;
 import java.io.BufferedReader;
+import java.io.DataOutputStream;
+import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.io.OutputStreamWriter;
 import java.net.HttpURLConnection;
 import java.net.URL;
 
@@ -76,6 +80,16 @@ public class HttpHandlerPatient {
         return result.toString();
     }
 
+    public String sendRequestPost (Patient patient, int action){
+
+        String value = "";
+
+        
+
+
+        return value;
+
+    }
 
     public boolean verifyRespondeServer (String result){
 
@@ -120,6 +134,32 @@ public class HttpHandlerPatient {
 
     }
 
+    public void connectToResource (final CrudSaveAppointmentActivity ctx, final ListView list, final Patient patient, final int action){
+
+        Thread tr = new Thread(){
+            @Override
+            public void run() {
+
+                final String result= sendRequestPost(patient, action);
+                ctx.runOnUiThread(new Runnable() {
+                    @Override
+                    public void run() {
+
+                        if (verifyRespondeServer(result)){
+                            fillList(list);
+                        } else
+                            Toast.makeText(ctx.getApplicationContext(),"problema para cargar lista", Toast.LENGTH_SHORT).show();
+                        interrupt();
+                    }
+                });
+
+            }
+        };
+        tr.start();
+
+
+    }
+
     public void procesingJson (String result){
 
         JSONArray array = null;
@@ -161,6 +201,10 @@ public class HttpHandlerPatient {
         }finally{
             db.close();
         }
+
+    }
+
+    public void fillList(ListView list){
 
     }
 
