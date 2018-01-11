@@ -66,8 +66,6 @@ public class HttpHandlerInteraction {
             Log.d("message: ", listParam.toString() );
 
             responseCode = connection.getResponseCode();
-            if (responseCode <= 0 )
-                Log.d("message: ", "menor");
 
             Log.d("message: ", String.valueOf(responseCode));
 

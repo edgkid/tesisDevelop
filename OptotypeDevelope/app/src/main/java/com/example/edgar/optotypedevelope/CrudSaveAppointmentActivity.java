@@ -7,6 +7,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.DatePicker;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
@@ -22,7 +23,7 @@ public class CrudSaveAppointmentActivity extends AppCompatActivity implements Vi
     TextView textLastNames;
     TextView textyears;
     TextView newDate;
-    TextView textShared;
+    EditText textShared;
 
     Button save;
     Button shared;
@@ -51,7 +52,7 @@ public class CrudSaveAppointmentActivity extends AppCompatActivity implements Vi
         line = (View) findViewById(R.id.separatorC);
 
         shared = (Button) findViewById(R.id.idCrudButtonShareC);
-        textShared = (TextView) findViewById(R.id.idCrudButtonShareC);
+        textShared = (EditText) findViewById(R.id.idCrudShareSaveC);
 
         /*perfil.setVisibility(View.INVISIBLE);
         textNames.setVisibility(View.INVISIBLE);
@@ -68,6 +69,8 @@ public class CrudSaveAppointmentActivity extends AppCompatActivity implements Vi
 
     @Override
     public void onClick(View v) {
+
+        patient = new Patient();
 
         switch (v.getId()){
             case R.id.idCrudButtonShareC:

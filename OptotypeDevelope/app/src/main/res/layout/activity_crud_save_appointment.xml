@@ -59,7 +59,7 @@
                 android:layout_height="wrap_content"
                 android:orientation="horizontal">
 
-                <TextView
+                <EditText
                     android:id="@+id/idCrudShareSaveC"
                     android:layout_width="300dp"
                     android:layout_height="50dp" />

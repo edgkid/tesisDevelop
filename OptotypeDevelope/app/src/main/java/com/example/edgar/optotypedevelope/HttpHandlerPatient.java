@@ -2,6 +2,7 @@ package com.example.edgar.optotypedevelope;
 
 import android.content.ContentValues;
 import android.content.Context;
+import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.util.Log;
 import android.widget.ListView;
@@ -82,12 +83,83 @@ public class HttpHandlerPatient {
 
     public String sendRequestPost (Patient patient, int action){
 
-        String value = "";
+        String line = "";
+        URL url = null;
+        int responseCode;
+        StringBuilder result = null;
+        DataOutputStream printout;
+        InputStream inputStreamResponse = null;
+        String path = serverPath.getHttp() + serverPath.getIpAdddress() + serverPath.getPathAddress()+ this.request;
 
-        
+        try{
 
+            url = new URL (path);
+            Log.d("message: ", path);
+            HttpURLConnection connection = (HttpURLConnection) url.openConnection();
 
-        return value;
+            connection.setRequestMethod("POST");
+            connection.setRequestProperty("Content-Type", "application/JSON");
+            connection.setRequestProperty("charset", "utf-8");
+            connection.setDoOutput(true);
+
+            //Create JSONObject here
+            JSONArray listParam = new JSONArray();
+            getJsonData(listParam, patient.getName(), action);
+
+            OutputStreamWriter wr = new OutputStreamWriter(connection.getOutputStream());
+            wr.write(listParam.toString());
+            wr.flush();
+            wr.close();
+
+            Log.d("message: ", listParam.toString() );
+
+            responseCode = connection.getResponseCode();
+
+            if( responseCode == HttpURLConnection.HTTP_OK){
+                inputStreamResponse = connection.getInputStream();
+                Log.d("message code:", String.valueOf(responseCode));
+
+                result = new StringBuilder();
+                InputStream input = new BufferedInputStream(connection.getInputStream());
+                BufferedReader reader = new BufferedReader(new InputStreamReader(input));
+
+                while ((line = reader.readLine()) !=null ){
+                    result.append(line);
+                }
+            }else
+                Log.d("message: ", "Como que no conecto");
+
+            if (inputStreamResponse != null){
+                try{
+                    inputStreamResponse.close();
+                }
+                catch(Exception ex){
+                    Log.d(this.getClass().toString(), "Error cerrando InputStream", ex);
+                }
+            }
+
+        }catch (IOException e){
+            e.printStackTrace();
+        }
+
+        return result.toString();
+    }
+
+    public void getJsonData (JSONArray listParam, String value, int action){
+
+        JSONObject jsonParam = null;
+
+        try{
+
+            jsonParam = new JSONObject();
+            jsonParam.put("action", action);
+            jsonParam.put("patient", value);
+            listParam.put(jsonParam);
+
+        }catch (Exception e){
+            e.printStackTrace();
+            Log.d("message: ", "Exception cursor o DB");
+        }
 
     }
 
@@ -146,7 +218,8 @@ public class HttpHandlerPatient {
                     public void run() {
 
                         if (verifyRespondeServer(result)){
-                            fillList(list);
+                            fillList(list, result);
+                            Log.d("message: ", "datos");
                         } else
                             Toast.makeText(ctx.getApplicationContext(),"problema para cargar lista", Toast.LENGTH_SHORT).show();
                         interrupt();
@@ -204,7 +277,9 @@ public class HttpHandlerPatient {
 
     }
 
-    public void fillList(ListView list){
+    public void fillList(ListView list, String result){
+
+        Log.d("message:", result);
 
     }
 
