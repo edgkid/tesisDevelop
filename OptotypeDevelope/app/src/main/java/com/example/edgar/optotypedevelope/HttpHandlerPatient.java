@@ -286,6 +286,8 @@ public class HttpHandlerPatient {
 
         JSONArray array = null;
 
+        String namePatient;
+
         try{
 
             array = new JSONArray(result);
@@ -300,12 +302,14 @@ public class HttpHandlerPatient {
                                                 jsonObj.getString("lastName"),
                                                 jsonObj.getString("middleName"),
                                                 jsonObj.getString("maidenName"),
-                                                jsonObj.getString("yearsOld"),
+                                                "Edad: " + jsonObj.getString("yearsOld"),
                                                 jsonObj.getString("image"),null);
+
+                namePatient = patient.getName() + " " + patient.getMiddleName() + " " + patient.getLastName() + " " + patient.getMaidenName();
 
                 byte[] byteCode = Base64.decode(patient.getPhoto(), Base64.DEFAULT);
                 Bitmap image = BitmapFactory.decodeByteArray(byteCode, 0 , byteCode.length);
-                patientsData[i] = new PatientsToday(patient.getName(), patient.getYearsOld(),image, Integer.parseInt(patient.getIdPatient()));
+                patientsData[i] = new PatientsToday(namePatient, patient.getYearsOld(),image, Integer.parseInt(patient.getIdPatient()));
             }
 
             PatientsTodayAdapter patientsAdapter = new PatientsTodayAdapter(context,R.layout.listview_item_patients_today_row, patientsData);
