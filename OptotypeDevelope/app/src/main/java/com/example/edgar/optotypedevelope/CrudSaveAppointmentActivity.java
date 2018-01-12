@@ -34,8 +34,9 @@ public class CrudSaveAppointmentActivity extends AppCompatActivity implements Vi
 
     DatePicker calendar;
     ImageView perfil;
-
     View line;
+
+    boolean answer = false;
     int action = 0;
     Patient patient = new Patient();
 
@@ -152,6 +153,11 @@ public class CrudSaveAppointmentActivity extends AppCompatActivity implements Vi
                 processNewDate();
                 break;
         }
+
+        if (answer)
+            Toast.makeText(contextActivity, "registro procesado con Exito", Toast.LENGTH_SHORT).show();
+        else
+            Toast.makeText(contextActivity, "No se pudo procesar el registro", Toast.LENGTH_SHORT).show();
     }
 
 }

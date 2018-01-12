@@ -129,11 +129,11 @@ public class HttpHandlerAppointment {
     public void connectToResource (final CrudSaveAppointmentActivity ctx, final Patient patient, final int option){
 
         Thread tr = new Thread(){
-
             @Override
             public void run() {
                 if (sendRequestDelete(patient,option))
-                    ;
+                    //ctx.answer = true;
+                ;
             }
         };
         tr.start();
@@ -169,9 +169,6 @@ public class HttpHandlerAppointment {
         query = query + patient.getIdPatient();
 
         db.execSQL(query);
-
-
-
 
     }
 
