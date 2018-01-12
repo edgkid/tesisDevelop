@@ -28,6 +28,7 @@ public class RequestAppointment {
         HttpHandlerAppointment httpHandlerAppointment = new HttpHandlerAppointment(request,context);
         switch (option){
             case 0:
+                httpHandlerAppointment.connectToResource((CrudSaveAppointmentActivity) context,patient, option);
                 break;
             case 1:
                 httpHandlerAppointment.connectToResource((CrudModifyAppointmentActivity) context, patient, option);

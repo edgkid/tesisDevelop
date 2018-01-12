@@ -45,7 +45,6 @@ public class HttpHandlerAppointment {
         try{
             url = new URL (path);
             Log.d("message: ", path);
-            Log.d("messafe: ", patient.getIdPatient());
             HttpURLConnection connection = (HttpURLConnection) url.openConnection();
 
             connection.setRequestMethod("POST");
@@ -127,6 +126,20 @@ public class HttpHandlerAppointment {
         tr.start();
     }
 
+    public void connectToResource (final CrudSaveAppointmentActivity ctx, final Patient patient, final int option){
+
+        Thread tr = new Thread(){
+
+            @Override
+            public void run() {
+                if (sendRequestDelete(patient,option))
+                    ;
+            }
+        };
+        tr.start();
+
+    }
+
 
     public void getJsonData (JSONArray  listParam, String idPatient, int option ){
 
@@ -136,8 +149,8 @@ public class HttpHandlerAppointment {
             jsonParam.put("idPatient", idPatient);
             jsonParam.put("status", "N");
             jsonParam.put("action",option);
-            if (option == 1)
-                jsonParam.put("appointmentDate","1/3/2018");
+            if (option == 1 || option == 0)
+                jsonParam.put("appointmentDate","01/03/2018");
             listParam.put(jsonParam);
         }catch (Exception e){
             e.printStackTrace();

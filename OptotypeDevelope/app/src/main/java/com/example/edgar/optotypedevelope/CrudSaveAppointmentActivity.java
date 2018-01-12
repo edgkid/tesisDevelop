@@ -37,7 +37,7 @@ public class CrudSaveAppointmentActivity extends AppCompatActivity implements Vi
 
     View line;
     int action = 0;
-    Patient patient;
+    Patient patient = new Patient();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -71,20 +71,27 @@ public class CrudSaveAppointmentActivity extends AppCompatActivity implements Vi
         shared.setOnClickListener(this);
     }
 
-    public void showData(PatientsToday patient){
+    public void showData(PatientsToday patientOnList){
 
-        String[] name = patient.getName().split(" ");
-        String[] years = patient.getYearsOld().split(" ");
+        String[] name = patientOnList.getName().split(" ");
+        String[] years = patientOnList.getYearsOld().split(" ");
 
 
-        if (patient.getPhoto() != null)
-            perfil.setImageBitmap(patient.getPhoto());
+        if (patientOnList.getPhoto() != null)
+            perfil.setImageBitmap(patientOnList.getPhoto());
         else
             perfil.setImageResource(R.drawable.usuario_icon);
 
-        textNames.setText(name[0] + " " + name[1]);
-        textLastNames.setText(name[2] + " " + name[3]);
-        textyears.setText("Edad: " + years[1]);
+        patient.setName(name[0]);
+        patient.setMiddleName(name[1]);
+        patient.setLastName(name[2]);
+        patient.setMaidenName(name[3]);
+        patient.setYearsOld(years[1]);
+        patient.setIdPatient(String.valueOf(patientOnList.getIdPatient()));
+
+        textNames.setText(patient.getName() + " " + patient.getMiddleName());
+        textLastNames.setText(patient.getLastName() + " " + patient.getMaidenName());
+        textyears.setText("Edad: " + patient.getYearsOld());
 
         perfil.setVisibility(View.VISIBLE);
         textNames.setVisibility(View.VISIBLE);
@@ -124,12 +131,13 @@ public class CrudSaveAppointmentActivity extends AppCompatActivity implements Vi
         date = String.valueOf(calendar.getDayOfMonth()) + "/" + String.valueOf(calendar.getMonth()+1) + "/" + String.valueOf(calendar.getYear());
         newDate.setText("Nueva Fecha de Consulta: " + date);
 
+        RequestAppointment requestAppointment = new RequestAppointment("appointment",contextActivity);
+        requestAppointment.requestDeleteActualAppointment(patient, action);
+
     }
 
     @Override
     public void onClick(View v) {
-
-        patient = new Patient();
 
         switch (v.getId()){
             case R.id.idCrudButtonShareC:
@@ -140,6 +148,7 @@ public class CrudSaveAppointmentActivity extends AppCompatActivity implements Vi
                 actionOnElement();
                 break;
             case R.id.idCrudButtonAceptedC:
+                action = 0;
                 processNewDate();
                 break;
         }
