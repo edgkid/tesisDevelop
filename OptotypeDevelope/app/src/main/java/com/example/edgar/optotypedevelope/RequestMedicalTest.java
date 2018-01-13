@@ -145,10 +145,17 @@ public class RequestMedicalTest {
     }
 
 
-    public void sendDataInteraction(Patient patient){
+    public void sendDataInteraction(Patient patient, int action){
 
         HttpHandlerInteraction httpHandlerInteraction = new HttpHandlerInteraction("test",this.context);
-        httpHandlerInteraction.connectToResource((InteractionActivity) context, patient);
+        httpHandlerInteraction.connectToResource((InteractionActivity) context, patient, action);
+
+    }
+
+    public void requestTest (PatientsToday patient, int distance){
+
+        HttpHandlerMedicalTest httpHandlerMedicalTest = new HttpHandlerMedicalTest(this.request, this.context);
+        httpHandlerMedicalTest.connectToResource((CrudRequestTestActivity) context, patient, distance);
 
     }
 

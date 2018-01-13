@@ -44,6 +44,7 @@ public class InteractionActivity extends AppCompatActivity {
     Patient patient = new Patient();
     Bundle patientExtras;
     boolean flag = true;
+    int action = 0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -405,7 +406,7 @@ public class InteractionActivity extends AppCompatActivity {
             requestInteraction.processInteraction(controlInteraction, patient);
 
             RequestMedicalTest requestMedicalTest = new RequestMedicalTest(this);
-            requestMedicalTest.sendDataInteraction(patient);
+            requestMedicalTest.sendDataInteraction(patient, action);
 
             Intent dashboardActivity = new Intent(this, DashBoardActivity.class);
             startActivity(dashboardActivity);

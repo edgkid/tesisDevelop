@@ -34,7 +34,7 @@ public class HttpHandlerInteraction {
         this.context = context;
     }
 
-    public void sendRequestPOST (Patient patient){
+    public void sendRequestPOST (Patient patient, int action){
 
         URL url = null;
         int responseCode;
@@ -56,7 +56,7 @@ public class HttpHandlerInteraction {
 
             //Create JSONObject here
             JSONArray listParam = new JSONArray();
-            getJsonData(listParam, patient.getIdPatient());
+            getJsonData(listParam, patient.getIdPatient(), action);
 
             OutputStreamWriter wr = new OutputStreamWriter(connection.getOutputStream());
             wr.write(listParam.toString());
@@ -92,20 +92,20 @@ public class HttpHandlerInteraction {
 
     }
 
-    public void connectToResource (final InteractionActivity ctx, final Patient patient){
+    public void connectToResource (final InteractionActivity ctx, final Patient patient, final int action){
 
         Log.d("message: ", "Genera solicitud de conexion");
         Thread tr = new Thread(){
             @Override
             public void run() {
-                sendRequestPOST(patient);
+                sendRequestPOST(patient, action);
             }
         };
         tr.start();
 
     }
 
-    public void getJsonData (JSONArray  listParam, String idPatient ){
+    public void getJsonData (JSONArray  listParam, String idPatient, int action ){
 
         JSONObject jsonParam = null;
         Cursor cursor = null;
@@ -128,6 +128,7 @@ public class HttpHandlerInteraction {
                     jsonParam.put("idOptotype", cursor.getString(0));
                     jsonParam.put("testCode", cursor.getString(2));
                     jsonParam.put("eye", cursor.getString(3));
+                    jsonParam.put("action", action);
                     listParam.put(jsonParam);
 
                 } while (cursor.moveToNext());
