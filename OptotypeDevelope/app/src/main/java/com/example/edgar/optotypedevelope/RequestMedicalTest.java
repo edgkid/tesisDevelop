@@ -152,10 +152,10 @@ public class RequestMedicalTest {
 
     }
 
-    public void requestTest (PatientsToday patient, int distance){
+    public void requestTest (PatientsToday patient, int distance, int action){
 
         HttpHandlerMedicalTest httpHandlerMedicalTest = new HttpHandlerMedicalTest(this.request, this.context);
-        httpHandlerMedicalTest.connectToResource((CrudRequestTestActivity) context, patient, distance);
+        httpHandlerMedicalTest.connectToResource((CrudRequestTestActivity) context, patient, distance, action);
 
     }
 

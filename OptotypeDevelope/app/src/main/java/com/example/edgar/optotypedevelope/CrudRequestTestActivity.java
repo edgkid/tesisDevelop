@@ -4,14 +4,19 @@ import android.content.Context;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ImageView;
 import android.widget.ListView;
+import android.widget.TextView;
 
 public class CrudRequestTestActivity extends AppCompatActivity {
 
     Context contextActivity;
     ListView listPatients;
     ImageView test;
+
+    int action = 4;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -45,6 +50,24 @@ public class CrudRequestTestActivity extends AppCompatActivity {
 
         PatientsTodayAdapter patientsAdapter = new PatientsTodayAdapter(this,R.layout.listview_item_patients_today_row, patientsData);
         listPatients.setAdapter(patientsAdapter);
+
+        actionOnElement();
+
+    }
+
+    public void actionOnElement (){
+
+        listPatients.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+
+                PatientsToday patient = (PatientsToday) parent.getAdapter().getItem(position);
+                Log.d("message: ",String.valueOf(patient.getIdPatient()));
+                Log.d("message: ",patient.getName());
+                RequestMedicalTest requestMedicalTest = new RequestMedicalTest("test",contextActivity);
+                requestMedicalTest.requestTest(patient,4, action);
+            }
+        });
 
     }
 
