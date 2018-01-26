@@ -66,12 +66,10 @@
             <ImageView
                 android:id="@+id/idTestForPatient"
                 android:layout_width="400dp"
-                android:layout_height="match_parent"
-                android:layout_gravity="center"
+                android:layout_height="500dp"
                 android:layout_marginLeft="100dp"
-                android:src="@drawable/usuario_icon"
-                />
-
+                android:layout_gravity="center"
+                android:src="@drawable/carta" />
         </LinearLayout>
 
     </LinearLayout>
