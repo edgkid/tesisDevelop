@@ -45,12 +45,10 @@ public class DashBoardActivity extends AppCompatActivity implements View.OnClick
 
         switch (v.getId()){
             case R.id.buttonLogout:
-                //Toast.makeText(contextActivity,"logOut",Toast.LENGTH_SHORT).show();
                 logOutDashBoard();
                 break;
             case R.id.buttonUpdate:
-                Toast.makeText(contextActivity,"Update",Toast.LENGTH_SHORT).show();
-                //updateDashBoard();
+                refreshDashBoard();
                 break;
         }
     }
@@ -75,6 +73,10 @@ public class DashBoardActivity extends AppCompatActivity implements View.OnClick
 
         Intent loginActivity = new Intent(this, LoginActivity.class);
         startActivity(loginActivity);
+    }
+
+    public void refreshDashBoard(){
+        loadListPatientsToday();
     }
 
     /**
