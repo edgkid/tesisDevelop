@@ -9,8 +9,9 @@ import android.widget.AdapterView;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
 
-public class CrudRequestTestActivity extends AppCompatActivity {
+public class CrudRequestTestActivity extends AppCompatActivity implements View.OnClickListener {
 
     Context contextActivity;
     ListView listPatients;
@@ -28,6 +29,18 @@ public class CrudRequestTestActivity extends AppCompatActivity {
         listPatients = (ListView) findViewById(R.id.idListForRequesTest);
 
         loadListPatientsToday();
+    }
+
+    @Override
+    public void onClick(View v) {
+        switch (v.getId()) {
+            case R.id.buttonLogout:
+                Toast.makeText(this, "cerrar", Toast.LENGTH_SHORT).show();
+                break;
+            case R.id.buttonUpdate:
+                Toast.makeText(this, "cerrar", Toast.LENGTH_SHORT).show();
+                break;
+        }
     }
 
     public void loadListPatientsToday (){

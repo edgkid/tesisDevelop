@@ -57,6 +57,8 @@ public class CrudDeleteAppointmentActivity extends AppCompatActivity implements 
         RequestAppointment requestAppointment = new RequestAppointment("appointment",this);
         requestAppointment.requestDeleteActualAppointment(patient, action);
 
+
+
     }
 
     /**

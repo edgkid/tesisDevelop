@@ -152,6 +152,12 @@ public class CrudSaveAppointmentActivity extends AppCompatActivity implements Vi
                 action = 0;
                 processNewDate();
                 break;
+            case R.id.buttonLogout:
+                Toast.makeText(this, "cerrar", Toast.LENGTH_SHORT).show();
+                break;
+            case R.id.buttonUpdate:
+                Toast.makeText(this, "cerrar", Toast.LENGTH_SHORT).show();
+                break;
         }
 
         if (answer)

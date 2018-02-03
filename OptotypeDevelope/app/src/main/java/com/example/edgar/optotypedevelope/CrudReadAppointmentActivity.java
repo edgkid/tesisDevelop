@@ -2,6 +2,7 @@ package com.example.edgar.optotypedevelope;
 
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.support.v7.app.AppCompatActivity;
@@ -10,6 +11,7 @@ import android.util.Base64;
 import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
@@ -17,7 +19,7 @@ import android.widget.Toast;
 
 import java.util.List;
 
-public class CrudReadAppointmentActivity extends AppCompatActivity {
+public class CrudReadAppointmentActivity extends AppCompatActivity implements View.OnClickListener{
 
     ListView listPatients;
 
@@ -31,6 +33,9 @@ public class CrudReadAppointmentActivity extends AppCompatActivity {
 
     Context contextActivity;
     Patient patient = null;
+
+    Button buttonLogOut;
+    Button buttonUpdate;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -46,8 +51,44 @@ public class CrudReadAppointmentActivity extends AppCompatActivity {
         ultimateAppointment = (TextView) findViewById(R.id.idCrudRLastAppointment);
         av = (TextView) findViewById(R.id.idCrudAvEstimated);
         perfil = (ImageView) findViewById(R.id.idCrudRImagePeril);
+        buttonLogOut = (Button) findViewById(R.id.buttonLogout);
+        buttonUpdate = (Button) findViewById(R.id.buttonUpdate);
+
+        buttonLogOut.setOnClickListener(this);
+        buttonUpdate.setOnClickListener(this);
 
         loadListPatientsToday();
+
+    }
+
+    @Override
+    public void onClick(View v) {
+
+        switch (v.getId()){
+            case R.id.buttonLogout:
+                logOutApp();
+                break;
+            case R.id.buttonUpdate:
+                loadListPatientsToday();
+                break;
+        }
+
+    }
+
+    public void logOutApp(){
+
+        cleanPreferencesLogin();
+
+        Intent loginActivity = new Intent(this, LoginActivity.class);
+        startActivity(loginActivity);
+    }
+
+    public void cleanPreferencesLogin (){
+
+        SharedPreferences loginPreferences = getSharedPreferences("LoginPreferences", Context.MODE_PRIVATE);
+        SharedPreferences.Editor preferencesEditor = loginPreferences.edit();
+        preferencesEditor.clear();
+        preferencesEditor.commit();
 
     }
 

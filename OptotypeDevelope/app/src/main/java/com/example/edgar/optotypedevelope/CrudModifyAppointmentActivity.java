@@ -101,7 +101,6 @@ public class CrudModifyAppointmentActivity extends AppCompatActivity implements 
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
 
-
                 TextView textCode  = (TextView) view.findViewById(R.id.codePatient);
                 proccessPhoto(textCode.getText().toString());
 
