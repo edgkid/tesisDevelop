@@ -1,6 +1,8 @@
 package com.example.edgar.optotypedevelope;
 
 import android.content.Context;
+import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.support.v7.app.AppCompatActivity;
@@ -31,6 +33,7 @@ public class CrudSaveAppointmentActivity extends AppCompatActivity implements Vi
 
     Button save;
     Button shared;
+    Button buttonLogOut;
 
     DatePicker calendar;
     ImageView perfil;
@@ -57,7 +60,10 @@ public class CrudSaveAppointmentActivity extends AppCompatActivity implements Vi
         line = (View) findViewById(R.id.separatorC);
 
         shared = (Button) findViewById(R.id.idCrudButtonShareC);
+        buttonLogOut = (Button) findViewById(R.id.buttonLogout);
+        buttonLogOut.setOnClickListener(this);
         textShared = (EditText) findViewById(R.id.idCrudShareSaveC);
+
 
         perfil.setVisibility(View.INVISIBLE);
         textNames.setVisibility(View.INVISIBLE);
@@ -71,6 +77,8 @@ public class CrudSaveAppointmentActivity extends AppCompatActivity implements Vi
         save.setOnClickListener(this);
         shared.setOnClickListener(this);
     }
+
+
 
     public void showData(PatientsToday patientOnList){
 
@@ -153,10 +161,7 @@ public class CrudSaveAppointmentActivity extends AppCompatActivity implements Vi
                 processNewDate();
                 break;
             case R.id.buttonLogout:
-                Toast.makeText(this, "cerrar", Toast.LENGTH_SHORT).show();
-                break;
-            case R.id.buttonUpdate:
-                Toast.makeText(this, "cerrar", Toast.LENGTH_SHORT).show();
+                logOutApp();
                 break;
         }
 
@@ -164,6 +169,22 @@ public class CrudSaveAppointmentActivity extends AppCompatActivity implements Vi
             Toast.makeText(contextActivity, "registro procesado con Exito", Toast.LENGTH_SHORT).show();
         else
             Toast.makeText(contextActivity, "No se pudo procesar el registro", Toast.LENGTH_SHORT).show();
+    }
+
+    public void logOutApp (){
+        cleanPreferencesLogin();
+
+        Intent loginActivity = new Intent(this, LoginActivity.class);
+        startActivity(loginActivity);
+    }
+
+    public void cleanPreferencesLogin (){
+
+        SharedPreferences loginPreferences = getSharedPreferences("LoginPreferences", Context.MODE_PRIVATE);
+        SharedPreferences.Editor preferencesEditor = loginPreferences.edit();
+        preferencesEditor.clear();
+        preferencesEditor.commit();
+
     }
 
 }

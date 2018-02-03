@@ -1,11 +1,14 @@
 package com.example.edgar.optotypedevelope;
 
 import android.content.Context;
+import android.content.Intent;
+import android.content.SharedPreferences;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
@@ -16,6 +19,9 @@ public class CrudRequestTestActivity extends AppCompatActivity implements View.O
     Context contextActivity;
     ListView listPatients;
     ImageView test;
+
+    Button buttonLogOut;
+    Button buttonUpdate;
 
     int action = 4;
 
@@ -28,6 +34,12 @@ public class CrudRequestTestActivity extends AppCompatActivity implements View.O
         test = (ImageView) findViewById(R.id.idTestForPatient);
         listPatients = (ListView) findViewById(R.id.idListForRequesTest);
 
+        buttonLogOut = (Button) findViewById(R.id.buttonLogout);
+        buttonUpdate = (Button) findViewById(R.id.buttonUpdate);
+
+        buttonUpdate.setOnClickListener(this);
+        buttonLogOut.setOnClickListener(this);
+
         loadListPatientsToday();
     }
 
@@ -35,12 +47,28 @@ public class CrudRequestTestActivity extends AppCompatActivity implements View.O
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.buttonLogout:
-                Toast.makeText(this, "cerrar", Toast.LENGTH_SHORT).show();
+                logOutApp();
                 break;
             case R.id.buttonUpdate:
-                Toast.makeText(this, "cerrar", Toast.LENGTH_SHORT).show();
+                loadListPatientsToday ();
                 break;
         }
+    }
+
+    public void logOutApp (){
+        cleanPreferencesLogin();
+
+        Intent loginActivity = new Intent(this, LoginActivity.class);
+        startActivity(loginActivity);
+    }
+
+    public void cleanPreferencesLogin (){
+
+        SharedPreferences loginPreferences = getSharedPreferences("LoginPreferences", Context.MODE_PRIVATE);
+        SharedPreferences.Editor preferencesEditor = loginPreferences.edit();
+        preferencesEditor.clear();
+        preferencesEditor.commit();
+
     }
 
     public void loadListPatientsToday (){

@@ -2,6 +2,7 @@ package com.example.edgar.optotypedevelope;
 
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.support.v7.app.AppCompatActivity;
@@ -13,6 +14,7 @@ import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.ListView;
+import android.widget.Switch;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -22,6 +24,9 @@ public class CrudDeleteAppointmentActivity extends AppCompatActivity implements 
     TextView messageText;
     ImageView perfil;
     Button actionDelete;
+    Button buttonLogOut;
+    Button buttonUpdate;
+
 
     Patient patient;
     Context contextActivity;
@@ -40,12 +45,16 @@ public class CrudDeleteAppointmentActivity extends AppCompatActivity implements 
         messageText = (TextView) findViewById(R.id.idCrudDMessage);
         perfil = (ImageView) findViewById(R.id.idCrudDImagePeril);
         actionDelete = (Button) findViewById(R.id.idCrudDButtonAcepted);
+        buttonLogOut = (Button) findViewById(R.id.buttonLogout);
+        buttonUpdate = (Button) findViewById(R.id.buttonUpdate);
 
         messageText.setVisibility(View.INVISIBLE);
         perfil.setVisibility(View.INVISIBLE);
         actionDelete.setVisibility(View.INVISIBLE);
 
         actionDelete.setOnClickListener(this);
+        buttonLogOut.setOnClickListener(this);
+        buttonUpdate.setOnClickListener(this);
 
         loadListPatientsToday();
 
@@ -54,10 +63,38 @@ public class CrudDeleteAppointmentActivity extends AppCompatActivity implements 
     @Override
     public void onClick(View v) {
 
+        switch (v.getId()){
+            case R.id.buttonUpdate:
+                loadListPatientsToday();
+                break;
+            case R.id.idCrudDButtonAcepted:
+                deleteAppointment();
+                break;
+            case R.id.buttonLogout:
+                logOutApp();
+                break;
+        }
+    }
+
+    public void deleteAppointment(){
+
         RequestAppointment requestAppointment = new RequestAppointment("appointment",this);
         requestAppointment.requestDeleteActualAppointment(patient, action);
+    }
 
+    public void logOutApp (){
+        cleanPreferencesLogin();
 
+        Intent loginActivity = new Intent(this, LoginActivity.class);
+        startActivity(loginActivity);
+    }
+
+    public void cleanPreferencesLogin (){
+
+        SharedPreferences loginPreferences = getSharedPreferences("LoginPreferences", Context.MODE_PRIVATE);
+        SharedPreferences.Editor preferencesEditor = loginPreferences.edit();
+        preferencesEditor.clear();
+        preferencesEditor.commit();
 
     }
 

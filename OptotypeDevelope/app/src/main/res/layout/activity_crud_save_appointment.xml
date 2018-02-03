@@ -32,13 +32,13 @@
                 android:layout_marginTop="5dp"
                 android:background="@drawable/icon_on"/>
 
-            <Button
+            <!--<Button
                 android:id="@+id/buttonUpdate"
                 android:layout_width="50dp"
                 android:layout_height="50dp"
                 android:layout_marginLeft="5dp"
                 android:layout_marginTop="5dp"
-                android:background="@drawable/icon_updated"/>
+                android:background="@drawable/icon_updated"/>-->
         </LinearLayout>
 
     </LinearLayout>
