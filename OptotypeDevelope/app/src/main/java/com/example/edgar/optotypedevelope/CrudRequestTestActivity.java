@@ -16,12 +16,12 @@ import android.widget.Toast;
 
 public class CrudRequestTestActivity extends AppCompatActivity implements View.OnClickListener {
 
-    Context contextActivity;
     ListView listPatients;
     ImageView test;
 
     Button buttonLogOut;
     Button buttonUpdate;
+    Context contextActivity;
 
     int action = 4;
 
@@ -40,6 +40,14 @@ public class CrudRequestTestActivity extends AppCompatActivity implements View.O
         buttonUpdate.setOnClickListener(this);
         buttonLogOut.setOnClickListener(this);
 
+        test.setOnClickListener(new View.OnClickListener(){
+
+            @Override
+            public void onClick(View v) {
+                nextActivity();
+            }
+        });
+
         loadListPatientsToday();
     }
 
@@ -53,6 +61,13 @@ public class CrudRequestTestActivity extends AppCompatActivity implements View.O
                 loadListPatientsToday ();
                 break;
         }
+    }
+
+    public void nextActivity (){
+
+        Intent testPresentationActivity = new Intent(this, TestPresentationActivity.class);
+        startActivity(testPresentationActivity);
+
     }
 
     public void logOutApp (){
@@ -111,5 +126,7 @@ public class CrudRequestTestActivity extends AppCompatActivity implements View.O
         });
 
     }
+
+
 
 }

@@ -26,7 +26,8 @@
         <activity android:name=".CrudDeleteAppointmentActivity" />
         <activity android:name=".CrudModifyAppointmentActivity" />
         <activity android:name=".CrudSaveAppointmentActivity" />
-        <activity android:name=".CrudRequestTestActivity"></activity>
+        <activity android:name=".CrudRequestTestActivity" />
+        <activity android:name=".TestPresentationActivity"></activity>
     </application>
 
 </manifest>
