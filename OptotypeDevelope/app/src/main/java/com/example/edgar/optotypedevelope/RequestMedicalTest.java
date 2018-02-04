@@ -8,6 +8,7 @@ import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.util.Base64;
 import android.util.Log;
+import android.widget.ImageView;
 
 import java.util.ArrayList;
 import java.util.Iterator;
@@ -152,10 +153,10 @@ public class RequestMedicalTest {
 
     }
 
-    public void requestTest (PatientsToday patient, int distance, int action){
+    public void requestTest (PatientsToday patient, int distance, int action, ImageView test){
 
         HttpHandlerMedicalTest httpHandlerMedicalTest = new HttpHandlerMedicalTest(this.request, this.context);
-        httpHandlerMedicalTest.connectToResource((CrudRequestTestActivity) context, patient, distance, action);
+        httpHandlerMedicalTest.connectToResource((CrudRequestTestActivity) context, patient, distance, action, test);
 
     }
 

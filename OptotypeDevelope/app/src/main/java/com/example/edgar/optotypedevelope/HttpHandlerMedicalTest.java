@@ -3,7 +3,12 @@ package com.example.edgar.optotypedevelope;
 import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.media.Image;
+import android.util.Base64;
 import android.util.Log;
+import android.widget.ImageView;
 import android.widget.Toast;
 
 import org.json.JSONArray;
@@ -122,7 +127,7 @@ public class HttpHandlerMedicalTest {
         return value;
     }
 
-    public void connectToResource (final CrudRequestTestActivity ctx, final PatientsToday patient, final int distance, final int action){
+    public void connectToResource (final CrudRequestTestActivity ctx, final PatientsToday patient, final int distance, final int action, final ImageView test){
 
         Log.d("message: ", "Genera solicitud de conexion");
         Thread tr = new Thread(){
@@ -130,15 +135,14 @@ public class HttpHandlerMedicalTest {
             public void run() {
 
                 final String result= sendRequestPost(patient, distance, action);
-                //sendRequestPost(patient, distance, action);
                 ctx.runOnUiThread(new Runnable() {
                     @Override
                     public void run() {
 
-                       /* if (verifyRespondeServer(result)){
-                            Toast.makeText(ctx.getApplicationContext(),"se solicito test", Toast.LENGTH_SHORT).show();
+                      if (verifyRespondeServer(result)){
+                            procesingJson(result,test);
                         } else
-                            Toast.makeText(ctx.getApplicationContext(),"No conecta", Toast.LENGTH_SHORT).show();*/
+                            Toast.makeText(ctx.getApplicationContext(),"Tfallo en solicitud", Toast.LENGTH_SHORT).show();
                         interrupt();
                     }
                 });
@@ -167,6 +171,34 @@ public class HttpHandlerMedicalTest {
             e.printStackTrace();
             Log.d("message: ", "Exception cursor o DB");
         }
+    }
+
+    public void procesingJson(String result, ImageView test){
+
+        JSONArray array = null;
+        Bitmap image = null;
+
+        try{
+
+            array = new JSONArray(result);
+            for(int i=0; i<array.length(); i++){
+
+                JSONObject jsonObj  = array.getJSONObject(i);
+                byte[] byteCode = Base64.decode(jsonObj.getString("imageTest"), Base64.DEFAULT);
+                image = BitmapFactory.decodeByteArray(byteCode, 0 , byteCode.length);
+                break;
+            }
+
+        }catch (Exception e){
+            e.printStackTrace();
+            Log.d("json: ", "No hay valor para procesar");
+        }
+
+        if (image != null)
+            test.setImageBitmap(image);
+        else
+            test.setImageResource(R.drawable.imagenotfoud);
+
     }
 
 

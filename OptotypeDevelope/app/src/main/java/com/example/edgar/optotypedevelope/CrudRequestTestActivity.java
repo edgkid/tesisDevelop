@@ -106,7 +106,7 @@ public class CrudRequestTestActivity extends AppCompatActivity implements View.O
                 Log.d("message: ",String.valueOf(patient.getIdPatient()));
                 Log.d("message: ",patient.getName());
                 RequestMedicalTest requestMedicalTest = new RequestMedicalTest("test",contextActivity);
-                requestMedicalTest.requestTest(patient,4, action);
+                requestMedicalTest.requestTest(patient,4, action, test);
             }
         });
 
