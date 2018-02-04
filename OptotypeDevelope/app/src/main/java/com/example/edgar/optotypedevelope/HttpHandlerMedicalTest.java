@@ -34,12 +34,14 @@ public class HttpHandlerMedicalTest {
         this.context = context;
     }
 
-    public void sendRequestPost (PatientsToday patient, int distance, int action){
+    public String sendRequestPost (PatientsToday patient, int distance, int action){
 
         URL url = null;
         int responseCode;
         StringBuilder result = null;
+        String line;
         DataOutputStream printout;
+        String retunrValue;
         InputStream inputStreamResponse = null;
         String path = serverPath.getHttp() + serverPath.getIpAdddress() + serverPath.getPathAddress()+ this.request;
 
@@ -66,11 +68,17 @@ public class HttpHandlerMedicalTest {
 
             responseCode = connection.getResponseCode();
 
-            Log.d("message: ", String.valueOf(responseCode));
-
             if( responseCode == HttpURLConnection.HTTP_OK){
-                inputStreamResponse = connection.getInputStream();
+
+                result = new StringBuilder();
+                inputStreamResponse = new BufferedInputStream(connection.getInputStream());
+                BufferedReader reader = new BufferedReader(new InputStreamReader(inputStreamResponse));
+
+                while ((line = reader.readLine()) !=null ){
+                    result.append(line);
+                }
                 Log.d("message code:", String.valueOf(responseCode));
+
             }else
                 Log.d("message: ", "Como que no conecto");
 
@@ -89,6 +97,14 @@ public class HttpHandlerMedicalTest {
             Log.d("message: ", "Error no estoy haciendo conexion");
         }
 
+        if (result == null)
+            retunrValue = "[{}]";
+        else
+            retunrValue = result.toString();
+
+        Log.d("message: ",retunrValue);
+
+        return retunrValue;
     }
 
     public boolean verifyRespondeServer (String result){
@@ -113,8 +129,8 @@ public class HttpHandlerMedicalTest {
             @Override
             public void run() {
 
-                //final String result= sendRequestPost(patient, distance, action);
-                sendRequestPost(patient, distance, action);
+                final String result= sendRequestPost(patient, distance, action);
+                //sendRequestPost(patient, distance, action);
                 ctx.runOnUiThread(new Runnable() {
                     @Override
                     public void run() {
