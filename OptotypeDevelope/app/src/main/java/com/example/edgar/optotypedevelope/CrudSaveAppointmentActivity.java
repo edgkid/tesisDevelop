@@ -1,10 +1,12 @@
 package com.example.edgar.optotypedevelope;
 
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Base64;
@@ -158,7 +160,7 @@ public class CrudSaveAppointmentActivity extends AppCompatActivity implements Vi
                 break;
             case R.id.idCrudButtonAceptedC:
                 action = 0;
-                processNewDate();
+                alertDialog();
                 break;
             case R.id.buttonLogout:
                 logOutApp();
@@ -184,6 +186,37 @@ public class CrudSaveAppointmentActivity extends AppCompatActivity implements Vi
         SharedPreferences.Editor preferencesEditor = loginPreferences.edit();
         preferencesEditor.clear();
         preferencesEditor.commit();
+
+    }
+
+    public void alertDialog (){
+
+        String date = "";
+        date = String.valueOf(calendar.getDayOfMonth()) + "/" + String.valueOf(calendar.getMonth()+1) + "/" + String.valueOf(calendar.getYear());
+        newDate.setText("Nueva Fecha de Consulta: " + date);
+        String message = "Seguro que desea generar una cita para el paciente " +
+                patient.getName() + " " + patient.getLastName() +
+                " El dia "+ newDate.getText().toString();
+
+        AlertDialog.Builder alertDialog = new AlertDialog.Builder(contextActivity);
+        alertDialog.setTitle("Nueva Cita Medica");
+        alertDialog.setIcon(R.mipmap.ic_launcher);
+        alertDialog.setMessage(message)
+                .setCancelable(false)
+                .setPositiveButton("Aceptar", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        processNewDate();
+                    }
+                })
+                .setNegativeButton("Cancelar", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        dialog.dismiss();
+                    }
+                });
+        AlertDialog alert = alertDialog.create();
+        alert.show();
 
     }
 
