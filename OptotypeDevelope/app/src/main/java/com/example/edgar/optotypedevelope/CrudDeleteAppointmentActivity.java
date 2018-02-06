@@ -183,7 +183,7 @@ public class CrudDeleteAppointmentActivity extends AppCompatActivity implements 
     public void alertDialog(){
 
         AlertDialog.Builder alertDialog = new AlertDialog.Builder(contextActivity);
-        alertDialog.setTitle("Se eliminara una cita");
+        alertDialog.setTitle("Se Eliminara una Cita");
         alertDialog.setIcon(R.mipmap.ic_launcher);
         alertDialog.setMessage("¿Seguro que desea eliminar la cita del paciente seleccionado?")
                 .setCancelable(false)
