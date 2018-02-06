@@ -1,8 +1,10 @@
 package com.example.edgar.optotypedevelope;
 
 import android.content.Context;
+import android.content.DialogInterface;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Base64;
@@ -156,6 +158,33 @@ public class CrudModifyAppointmentActivity extends AppCompatActivity implements 
 
     @Override
     public void onClick(View v) {
+        alertDialog();
+    }
+
+    public void alertDialog (){
+
+        AlertDialog.Builder alertDialog = new AlertDialog.Builder(contextActivity);
+        alertDialog.setTitle("Se Modificara una Cita");
+        alertDialog.setIcon(R.mipmap.ic_launcher);
+        alertDialog.setMessage("Seguro que desea mover la cita para otro día")
+                .setCancelable(false)
+                .setPositiveButton("Aceptar", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        modifyAppointment();
+                    }
+                })
+                .setNegativeButton("Cancelar", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        dialog.dismiss();
+                    }
+                });
+        AlertDialog alert = alertDialog.create();
+        alert.show();
+    }
+
+    public void modifyAppointment(){
 
         String date = "";
         date = String.valueOf(calendar.getDayOfMonth()) + "/" + String.valueOf(calendar.getMonth()+1) + "/" + String.valueOf(calendar.getYear());
@@ -165,4 +194,5 @@ public class CrudModifyAppointmentActivity extends AppCompatActivity implements 
         requestAppointment.requestDeleteActualAppointment(patient, action);
 
     }
+
 }
