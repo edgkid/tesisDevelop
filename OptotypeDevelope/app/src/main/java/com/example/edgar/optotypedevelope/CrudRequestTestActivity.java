@@ -1,5 +1,6 @@
 package com.example.edgar.optotypedevelope;
 
+import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -9,21 +10,23 @@ import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-public class CrudRequestTestActivity extends AppCompatActivity implements View.OnClickListener {
+public class CrudRequestTestActivity extends AppCompatActivity implements View.OnClickListener, MessageDialog.MessageDialogListener {
 
     ListView listPatients;
     ImageView test;
-
     Button buttonLogOut;
     Button buttonUpdate;
     Context contextActivity;
 
     int action = 4;
+    int distanceByTest;
+    PatientsToday patient = null;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -117,16 +120,64 @@ public class CrudRequestTestActivity extends AppCompatActivity implements View.O
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
 
-                PatientsToday patient = (PatientsToday) parent.getAdapter().getItem(position);
-                Log.d("message: ",String.valueOf(patient.getIdPatient()));
-                Log.d("message: ",patient.getName());
-                RequestMedicalTest requestMedicalTest = new RequestMedicalTest("test",contextActivity);
-                requestMedicalTest.requestTest(patient,4, action, test);
+                patient = (PatientsToday) parent.getAdapter().getItem(position);
+                setDistanceByTest();
+
             }
         });
+
+
 
     }
 
 
+    @Override
+    public void applyData(String data) {
+        distanceByTest = Integer.parseInt(data);
+        /*RequestMedicalTest requestMedicalTest = new RequestMedicalTest("test",contextActivity);
+        requestMedicalTest.requestTest(patient,distanceByTest, action, test);*/
+        requestTest();
+    }
 
+    public void setDistanceByTest(){
+        MessageDialog messageDialog = new MessageDialog();
+        messageDialog.show(getSupportFragmentManager(),"Message Dialog");
+    }
+
+    public void requestTest (){
+        RequestMedicalTest requestMedicalTest = new RequestMedicalTest("test",contextActivity);
+        requestMedicalTest.requestTest(patient,distanceByTest, action, test);
+        displayWaitDialog();
+    }
+
+    public void displayWaitDialog(){
+
+        final ProgressDialog progressDialog = new ProgressDialog(contextActivity);
+        progressDialog.setTitle("Generando Carta Optometrica");
+        progressDialog.setIcon(R.mipmap.ic_launcher);
+        progressDialog.setMessage("Se estan procesando los optotypos que seran utilizado en el Examen. Por favor espere");
+        progressDialog.setMax(100);
+        progressDialog.setProgressStyle(ProgressDialog.STYLE_HORIZONTAL);
+        progressDialog.setCancelable(false);
+
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                try{
+                    while (progressDialog.getProgress() <= progressDialog.getMax()){
+                        Thread.sleep(1000);
+                        progressDialog.incrementProgressBy(3);
+                        if (progressDialog.getProgress() == progressDialog.getMax()){
+                            progressDialog.dismiss();
+                        }
+                    }
+                }catch(Exception e){
+
+                }
+            }
+        }).start();
+
+        progressDialog.show();
+
+    }
 }

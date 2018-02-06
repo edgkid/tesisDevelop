@@ -158,6 +158,7 @@ public class RequestMedicalTest {
         HttpHandlerMedicalTest httpHandlerMedicalTest = new HttpHandlerMedicalTest(this.request, this.context);
         httpHandlerMedicalTest.connectToResource((CrudRequestTestActivity) context, patient, distance, action, test);
 
+
     }
 
 }
