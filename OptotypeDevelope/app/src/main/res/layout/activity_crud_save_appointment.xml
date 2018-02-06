@@ -56,11 +56,11 @@
                     android:layout_width="300dp"
                     android:layout_height="50dp" />
 
-                <Button
+                <ImageButton
                     android:id="@+id/idCrudButtonShareC"
                     android:layout_width="50dp"
                     android:layout_height="50dp"
-                    android:text="B"/>
+                    android:src="@drawable/searchIcon"/>
 
             </LinearLayout>
 

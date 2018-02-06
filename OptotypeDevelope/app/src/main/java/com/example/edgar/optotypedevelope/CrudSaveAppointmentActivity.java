@@ -16,6 +16,7 @@ import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
@@ -34,7 +35,7 @@ public class CrudSaveAppointmentActivity extends AppCompatActivity implements Vi
     EditText textShared;
 
     Button save;
-    Button shared;
+    ImageButton shared;
     Button buttonLogOut;
 
     DatePicker calendar;
@@ -61,7 +62,7 @@ public class CrudSaveAppointmentActivity extends AppCompatActivity implements Vi
         save= (Button) findViewById(R.id.idCrudButtonAceptedC);
         line = (View) findViewById(R.id.separatorC);
 
-        shared = (Button) findViewById(R.id.idCrudButtonShareC);
+        shared = (ImageButton) findViewById(R.id.idCrudButtonShareC);
         buttonLogOut = (Button) findViewById(R.id.buttonLogout);
         buttonLogOut.setOnClickListener(this);
         textShared = (EditText) findViewById(R.id.idCrudShareSaveC);
