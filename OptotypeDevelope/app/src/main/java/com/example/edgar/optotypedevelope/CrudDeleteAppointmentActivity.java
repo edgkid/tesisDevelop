@@ -1,10 +1,12 @@
 package com.example.edgar.optotypedevelope;
 
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Base64;
@@ -68,18 +70,12 @@ public class CrudDeleteAppointmentActivity extends AppCompatActivity implements 
                 loadListPatientsToday();
                 break;
             case R.id.idCrudDButtonAcepted:
-                deleteAppointment();
+                alertDialog();
                 break;
             case R.id.buttonLogout:
                 logOutApp();
                 break;
         }
-    }
-
-    public void deleteAppointment(){
-
-        RequestAppointment requestAppointment = new RequestAppointment("appointment",this);
-        requestAppointment.requestDeleteActualAppointment(patient, action);
     }
 
     public void logOutApp (){
@@ -183,5 +179,37 @@ public class CrudDeleteAppointmentActivity extends AppCompatActivity implements 
         actionDelete.setVisibility(View.VISIBLE);
 
     }
+
+    public void alertDialog(){
+
+        AlertDialog.Builder alertDialog = new AlertDialog.Builder(contextActivity);
+        alertDialog.setTitle("Se eliminara una cita");
+        alertDialog.setIcon(R.mipmap.ic_launcher);
+        alertDialog.setMessage("¿Seguro que desea eliminar la cita del paciente seleccionado?")
+                .setCancelable(false)
+                .setPositiveButton("Aceptar", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        deleteAppointment();
+                    }
+                })
+                .setNegativeButton("Cancelar", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        dialog.dismiss();
+                    }
+                });
+        AlertDialog alert = alertDialog.create();
+        alert.show();
+
+    }
+
+    public void deleteAppointment(){
+
+        RequestAppointment requestAppointment = new RequestAppointment("appointment",this);
+        requestAppointment.requestDeleteActualAppointment(patient, action);
+
+    }
+
 
 }
