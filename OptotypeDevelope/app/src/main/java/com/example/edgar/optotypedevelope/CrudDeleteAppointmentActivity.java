@@ -20,15 +20,23 @@ import android.widget.Switch;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import org.w3c.dom.Text;
+
 public class CrudDeleteAppointmentActivity extends AppCompatActivity implements View.OnClickListener {
 
     ListView listPatients;
-    TextView messageText;
+
+    View line;
     ImageView perfil;
     Button actionDelete;
     Button buttonLogOut;
     Button buttonUpdate;
 
+    TextView names;
+    TextView lastNames;
+    TextView yearsOld;
+    TextView lastAppointmentDate;
+    TextView nextAppointmentDate;
 
     Patient patient;
     Context contextActivity;
@@ -44,15 +52,27 @@ public class CrudDeleteAppointmentActivity extends AppCompatActivity implements 
 
         contextActivity = this;
         listPatients = (ListView) findViewById(R.id.listPatienCrudD);
-        messageText = (TextView) findViewById(R.id.idCrudDMessage);
+
         perfil = (ImageView) findViewById(R.id.idCrudDImagePeril);
         actionDelete = (Button) findViewById(R.id.idCrudDButtonAcepted);
+        names = (TextView) findViewById(R.id.idCrudDTextNames);
+        lastNames = (TextView) findViewById(R.id.idCrudDTextLastNames);
+        yearsOld = (TextView) findViewById(R.id.idCrudDTextYears);
+        lastAppointmentDate = (TextView) findViewById(R.id.idCrudDLastAppointment);
+        nextAppointmentDate = (TextView) findViewById(R.id.idCrudDNexttAppointment);
+
         buttonLogOut = (Button) findViewById(R.id.buttonLogout);
         buttonUpdate = (Button) findViewById(R.id.buttonUpdate);
+        line = (View) findViewById(R.id.separatorD);
 
-        messageText.setVisibility(View.INVISIBLE);
         perfil.setVisibility(View.INVISIBLE);
         actionDelete.setVisibility(View.INVISIBLE);
+        names.setVisibility(View.INVISIBLE);
+        lastNames.setVisibility(View.INVISIBLE);
+        yearsOld.setVisibility(View.INVISIBLE);
+        lastAppointmentDate.setVisibility(View.INVISIBLE);
+        nextAppointmentDate.setVisibility(View.INVISIBLE);
+        line.setVisibility(View.INVISIBLE);
 
         actionDelete.setOnClickListener(this);
         buttonLogOut.setOnClickListener(this);
@@ -169,13 +189,19 @@ public class CrudDeleteAppointmentActivity extends AppCompatActivity implements 
 
     public void showPatientData(){
 
-        String messageDelete = "Esta seguro que desea eleminar la cita de hoy dd/mm/yyyy para el paciente ";
-        messageDelete = messageDelete + patient.getName() + " " + patient.getMiddleName() + " ";
-        messageDelete = messageDelete + patient.getLastName() + " " + patient.getMaidenName();
+        names.setText(patient.getName() + " " + patient.getMiddleName());
+        lastNames.setText(patient.getLastName() + " " + patient.getMaidenName());
+        yearsOld.setText(patient.getYearsOld() + "años");
+        lastAppointmentDate.setText("Ultima consulta: DD/MM/YYYY");
+        nextAppointmentDate.setText("Proxima consulta: DD/MM/YYYY");
 
         perfil.setVisibility(View.VISIBLE);
-        messageText.setText(messageDelete);
-        messageText.setVisibility(View.VISIBLE);
+        names.setVisibility(View.VISIBLE);
+        lastNames.setVisibility(View.VISIBLE);
+        yearsOld.setVisibility(View.VISIBLE);
+        lastAppointmentDate.setVisibility(View.VISIBLE);
+        nextAppointmentDate.setVisibility(View.VISIBLE);
+        line.setVisibility(View.VISIBLE);
         actionDelete.setVisibility(View.VISIBLE);
 
     }
