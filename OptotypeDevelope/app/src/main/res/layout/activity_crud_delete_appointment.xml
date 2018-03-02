@@ -62,51 +62,106 @@
             </ListView>
 
         </LinearLayout>
+        <!--///////////////////////////Sección derecha////////////////////////////-->
         <LinearLayout
             android:layout_width="680dp"
             android:layout_height="match_parent"
             android:orientation="vertical">
-
+            <!--/////////////////////////////////Sección superrior/////////////////////////////-->
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="50dp"
-                android:orientation="horizontal">
+                android:layout_height="150dp">
+                <!--///////////////////////////Sección de datos del paciente////////////////////////////-->
+                <LinearLayout
+                    android:layout_width="400dp"
+                    android:layout_height="match_parent">
 
-                <ImageView
-                    android:id="@+id/idCrudDImagePeril"
-                    android:layout_width="150dp"
-                    android:layout_height="200dp"
-                    android:layout_marginLeft="20dp"
-                    android:src="@drawable/usuario_icon"/>
+                    <ImageView
+                        android:id="@+id/idCrudDImagePeril"
+                        android:layout_width="100dp"
+                        android:layout_height="150dp"
+                        android:layout_marginLeft="20dp"
+                        android:src="@drawable/usuario_icon"/>
+                    <LinearLayout
+                        android:layout_width="290dp"
+                        android:layout_height="match_parent"
+                        android:orientation="vertical">
 
-                <TextView
-                    android:id="@+id/idCrudDMessage"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="5dp"
-                    android:layout_marginTop="25dp"
-                    android:textSize="30dp"/>
+                        <TextView
+                            android:id="@+id/idCrudDTextNames"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="nombres 1 y dos"
+                            android:textSize="20dp"
+                            android:layout_marginTop="20dp"
+                            android:layout_marginLeft="20dp"/>
+
+                        <TextView
+                            android:id="@+id/idCrudDTextLastNames"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="Apellidos 1 y dos"
+                            android:textSize="20dp"
+                            android:layout_marginTop="20dp"
+                            android:layout_marginLeft="20dp"/>
+
+                        <TextView
+                            android:id="@+id/idCrudDTextYears"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="Edad"
+                            android:textSize="20dp"
+                            android:layout_marginTop="20dp"
+                            android:layout_marginLeft="20dp"/>
+
+                    </LinearLayout>
+                </LinearLayout>
+                <LinearLayout
+                    android:layout_width="280dp"
+                    android:layout_height="match_parent"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:id="@+id/idCrudDLastAppointment"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Ultima consulta"
+                        android:textSize="20dp"
+                        android:layout_marginTop="20dp"
+                        android:layout_marginLeft="20dp"/>
+
+                    <TextView
+                        android:id="@+id/idCrudDNexttAppointment"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Proxima consulta: "
+                        android:textSize="20dp"
+                        android:layout_marginTop="20dp"
+                        android:layout_marginLeft="20dp"/>
+
+                </LinearLayout>
 
             </LinearLayout>
-
+            <View
+                android:id="@+id/separatorD"
+                android:layout_width="fill_parent"
+                android:layout_height="1dp"
+                android:background="@android:color/black"/>
+            <!-- ////////////////////////////////// Sección inferior////////////////////////////-->
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content">
+                android:layout_height="400dp">
 
                 <Button
                     android:id="@+id/idCrudDButtonAcepted"
-                    android:layout_width="200dp"
+                    android:layout_width="match_parent"
                     android:layout_marginTop="10dp"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="20dp"
                     android:text="Aceptar"/>
 
             </LinearLayout>
-
         </LinearLayout>
-
-
     </LinearLayout>
 
 
