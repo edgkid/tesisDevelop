@@ -49,7 +49,7 @@ public class CrudReadAppointmentActivity extends AppCompatActivity implements Vi
         lastNames = (TextView) findViewById(R.id.idCrudRTextLastNamesR);
         yearsOld = (TextView) findViewById(R.id.idCrudRTextYears);
         ultimateAppointment = (TextView) findViewById(R.id.idCrudRLastAppointment);
-        av = (TextView) findViewById(R.id.idCrudAvEstimated);
+        av = (TextView) findViewById(R.id.idCrudAvRightEstimated);
         perfil = (ImageView) findViewById(R.id.idCrudRImagePeril);
         buttonLogOut = (Button) findViewById(R.id.buttonLogout);
         buttonUpdate = (Button) findViewById(R.id.buttonUpdate);
