@@ -13,6 +13,7 @@ public class Patient {
     private String maidenName;
     private String yearsOld;
     private String photo;
+    private String nextAppointment;
     private String fkUser;
 
     public Patient (){
@@ -94,4 +95,11 @@ public class Patient {
         this.fkUser = fkUser;
     }
 
+    public String getNextAppointment() {
+        return nextAppointment;
+    }
+
+    public void setNextAppointment(String nextAppointment) {
+        this.nextAppointment = nextAppointment;
+    }
 }
