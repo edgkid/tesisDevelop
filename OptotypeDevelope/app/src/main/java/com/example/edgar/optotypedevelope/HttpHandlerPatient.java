@@ -266,6 +266,7 @@ public class HttpHandlerPatient {
                 values.put(PatientDbContract.PatientEntry.MAIDENNAME, jsonObj.getString("maidenName"));
                 values.put(PatientDbContract.PatientEntry.YEARSOLD, jsonObj.getString("yearsOld"));
                 values.put(PatientDbContract.PatientEntry.PHOTO, jsonObj.getString("image"));
+                values.put(PatientDbContract.PatientEntry.NEXTAPPOINTMENT,jsonObj.getString("nextAppointmentDate"));
 
                 db.insert(PatientDbContract.PatientEntry.TABLE_NAME, null, values);
 
