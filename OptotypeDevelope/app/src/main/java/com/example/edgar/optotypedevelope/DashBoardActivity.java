@@ -139,6 +139,20 @@ public class DashBoardActivity extends AppCompatActivity implements View.OnClick
             loadListPatientsToday();
         }
 
+        // aqui cargo los datos de ultimos resultados sobre le día
+        loadLastAvResultByToDay();
+
+    }
+
+    /**
+     * This Method finad and fill data by last Av for patien to day in appointment
+     */
+    public void loadLastAvResultByToDay (){
+
+        Log.d("explorar:","llmando a rquest de AV");
+        RequestAvResult requestAvResult = new RequestAvResult("avResult",contextActivity);
+        requestAvResult.findAvResultToday();
+
     }
 
     /**
