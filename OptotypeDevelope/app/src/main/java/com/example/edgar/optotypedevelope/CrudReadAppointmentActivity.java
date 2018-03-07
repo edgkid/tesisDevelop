@@ -26,13 +26,20 @@ public class CrudReadAppointmentActivity extends AppCompatActivity implements Vi
     TextView names;
     TextView lastNames;
     TextView yearsOld;
-    TextView ultimateAppointment;
-    TextView av;
+    TextView lastAppointment;
+    TextView nextAppointment;
+    TextView avRight;
+    TextView avLeft;
+    TextView center;
+    TextView sustain;
+    TextView maintain;
+    TextView description;
 
     ImageView perfil;
 
     Context contextActivity;
     Patient patient = null;
+    AvLastResultToDay avPatient = null;
 
     Button buttonLogOut;
     Button buttonUpdate;
@@ -48,8 +55,15 @@ public class CrudReadAppointmentActivity extends AppCompatActivity implements Vi
         names = (TextView) findViewById(R.id.idCrudRTextNamesR);
         lastNames = (TextView) findViewById(R.id.idCrudRTextLastNamesR);
         yearsOld = (TextView) findViewById(R.id.idCrudRTextYears);
-        ultimateAppointment = (TextView) findViewById(R.id.idCrudRLastAppointment);
-        av = (TextView) findViewById(R.id.idCrudAvRightEstimated);
+        lastAppointment = (TextView) findViewById(R.id.idCrudRLastAppointment);
+        nextAppointment = (TextView) findViewById(R.id.idCrudRNexttAppointment);
+        avRight = (TextView) findViewById(R.id.idCrudAvRightEstimated);
+        avLeft = (TextView) findViewById(R.id.idCrudAvLeftEstimated);
+        center = (TextView) findViewById(R.id.idCrudCenterSubjective);
+        sustain = (TextView) findViewById(R.id.idCrudSustainSubjective);
+        maintain = (TextView) findViewById(R.id.idCrudMaintainSubjective);
+        description = (TextView) findViewById(R.id.idCrudDescription);
+
         perfil = (ImageView) findViewById(R.id.idCrudRImagePeril);
         buttonLogOut = (Button) findViewById(R.id.buttonLogout);
         buttonUpdate = (Button) findViewById(R.id.buttonUpdate);
@@ -112,7 +126,6 @@ public class CrudReadAppointmentActivity extends AppCompatActivity implements Vi
             countValue ++;
         }
 
-
         PatientsTodayAdapter patientsAdapter = new PatientsTodayAdapter(this,R.layout.listview_item_patients_today_row, patientsData);
         listPatients.setAdapter(patientsAdapter);
 
@@ -164,6 +177,26 @@ public class CrudReadAppointmentActivity extends AppCompatActivity implements Vi
         names.setText("Nombre: " + patient.getName() + " " + patient.getMiddleName());
         lastNames.setText("Apellido: " + patient.getLastName() + " " + patient.getMaidenName());
         yearsOld.setText("Edad: " + patient.getYearsOld() + " años");
+
+        Log.d("explorar:", "voy a buscar datos de consulta");
+        gettAvDataByPatient();
+
+        lastAppointment.setText((avPatient.getLastAppointmentDate() != null)? "Ultima Consulta: " + avPatient.getLastAppointmentDate(): "Ultima Consulta: " + patient.getNextAppointment());
+        nextAppointment.setText("Proxima Consulta: " + patient.getNextAppointment());
+        avRight.setText((avPatient.getAvRight() != null)? "Av Derecho: " + avPatient.getAvRight(): "Av Derecho: 0");
+        avLeft.setText((avPatient.getAvLeft() != null)? "Av Izquierdo: " + avPatient.getAvLeft(): "Av Izquierdo: 0");
+        center.setText((avPatient.getCenter() != null)? "Centra: " + avPatient.getAvLeft(): "Centra: ?");
+        sustain.setText((avPatient.getSustain() != null)? "Sostiene: " + avPatient.getSustain(): "Sostiene: ?");
+        maintain.setText((avPatient.getMaintain() != null)? "Mantiene: " + avPatient.getSustain(): "Mantiene: ?");
+        description.setText((avPatient.getDescription() != null)? avPatient.getDescription(): "No Existe datos de consulta");
+
+    }
+
+    public void gettAvDataByPatient(){
+
+        avPatient = new AvLastResultToDay();
+        RequestAvResult requestAvResult = new RequestAvResult(this.contextActivity);
+        requestAvResult.getAvResultByPatient(patient.getIdPatient().toString(), avPatient);
 
     }
 
