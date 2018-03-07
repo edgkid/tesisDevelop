@@ -153,7 +153,7 @@ public class RequestPatient {
         Cursor cursor = null;
 
         try{
-            cursor = db.rawQuery("SELECT name, lastName, middleName, maidenName, yearsOld  FROM " + PatientDbContract.PatientEntry.TABLE_NAME + " WHERE idPatient = " + idPatient, null);
+            cursor = db.rawQuery("SELECT name, lastName, middleName, maidenName, yearsOld, idPatient, nextAppointment  FROM " + PatientDbContract.PatientEntry.TABLE_NAME + " WHERE idPatient = " + idPatient, null);
 
             if (cursor.moveToFirst()){
                 patient.setName(cursor.getString(0));
@@ -161,6 +161,8 @@ public class RequestPatient {
                 patient.setMiddleName(cursor.getString(2));
                 patient.setMaidenName(cursor.getString(3));
                 patient.setYearsOld(cursor.getString(4));
+                patient.setIdPatient(cursor.getString(5));
+                patient.setNextAppointment(cursor.getString(6));
             }
 
         }catch ( Exception e){}finally {
