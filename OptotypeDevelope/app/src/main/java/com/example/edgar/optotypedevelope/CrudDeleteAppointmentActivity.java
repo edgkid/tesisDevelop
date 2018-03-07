@@ -39,6 +39,7 @@ public class CrudDeleteAppointmentActivity extends AppCompatActivity implements 
     TextView nextAppointmentDate;
 
     Patient patient;
+    AvLastResultToDay avPatient;
     Context contextActivity;
 
     int action = 2;
@@ -192,8 +193,10 @@ public class CrudDeleteAppointmentActivity extends AppCompatActivity implements 
         names.setText(patient.getName() + " " + patient.getMiddleName());
         lastNames.setText(patient.getLastName() + " " + patient.getMaidenName());
         yearsOld.setText(patient.getYearsOld() + "años");
-        lastAppointmentDate.setText("Ultima consulta: DD/MM/YYYY");
-        nextAppointmentDate.setText("Proxima consulta: DD/MM/YYYY");
+
+        gettAvDataByPatient();
+        lastAppointmentDate.setText((avPatient.getLastAppointmentDate() != null)? "Ultima Consulta: " + avPatient.getLastAppointmentDate(): "Ultima Consulta: " + patient.getNextAppointment());
+        nextAppointmentDate.setText("Proxima Consulta: " + patient.getNextAppointment());
 
         perfil.setVisibility(View.VISIBLE);
         names.setVisibility(View.VISIBLE);
@@ -203,6 +206,14 @@ public class CrudDeleteAppointmentActivity extends AppCompatActivity implements 
         nextAppointmentDate.setVisibility(View.VISIBLE);
         line.setVisibility(View.VISIBLE);
         actionDelete.setVisibility(View.VISIBLE);
+
+    }
+
+    public void gettAvDataByPatient(){
+
+        avPatient = new AvLastResultToDay();
+        RequestAvResult requestAvResult = new RequestAvResult(this.contextActivity);
+        requestAvResult.getAvResultByPatient(patient.getIdPatient().toString(), avPatient);
 
     }
 
