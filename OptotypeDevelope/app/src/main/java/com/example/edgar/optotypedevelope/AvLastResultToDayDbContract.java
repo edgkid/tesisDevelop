@@ -13,15 +13,16 @@ public class AvLastResultToDayDbContract {
 
         public static final String TABLE_NAME = "av_result_db_app";
 
-        public static final String ID = "idPatient";
-        public static final String LASTAPPOINTMENTDATE = "";
-        public static final String NEXTAPPOINTMENTDATE = "";
-        public static final String AVRIGHT = "";
-        public static final String AVLEFT = "";
-        public static final String DESCRIPTION = "";
-        public static final String CENTER = "";
-        public static final String SUSTAIN = "";
-        public static final String MAINTAIN = "";
+        public static final String ID = "idAvResult";
+        public static final String IDPATIENT = "idPatient";
+        public static final String LASTAPPOINTMENTDATE = "lastAppointmentDate";
+        public static final String NEXTAPPOINTMENTDATE = "nextAppointmentDate";
+        public static final String AVRIGHT = "avRight";
+        public static final String AVLEFT = "avLeft";
+        public static final String DESCRIPTION = "description";
+        public static final String CENTER = "center";
+        public static final String SUSTAIN = "sustain";
+        public static final String MAINTAIN = "maintain";
 
     }
 }
