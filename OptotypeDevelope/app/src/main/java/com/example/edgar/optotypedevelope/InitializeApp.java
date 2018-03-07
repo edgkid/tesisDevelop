@@ -62,7 +62,21 @@ public class InitializeApp {
             cursor.close();
             db.close();
         }
+    }
 
+    public void findOrCreateTableAvResultToDay (){
+
+        AvLastResultTodayDbHelper avResultDb = new AvLastResultTodayDbHelper(this.context);
+        SQLiteDatabase db = avResultDb.getReadableDatabase();
+
+        try{
+            cursor = db.rawQuery("SELECT idAvResult FROM " + AvLastResultToDayDbContract.AvLastResultToDayDbContractEntry.TABLE_NAME, null);
+        }catch (Exception e) {
+            avResultDb.onCreate(db);
+        }finally {
+            cursor.close();
+            db.close();
+        }
 
     }
 
