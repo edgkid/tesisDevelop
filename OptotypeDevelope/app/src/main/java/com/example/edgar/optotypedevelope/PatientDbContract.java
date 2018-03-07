@@ -20,6 +20,7 @@ public class PatientDbContract {
         public static final String YEARSOLD = "yearsOld";
         public static final String PHOTO = "photo";
         public static final String FKUSER = "fkUser";
+        public static final String NEXTAPPOINTMENT = "nextAppointment";
     }
 
 }
