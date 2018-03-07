@@ -23,6 +23,7 @@ public class AvLastResultTodayDbHelper extends  DbApp {
         sql = sql + "CREATE TABLE " + AvLastResultToDayDbContract.AvLastResultToDayDbContractEntry.TABLE_NAME + " ( ";
         sql = sql + AvLastResultToDayDbContract.AvLastResultToDayDbContractEntry._ID + " INTEGER PRIMARY KEY, ";
         sql = sql + AvLastResultToDayDbContract.AvLastResultToDayDbContractEntry.ID + " TEXT, ";
+        sql = sql + AvLastResultToDayDbContract.AvLastResultToDayDbContractEntry.IDPATIENT + " TEXT, ";
         sql = sql + AvLastResultToDayDbContract.AvLastResultToDayDbContractEntry.LASTAPPOINTMENTDATE + " TEXT, ";
         sql = sql + AvLastResultToDayDbContract.AvLastResultToDayDbContractEntry.NEXTAPPOINTMENTDATE + " TEXT, ";
         sql = sql + AvLastResultToDayDbContract.AvLastResultToDayDbContractEntry.AVRIGHT + " TEXT, ";
@@ -47,6 +48,7 @@ public class AvLastResultTodayDbHelper extends  DbApp {
         sql = sql + "CREATE TABLE " + AvLastResultToDayDbContract.AvLastResultToDayDbContractEntry.TABLE_NAME + " ( ";
         sql = sql + AvLastResultToDayDbContract.AvLastResultToDayDbContractEntry._ID + " INTEGER PRIMARY KEY, ";
         sql = sql + AvLastResultToDayDbContract.AvLastResultToDayDbContractEntry.ID + " TEXT, ";
+        sql = sql + AvLastResultToDayDbContract.AvLastResultToDayDbContractEntry.IDPATIENT + " TEXT, ";
         sql = sql + AvLastResultToDayDbContract.AvLastResultToDayDbContractEntry.LASTAPPOINTMENTDATE + " TEXT, ";
         sql = sql + AvLastResultToDayDbContract.AvLastResultToDayDbContractEntry.NEXTAPPOINTMENTDATE + " TEXT, ";
         sql = sql + AvLastResultToDayDbContract.AvLastResultToDayDbContractEntry.AVRIGHT + " TEXT, ";
