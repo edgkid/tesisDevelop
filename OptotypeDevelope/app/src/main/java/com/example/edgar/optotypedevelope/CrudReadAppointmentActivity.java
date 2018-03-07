@@ -185,11 +185,10 @@ public class CrudReadAppointmentActivity extends AppCompatActivity implements Vi
         nextAppointment.setText("Proxima Consulta: " + patient.getNextAppointment());
         avRight.setText((avPatient.getAvRight() != null)? "Av Derecho: " + avPatient.getAvRight(): "Av Derecho: 0");
         avLeft.setText((avPatient.getAvLeft() != null)? "Av Izquierdo: " + avPatient.getAvLeft(): "Av Izquierdo: 0");
-        center.setText((avPatient.getCenter() != null)? "Centra: " + avPatient.getAvLeft(): "Centra: ?");
+        center.setText((avPatient.getCenter() != null)? "Centra: " + avPatient.getCenter(): "Centra: ?");
         sustain.setText((avPatient.getSustain() != null)? "Sostiene: " + avPatient.getSustain(): "Sostiene: ?");
-        maintain.setText((avPatient.getMaintain() != null)? "Mantiene: " + avPatient.getSustain(): "Mantiene: ?");
+        maintain.setText((avPatient.getMaintain() != null)? "Mantiene: " + avPatient.getMaintain(): "Mantiene: ?");
         description.setText((avPatient.getDescription() != null)? avPatient.getDescription(): "No Existe datos de consulta");
-
     }
 
     public void gettAvDataByPatient(){

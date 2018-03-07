@@ -23,12 +23,13 @@ public class CrudModifyAppointmentActivity extends AppCompatActivity implements 
 
     Context contextActivity;
     Patient patient;
+    AvLastResultToDay avPatient;
 
     ListView listPatientsM;
     TextView textNames;
     TextView textLastNames;
     TextView textyears;
-    TextView date;
+    TextView lastDate;
     TextView newDate;
     Button   updated;
     DatePicker calendar;
@@ -48,7 +49,7 @@ public class CrudModifyAppointmentActivity extends AppCompatActivity implements 
         textNames = (TextView) findViewById(R.id.idCrudTextNamesM);
         textLastNames = (TextView) findViewById(R.id.idCrudTextLastNamesM);
         textyears = (TextView) findViewById(R.id.idCrudTextYearsM);
-        date = (TextView) findViewById(R.id.idCrudLastAppointmentM);
+        lastDate = (TextView) findViewById(R.id.idCrudLastAppointmentM);
         newDate = (TextView) findViewById(R.id.idCrudNewAppointmentM);
         calendar = (DatePicker) findViewById(R.id.idCrudDatePieckerM);
         updated = (Button) findViewById(R.id.idCrudButtonAceptedM);
@@ -58,7 +59,7 @@ public class CrudModifyAppointmentActivity extends AppCompatActivity implements 
         textNames.setVisibility(View.INVISIBLE);
         textLastNames.setVisibility(View.INVISIBLE);
         textyears.setVisibility(View.INVISIBLE);
-        date.setVisibility(View.INVISIBLE);
+        lastDate.setVisibility(View.INVISIBLE);
         newDate.setVisibility(View.INVISIBLE);
         calendar.setVisibility(View.INVISIBLE);
         updated.setVisibility(View.INVISIBLE);
@@ -143,16 +144,28 @@ public class CrudModifyAppointmentActivity extends AppCompatActivity implements 
         textLastNames.setText(patient.getLastName() + " " + patient.getMaidenName());
         textyears.setText(patient.getYearsOld());
 
+        getAvDataByPatient();
+        lastDate.setText((avPatient.getLastAppointmentDate() != null)? "Ultima Consulta: " + avPatient.getLastAppointmentDate(): "Ultima Consulta: " + patient.getNextAppointment());
+        newDate.setText("Proxima Consulta: " + patient.getNextAppointment());
+
 
         perfil.setVisibility(View.VISIBLE);
         textNames.setVisibility(View.VISIBLE);
         textLastNames.setVisibility(View.VISIBLE);
         textyears.setVisibility(View.VISIBLE);
-        date.setVisibility(View.VISIBLE);
+        lastDate.setVisibility(View.VISIBLE);
         newDate.setVisibility(View.VISIBLE);
         calendar.setVisibility(View.VISIBLE);
         updated.setVisibility(View.VISIBLE);
         line.setVisibility(View.VISIBLE);
+
+    }
+
+    public void getAvDataByPatient(){
+
+        avPatient = new AvLastResultToDay();
+        RequestAvResult requestAvResult = new RequestAvResult(this.contextActivity);
+        requestAvResult.getAvResultByPatient(patient.getIdPatient().toString(), avPatient);
 
     }
 
