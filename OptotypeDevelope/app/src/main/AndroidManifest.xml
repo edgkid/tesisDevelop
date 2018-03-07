@@ -12,22 +12,32 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".LoginActivity">
+        <activity android:name=".LoginActivity"
+            android:screenOrientation="landscape">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".DashBoardActivity" />
-        <activity android:name=".InteractionActivity" />
-        <activity android:name=".ResultInteractionActivity" />
-        <activity android:name=".CrudReadAppointmentActivity" />
-        <activity android:name=".CrudDeleteAppointmentActivity" />
-        <activity android:name=".CrudModifyAppointmentActivity" />
-        <activity android:name=".CrudSaveAppointmentActivity" />
-        <activity android:name=".CrudRequestTestActivity" />
-        <activity android:name=".TestPresentationActivity"></activity>
+        <activity android:name=".DashBoardActivity"
+            android:screenOrientation="landscape"/>
+        <activity android:name=".InteractionActivity"
+            android:screenOrientation="landscape"/>
+        <activity android:name=".ResultInteractionActivity"
+            android:screenOrientation="landscape"/>
+        <activity android:name=".CrudReadAppointmentActivity"
+            android:screenOrientation="landscape"/>
+        <activity android:name=".CrudDeleteAppointmentActivity"
+            android:screenOrientation="landscape"/>
+        <activity android:name=".CrudModifyAppointmentActivity"
+            android:screenOrientation="landscape"/>
+        <activity android:name=".CrudSaveAppointmentActivity"
+            android:screenOrientation="landscape"/>
+        <activity android:name=".CrudRequestTestActivity"
+            android:screenOrientation="landscape"/>
+        <activity android:name=".TestPresentationActivity"
+            android:screenOrientation="landscape"></activity>
     </application>
 
 </manifest>
