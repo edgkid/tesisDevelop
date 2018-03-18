@@ -37,7 +37,7 @@
         <activity android:name=".CrudRequestTestActivity"
             android:screenOrientation="landscape"/>
         <activity android:name=".TestPresentationActivity"
-            android:screenOrientation="landscape"></activity>
+            android:screenOrientation="portrait"></activity>
     </application>
 
 </manifest>

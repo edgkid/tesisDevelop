@@ -185,6 +185,7 @@ public class HttpHandlerMedicalTest {
 
                 JSONObject jsonObj  = array.getJSONObject(i);
                 byte[] byteCode = Base64.decode(jsonObj.getString("imageTest"), Base64.DEFAULT);
+                test.setTag(jsonObj.getString("imageTest"));
                 image = BitmapFactory.decodeByteArray(byteCode, 0 , byteCode.length);
                 break;
             }

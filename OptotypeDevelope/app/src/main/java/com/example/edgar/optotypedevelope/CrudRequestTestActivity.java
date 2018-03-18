@@ -68,7 +68,10 @@ public class CrudRequestTestActivity extends AppCompatActivity implements View.O
 
     public void nextActivity (){
 
+        String imageByte = "";
+        imageByte = test.getTag().toString();
         Intent testPresentationActivity = new Intent(this, TestPresentationActivity.class);
+        testPresentationActivity.putExtra("imageTest",imageByte);
         startActivity(testPresentationActivity);
 
     }
@@ -126,8 +129,6 @@ public class CrudRequestTestActivity extends AppCompatActivity implements View.O
             }
         });
 
-
-
     }
 
 
@@ -165,7 +166,7 @@ public class CrudRequestTestActivity extends AppCompatActivity implements View.O
             public void run() {
                 try{
                     while (progressDialog.getProgress() <= progressDialog.getMax()){
-                        Thread.sleep(1000);
+                        Thread.sleep(400);
                         progressDialog.incrementProgressBy(3);
                         if (progressDialog.getProgress() == progressDialog.getMax()){
                             progressDialog.dismiss();
