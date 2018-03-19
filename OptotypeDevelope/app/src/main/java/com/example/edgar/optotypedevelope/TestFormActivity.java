@@ -2,12 +2,14 @@ package com.example.edgar.optotypedevelope;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.TextView;
 
-public class TestFormActivity extends AppCompatActivity {
+public class TestFormActivity extends AppCompatActivity implements View.OnClickListener {
 
     TextView textAppointmentDate;
     TextView textPatientName;
@@ -29,6 +31,8 @@ public class TestFormActivity extends AppCompatActivity {
     EditText textDescription;
 
     TextView textSignal;
+
+    Button buttonProcess;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -52,6 +56,7 @@ public class TestFormActivity extends AppCompatActivity {
         textPreviusDad = (EditText) findViewById(R.id.EditPreviusDad);
         textDescription = (EditText) findViewById(R.id.EditDescription);
         textSignal = (TextView) findViewById(R.id.TextAllSignals);
+        buttonProcess = (Button) findViewById(R.id.AppointmetProcess);
 
         ArrayAdapter<CharSequence> adapterAv = ArrayAdapter.createFromResource(this, R.array.av, android.R.layout.simple_spinner_item);
         ArrayAdapter<CharSequence>  adapterSubjective = ArrayAdapter.createFromResource(this, R.array.subjective, android.R.layout.simple_spinner_item);
@@ -66,6 +71,11 @@ public class TestFormActivity extends AppCompatActivity {
         dropDownTypeTest.setAdapter(adapterTest);
         dropDownColaboration.setAdapter(adapterColaboration);
 
+
+    }
+
+    @Override
+    public void onClick(View v) {
 
     }
 }
