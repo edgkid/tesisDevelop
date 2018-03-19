@@ -133,7 +133,7 @@
                android:layout_height="wrap_content"
                android:text="Centra"
                android:textSize="15dp"
-               android:layout_marginTop="10dp"
+               android:layout_marginTop="15dp"
                android:layout_marginLeft="20dp"/>
 
            <Spinner
@@ -190,9 +190,9 @@
            <TextView
                android:layout_width="match_parent"
                android:layout_height="wrap_content"
-               android:text="Av Detectada Sobre OjoDerecho)"
+               android:text="Av Detectada Sobre (Ojo Derecho)"
                android:textSize="15dp"
-               android:layout_marginTop="10dp"
+               android:layout_marginTop="15dp"
                android:layout_marginLeft="20dp"/>
 
            <Spinner
@@ -212,7 +212,7 @@
            <TextView
                android:layout_width="match_parent"
                android:layout_height="wrap_content"
-               android:text="Av Detectada Sobre OjoDerecho)"
+               android:text="Av Detectada Sobre (Ojo Izquierodo)"
                android:textSize="15dp"
                android:layout_marginTop="10dp"
                android:layout_marginLeft="20dp"/>
@@ -224,7 +224,7 @@
                android:layout_marginLeft="20dp"></Spinner>
 
            <!-- ///////////////////////////////////////// //////////// -->
-           <TextView
+           <!--<TextView
                android:layout_width="match_parent"
                android:layout_height="wrap_content"
                android:text="Motivo de Consulta"
@@ -236,14 +236,14 @@
                android:id="@+id/separatorReazon"
                android:layout_width="fill_parent"
                android:layout_height="1dp"
-               android:background="@android:color/black" />
+               android:background="@android:color/black" />-->
 
            <EditText
                android:id="@+id/EditPreviusMon"
                android:layout_width="match_parent"
                android:layout_height="wrap_content"
-               android:text="Antecedentes Materno"
                android:textSize="15dp"
+               android:hint="Antecedentes Materno"
                android:layout_marginTop="10dp"
                android:layout_marginLeft="20dp"/>
 
@@ -251,8 +251,8 @@
                android:id="@+id/EditPreviusDad"
                android:layout_width="match_parent"
                android:layout_height="wrap_content"
-               android:text="Antecedentes Paterno"
                android:textSize="15dp"
+               android:hint="Antecedentes Paterno"
                android:layout_marginTop="10dp"
                android:layout_marginLeft="20dp"/>
 
@@ -261,7 +261,7 @@
                android:layout_height="wrap_content"
                android:text="Sintomas"
                android:textSize="15dp"
-               android:layout_marginTop="10dp"
+               android:layout_marginTop="15dp"
                android:layout_marginLeft="20dp"/>
 
            <Spinner
@@ -273,21 +273,22 @@
            <TextView
                android:id="@+id/TextAllSignals"
                android:layout_width="match_parent"
-               android:layout_height="wrap_content"
+               android:layout_height="50dp"
+               android:layout_marginLeft="20dp"
                android:text="..."
-               android:textSize="10dp"
-               android:layout_marginLeft="20dp"/>
+               android:textSize="10dp" />
 
            <EditText
                android:id="@+id/EditDescription"
                android:layout_width="match_parent"
-               android:layout_height="wrap_content" />
+               android:layout_height="50dp"
+               android:hint="Descripción" />
 
             <!-- ////////////////////////////////////////////////////////////// -->
            <TextView
                android:layout_width="match_parent"
                android:layout_height="wrap_content"
-               android:text="Prueba"
+               android:text="Consulta"
                android:textSize="20dp"
                android:layout_marginTop="10dp"
                android:layout_marginLeft="20dp"/>
@@ -303,7 +304,7 @@
                android:layout_height="wrap_content"
                android:text="Tipo de Prueba"
                android:textSize="15dp"
-               android:layout_marginTop="10dp"
+               android:layout_marginTop="15dp"
                android:layout_marginLeft="20dp"/>
 
            <Spinner
@@ -325,6 +326,14 @@
                android:layout_width="match_parent"
                android:layout_height="wrap_content">
            </Spinner>
+
+           <Button
+               android:id="@+id/AppointmetProcess"
+               android:layout_width="match_parent"
+               android:layout_height="wrap_content"
+               android:text="Procesar"
+               android:layout_marginTop="30dp"
+               android:layout_marginEnd="0dp"/>
 
        </LinearLayout>
 
