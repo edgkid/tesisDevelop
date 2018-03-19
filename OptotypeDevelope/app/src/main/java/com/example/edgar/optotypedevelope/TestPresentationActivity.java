@@ -1,5 +1,6 @@
 package com.example.edgar.optotypedevelope;
 
+import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
@@ -16,6 +17,7 @@ public class TestPresentationActivity extends AppCompatActivity {
 
     ImageView testOrOptotypes;
     Bitmap image = null;
+    Context contectActivity;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -30,6 +32,7 @@ public class TestPresentationActivity extends AppCompatActivity {
 
         setContentView(R.layout.activity_test_presentation);
 
+        contectActivity = this;
         testOrOptotypes = (ImageView) findViewById(R.id.optotypeTestInPresentation);
         Intent intent = getIntent();
         Bundle extras = intent.getExtras();
@@ -45,6 +48,17 @@ public class TestPresentationActivity extends AppCompatActivity {
             testOrOptotypes.setImageBitmap(image);
         else
             testOrOptotypes.setImageResource(R.drawable.imagenotfoud);
+
+        ///// prueba para ver diseño de formulario
+        testOrOptotypes.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                Intent formActivity = new Intent(contectActivity, TestFormActivity.class);
+                startActivity(formActivity);
+
+            }
+        });
 
 
     }
