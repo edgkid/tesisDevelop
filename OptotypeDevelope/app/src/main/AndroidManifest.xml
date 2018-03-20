@@ -47,7 +47,7 @@
             android:screenOrientation="landscape" />
         <activity
             android:name=".TestPresentationActivity"
-            android:screenOrientation="portrait" />
+            android:screenOrientation="landscape" />
         <activity android:name=".TestFormActivity"
             android:screenOrientation="landscape"></activity>
     </application>
