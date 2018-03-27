@@ -36,10 +36,14 @@ public class TestFormActivity extends AppCompatActivity implements View.OnClickL
 
     Button buttonProcess;
 
+    Diagnostic diagnosticNotes;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_test_form);
+
+        diagnosticNotes = new Diagnostic();
 
         initializeFormViews();
         initializeFormDropDowns();
@@ -103,54 +107,51 @@ public class TestFormActivity extends AppCompatActivity implements View.OnClickL
 
     public void actionDropDownAvRight(){
         dropDownAvRight.setOnItemSelectedListener(new  AdapterView.OnItemSelectedListener() {
-            String text;
 
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                text = dropDownAvRight.getSelectedItem().toString();
-                Log.d("Datos: ", text);
+                diagnosticNotes.setAvRigth(dropDownAvRight.getSelectedItem().toString());
+                Log.d("Datos: ", diagnosticNotes.getAvRigth());
             }
 
             @Override
             public void onNothingSelected(AdapterView<?> parent) {
-                text = dropDownAvRight.getSelectedItem().toString();
-                Log.d("Datos: ", text);
+                diagnosticNotes.setAvRigth(dropDownAvRight.getSelectedItem().toString());
+                Log.d("Datos: ", diagnosticNotes.getAvRigth());
             }
         });
     }
 
     public void actionDropDownAvLeft(){
         dropDownLeft.setOnItemSelectedListener(new  AdapterView.OnItemSelectedListener() {
-            String text;
 
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                text = dropDownLeft.getSelectedItem().toString();
-                Log.d("Datos: ", text);
+                diagnosticNotes.setAvLeft(dropDownLeft.getSelectedItem().toString());
+                Log.d("Datos: ", diagnosticNotes.getAvLeft());
             }
 
             @Override
             public void onNothingSelected(AdapterView<?> parent) {
-                text = dropDownLeft.getSelectedItem().toString();
-                Log.d("Datos: ", text);
+                diagnosticNotes.setAvLeft(dropDownLeft.getSelectedItem().toString());
+                Log.d("Datos: ", diagnosticNotes.getAvLeft());
             }
         });
     }
 
     public void actionDropDownCenter (){
         dropDownCenter.setOnItemSelectedListener(new  AdapterView.OnItemSelectedListener() {
-            String text;
 
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                text = dropDownCenter.getSelectedItem().toString();
-                Log.d("Datos: ", text);
+                diagnosticNotes.setCenter(dropDownCenter.getSelectedItem().toString());
+                Log.d("Datos: ", diagnosticNotes.getCenter());
             }
 
             @Override
             public void onNothingSelected(AdapterView<?> parent) {
-                text = dropDownCenter.getSelectedItem().toString();
-                Log.d("Datos: ", text);
+                diagnosticNotes.setCenter(dropDownCenter.getSelectedItem().toString());
+                Log.d("Datos: ", diagnosticNotes.getCenter());
             }
         });
     }
@@ -158,18 +159,16 @@ public class TestFormActivity extends AppCompatActivity implements View.OnClickL
     public void actionDropDownSustain(){
         dropDownSustain.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
 
-            String text;
-
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                text = dropDownSustain.getSelectedItem().toString();
-                Log.d("Datos: ", text);
+                diagnosticNotes.setSustain(dropDownSustain.getSelectedItem().toString());
+                Log.d("Datos: ", diagnosticNotes.getSustain());
             }
 
             @Override
             public void onNothingSelected(AdapterView<?> parent) {
-                text = dropDownSustain.getSelectedItem().toString();
-                Log.d("Datos: ", text);
+                diagnosticNotes.setSustain(dropDownSustain.getSelectedItem().toString());
+                Log.d("Datos: ", diagnosticNotes.getSustain());
             }
         });
     }
@@ -177,54 +176,50 @@ public class TestFormActivity extends AppCompatActivity implements View.OnClickL
     public void actionDropDownMaintain(){
         dropDownMaintain.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
 
-            String text;
-
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                text = dropDownMaintain.getSelectedItem().toString();
-                Log.d("Datos: ", text);
+                diagnosticNotes.setMaintain(dropDownMaintain.getSelectedItem().toString());
+                Log.d("Datos: ", diagnosticNotes.getMaintain());
             }
 
             @Override
             public void onNothingSelected(AdapterView<?> parent) {
-                text = dropDownMaintain.getSelectedItem().toString();
-                Log.d("Datos: ", text);
+                diagnosticNotes.setMaintain(dropDownMaintain.getSelectedItem().toString());
+                Log.d("Datos: ", diagnosticNotes.getMaintain());
             }
         });
     }
 
     public void actionDropDownTypeTest(){
         dropDownTypeTest.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-            String text;
 
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                text = dropDownTypeTest.getSelectedItem().toString();
-                Log.d("Datos: ", text);
+                diagnosticNotes.setTypeTest(dropDownTypeTest.getSelectedItem().toString());
+                Log.d("Datos: ", diagnosticNotes.getTypeTest());
             }
 
             @Override
             public void onNothingSelected(AdapterView<?> parent) {
-                text = dropDownTypeTest.getSelectedItem().toString();
-                Log.d("Datos: ", text);
+                diagnosticNotes.setTypeTest(dropDownTypeTest.getSelectedItem().toString());
+                Log.d("Datos: ", diagnosticNotes.getTypeTest());
             }
         });
     }
 
     public void actionDropDownColaboration(){
         dropDownColaboration.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-            String text;
 
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                text = dropDownColaboration.getSelectedItem().toString();
-                Log.d("Datos: ", text);
+                diagnosticNotes.setColaborate(dropDownColaboration.getSelectedItem().toString());
+                Log.d("Datos: ", diagnosticNotes.getColaborate());
             }
 
             @Override
             public void onNothingSelected(AdapterView<?> parent) {
-                text = dropDownColaboration.getSelectedItem().toString();
-                Log.d("Datos: ", text);
+                diagnosticNotes.setColaborate(dropDownColaboration.getSelectedItem().toString());
+                Log.d("Datos: ", diagnosticNotes.getColaborate());;
             }
         });
     }
