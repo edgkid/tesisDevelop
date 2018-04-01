@@ -80,5 +80,38 @@ public class InitializeApp {
 
     }
 
+    public void findOrCreateTableSignalDefect(){
+
+        SignalDbHelper  signalDb = new SignalDbHelper(this.context);
+        SQLiteDatabase db = signalDb.getReadableDatabase();
+
+        try{
+            cursor = db.rawQuery(" SELECT idSignal FROM "+ SignalDbContract.SignalDbContractEntry.TABLE_NAME, null);
+        }catch (Exception e){
+            signalDb.onCreate(db);
+
+        }finally{
+            cursor.close();
+            db.close();
+        }
+
+    }
+
+    public void findOrCreateTableAntecedentDefect (){
+
+        AntecedentDefectHelper antecedentDb = new AntecedentDefectHelper(this.context);
+        SQLiteDatabase db = antecedentDb.getReadableDatabase();
+
+        try{
+            cursor = db.rawQuery(" SELECT antecedentName FROM " + AntecedentDefectContract.AntecedentDefectContractEntry.TABLE_NAME, null);
+        }catch (Exception e){
+            antecedentDb.onCreate(db);
+
+        }finally {
+            cursor.close();
+            db.close();
+        }
+
+    }
 
 }

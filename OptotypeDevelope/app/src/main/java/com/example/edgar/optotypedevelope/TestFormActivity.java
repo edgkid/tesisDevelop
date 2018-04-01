@@ -1,5 +1,6 @@
 package com.example.edgar.optotypedevelope;
 
+import android.support.annotation.StringRes;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -11,6 +12,8 @@ import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.TextView;
 
+import java.util.ArrayList;
+
 public class TestFormActivity extends AppCompatActivity implements View.OnClickListener {
 
     TextView textAppointmentDate;
@@ -18,6 +21,8 @@ public class TestFormActivity extends AppCompatActivity implements View.OnClickL
     TextView textPatientDate;
     TextView textPatientYearsOld;
     TextView textPatientSex;
+    TextView textParentMon;
+    TextView textParentDad;
 
     Spinner dropDownCenter;
     Spinner dropDownSustain;
@@ -27,10 +32,12 @@ public class TestFormActivity extends AppCompatActivity implements View.OnClickL
     Spinner dropDownTypeTest;
     Spinner dropDownColaboration;
     Spinner dropDownPreviusSignal;
+    Spinner dropDownPreviusDad;
+    Spinner dropDownPreviusMom;
 
-    EditText textPreviusMon;
-    EditText textPreviusDad;
-    EditText textDescription;
+    //EditText textPreviusMon;
+    //EditText textPreviusDad;
+    //EditText textDescription;
 
     TextView textSignal;
 
@@ -79,10 +86,11 @@ public class TestFormActivity extends AppCompatActivity implements View.OnClickL
         dropDownTypeTest = (Spinner) findViewById(R.id.DropDownTypeTest);
         dropDownColaboration = (Spinner) findViewById(R.id.DropDownCoperation);
         dropDownPreviusSignal = (Spinner) findViewById(R.id.DropDownSignal);
+        dropDownPreviusDad = (Spinner) findViewById(R.id.dropDownPreviusDad);
+        dropDownPreviusMom = (Spinner) findViewById(R.id.dropDownPreviusMon);
 
-        textPreviusMon = (EditText) findViewById(R.id.EditPreviusMon);
-        textPreviusDad = (EditText) findViewById(R.id.EditPreviusDad);
-        textDescription = (EditText) findViewById(R.id.EditDescription);
+        textParentDad = (TextView) findViewById(R.id.TextParentDad);
+        textParentMon = (TextView) findViewById(R.id.TextParentMon);
         textSignal = (TextView) findViewById(R.id.TextAllSignals);
         buttonProcess = (Button) findViewById(R.id.AppointmetProcess);
 
@@ -102,6 +110,36 @@ public class TestFormActivity extends AppCompatActivity implements View.OnClickL
         dropDownMaintain.setAdapter(adapterSubjective);
         dropDownTypeTest.setAdapter(adapterTest);
         dropDownColaboration.setAdapter(adapterColaboration);
+
+        this.initializeAntecedentAdapter();
+        this.initializeSignalAdapter();
+
+    }
+
+    public void initializeAntecedentAdapter(){
+
+        ArrayList<String> arrayAntecedent = new ArrayList<String>();
+        arrayAntecedent.add("Antecedentes");
+        RequestAntecedentDefect requestAntecedentDefect = new RequestAntecedentDefect(this);
+        requestAntecedentDefect.getAntecendetDefect(arrayAntecedent);
+        /*arrayAntecedent.add("opcion2");
+        arrayAntecedent.add("opcion3");//// esto va a ser llenado desde la tabla*/
+
+        ArrayAdapter<CharSequence> adapterAntecedent = new ArrayAdapter(this, android.R.layout.simple_spinner_item, arrayAntecedent);
+        dropDownPreviusMom.setAdapter(adapterAntecedent);
+        dropDownPreviusDad.setAdapter(adapterAntecedent);
+    }
+
+    public void initializeSignalAdapter(){
+
+        ArrayList<String> arraySignal = new ArrayList<String>();
+        arraySignal.add("Sintomas");
+
+        RequestSignalDefect requestSignalDefect = new RequestSignalDefect(this);
+        requestSignalDefect.getSignalDefect(arraySignal);
+
+        ArrayAdapter<CharSequence> adapterSignal = new ArrayAdapter(this, android.R.layout.simple_spinner_item, arraySignal);
+        dropDownPreviusSignal.setAdapter(adapterSignal);
 
     }
 

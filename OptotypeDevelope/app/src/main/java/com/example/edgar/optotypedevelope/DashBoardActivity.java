@@ -122,6 +122,13 @@ public class DashBoardActivity extends AppCompatActivity implements View.OnClick
         ItemMenuDoctorAdapter itemMenuDoctorAdapter = new ItemMenuDoctorAdapter(this, R.layout.listview_item_doctor_row, itemsData);
         listViewMenu.setAdapter(itemMenuDoctorAdapter);
 
+        /// aqui inicializo los sintomas y defectos
+        RequestSignalDefect requestSignalDefect = new RequestSignalDefect("signalDefect",contextActivity);
+        requestSignalDefect.findSignalDefect();
+
+        RequestAntecedentDefect requestAntecedentDefect = new RequestAntecedentDefect("antecedent",contextActivity);
+        requestAntecedentDefect.findAntecedentDefect();
+
         callActivitiesByDoctor();
 
     }

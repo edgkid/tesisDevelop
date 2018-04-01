@@ -43,301 +43,313 @@
 
     </LinearLayout>
 
-   <LinearLayout
-       android:layout_width="wrap_content"
-       android:layout_height="match_parent"
-       android:orientation="horizontal">
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:orientation="horizontal">
 
-       <LinearLayout
-           android:layout_width="650dp"
-           android:layout_height="match_parent"
-           android:orientation="vertical">
+        <LinearLayout
+            android:layout_width="650dp"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
 
-           <!--  ///////////////////////////////////// -->
-           <TextView
-               android:layout_width="match_parent"
-               android:layout_height="wrap_content"
-               android:text="Datos del Paciente"
-               android:textSize="20dp"
-               android:layout_marginTop="10dp"
-               android:layout_marginLeft="20dp"/>
+            <!--  ///////////////////////////////////// -->
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="20dp"
+                android:layout_marginTop="10dp"
+                android:text="Datos del Paciente"
+                android:textSize="20dp" />
 
-           <View
-               android:id="@+id/separatorPatientData"
-               android:layout_width="fill_parent"
-               android:layout_height="1dp"
-               android:background="@android:color/black" />
+            <View
+                android:id="@+id/separatorPatientData"
+                android:layout_width="fill_parent"
+                android:layout_height="1dp"
+                android:background="@android:color/black" />
 
-           <TextView
-               android:id="@+id/TextAppointmentDate"
-               android:layout_width="match_parent"
-               android:layout_height="wrap_content"
-               android:text="Fecha:"
-               android:textSize="15dp"
-               android:layout_marginTop="10dp"
-               android:layout_marginLeft="20dp"/>
+            <TextView
+                android:id="@+id/TextAppointmentDate"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="20dp"
+                android:layout_marginTop="10dp"
+                android:text="Fecha:"
+                android:textSize="15dp" />
 
-           <TextView
-               android:id="@+id/TextPatient"
-               android:layout_width="match_parent"
-               android:layout_height="wrap_content"
-               android:text="Paciente:"
-               android:textSize="15dp"
-               android:layout_marginTop="10dp"
-               android:layout_marginLeft="20dp"/>
+            <TextView
+                android:id="@+id/TextPatient"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="20dp"
+                android:layout_marginTop="10dp"
+                android:text="Paciente:"
+                android:textSize="15dp" />
 
-           <TextView
-               android:id="@+id/TextPatientDate"
-               android:layout_width="match_parent"
-               android:layout_height="wrap_content"
-               android:text="Fecha de Nacimiento:"
-               android:textSize="15dp"
-               android:layout_marginTop="10dp"
-               android:layout_marginLeft="20dp"/>
+            <TextView
+                android:id="@+id/TextPatientDate"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="20dp"
+                android:layout_marginTop="10dp"
+                android:text="Fecha de Nacimiento:"
+                android:textSize="15dp" />
 
-           <TextView
-               android:id="@+id/TextPatientSex"
-               android:layout_width="match_parent"
-               android:layout_height="wrap_content"
-               android:text="Sexo:"
-               android:textSize="15dp"
-               android:layout_marginTop="10dp"
-               android:layout_marginLeft="20dp"/>
+            <TextView
+                android:id="@+id/TextPatientSex"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="20dp"
+                android:layout_marginTop="10dp"
+                android:text="Sexo:"
+                android:textSize="15dp" />
 
-           <TextView
-               android:id="@+id/TextPatientYearsOld"
-               android:layout_width="match_parent"
-               android:layout_height="wrap_content"
-               android:text="Edad:"
-               android:textSize="15dp"
-               android:layout_marginTop="10dp"
-               android:layout_marginLeft="20dp"/>
+            <TextView
+                android:id="@+id/TextPatientYearsOld"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="20dp"
+                android:layout_marginTop="10dp"
+                android:text="Edad:"
+                android:textSize="15dp" />
 
-           <!--  //////////////////////////////////////////////// -->
-           <TextView
-               android:layout_width="match_parent"
-               android:layout_height="wrap_content"
-               android:text="Test Subjetivo"
-               android:textSize="20dp"
-               android:layout_marginTop="10dp"
-               android:layout_marginLeft="20dp"/>
+            <!--  //////////////////////////////////////////////// -->
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="20dp"
+                android:layout_marginTop="10dp"
+                android:text="Test Subjetivo"
+                android:textSize="20dp" />
 
-           <View
-               android:id="@+id/separatorSubjective"
-               android:layout_width="fill_parent"
-               android:layout_height="1dp"
-               android:background="@android:color/black" />
+            <View
+                android:id="@+id/separatorSubjective"
+                android:layout_width="fill_parent"
+                android:layout_height="1dp"
+                android:background="@android:color/black" />
 
-           <TextView
-               android:layout_width="match_parent"
-               android:layout_height="wrap_content"
-               android:text="Centra"
-               android:textSize="15dp"
-               android:layout_marginTop="15dp"
-               android:layout_marginLeft="20dp"/>
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="20dp"
+                android:layout_marginTop="15dp"
+                android:text="Centra"
+                android:textSize="15dp" />
 
-           <Spinner
-               android:id="@+id/DropDowCenter"
-               android:layout_width="match_parent"
-               android:layout_height="wrap_content"
-               android:layout_marginLeft="20dp"></Spinner>
+            <Spinner
+                android:id="@+id/DropDowCenter"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="20dp"></Spinner>
 
-           <TextView
-               android:id="@+id/textView2"
-               android:layout_width="match_parent"
-               android:layout_height="wrap_content"
-               android:layout_marginLeft="20dp"
-               android:layout_marginTop="10dp"
-               android:text="Sostiene"
-               android:textSize="15dp" />
+            <TextView
+                android:id="@+id/textView2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="20dp"
+                android:layout_marginTop="10dp"
+                android:text="Sostiene"
+                android:textSize="15dp" />
 
-           <Spinner
-               android:id="@+id/DropDowSustain"
-               android:layout_width="match_parent"
-               android:layout_height="wrap_content"
-               android:layout_marginLeft="20dp"></Spinner>
+            <Spinner
+                android:id="@+id/DropDowSustain"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="20dp"></Spinner>
 
-           <TextView
-               android:id="@+id/textView"
-               android:layout_width="match_parent"
-               android:layout_height="wrap_content"
-               android:text="Mantiene"
-               android:textSize="15dp"
-               android:layout_marginLeft="20dp"
-               android:layout_marginTop="15dp"/>
+            <TextView
+                android:id="@+id/textView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="20dp"
+                android:layout_marginTop="15dp"
+                android:text="Mantiene"
+                android:textSize="15dp" />
 
-           <Spinner
-               android:id="@+id/DropDowMaintain"
-               android:layout_width="match_parent"
-               android:layout_height="wrap_content"
-               android:layout_marginLeft="20dp"></Spinner>
+            <Spinner
+                android:id="@+id/DropDowMaintain"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="20dp"></Spinner>
 
-           <!-- ///////////////////////////////////////////////// -->
-           <TextView
-               android:layout_width="match_parent"
-               android:layout_height="wrap_content"
-               android:text="Test Objetivo"
-               android:textSize="20dp"
-               android:layout_marginTop="10dp"
-               android:layout_marginLeft="20dp"/>
+            <!-- ///////////////////////////////////////////////// -->
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="20dp"
+                android:layout_marginTop="10dp"
+                android:text="Test Objetivo"
+                android:textSize="20dp" />
 
-           <View
-               android:id="@+id/separatorObjective"
-               android:layout_width="fill_parent"
-               android:layout_height="1dp"
-               android:background="@android:color/black" />
+            <View
+                android:id="@+id/separatorObjective"
+                android:layout_width="fill_parent"
+                android:layout_height="1dp"
+                android:background="@android:color/black" />
 
-           <TextView
-               android:layout_width="match_parent"
-               android:layout_height="wrap_content"
-               android:text="Av Detectada Sobre (Ojo Derecho)"
-               android:textSize="15dp"
-               android:layout_marginTop="15dp"
-               android:layout_marginLeft="20dp"/>
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="20dp"
+                android:layout_marginTop="15dp"
+                android:text="Av Detectada Sobre (Ojo Derecho)"
+                android:textSize="15dp" />
 
-           <Spinner
-               android:id="@+id/DropDownRight"
-               android:layout_width="match_parent"
-               android:layout_height="wrap_content"
-               android:layout_marginLeft="20dp"></Spinner>
+            <Spinner
+                android:id="@+id/DropDownRight"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="20dp"></Spinner>
 
 
-       </LinearLayout>
+        </LinearLayout>
 
-       <LinearLayout
-           android:layout_width="600dp"
-           android:layout_height="match_parent"
-           android:orientation="vertical">
+        <LinearLayout
+            android:layout_width="600dp"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
 
-           <TextView
-               android:layout_width="match_parent"
-               android:layout_height="wrap_content"
-               android:text="Av Detectada Sobre (Ojo Izquierodo)"
-               android:textSize="15dp"
-               android:layout_marginTop="10dp"
-               android:layout_marginLeft="20dp"/>
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="20dp"
+                android:layout_marginTop="10dp"
+                android:text="Av Detectada Sobre (Ojo Izquierodo)"
+                android:textSize="15dp" />
 
-           <Spinner
-               android:id="@+id/DropDownLeft"
-               android:layout_width="match_parent"
-               android:layout_height="wrap_content"
-               android:layout_marginLeft="20dp"></Spinner>
+            <Spinner
+                android:id="@+id/DropDownLeft"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="20dp"></Spinner>
 
-           <!-- ///////////////////////////////////////// //////////// -->
-           <!--<TextView
-               android:layout_width="match_parent"
-               android:layout_height="wrap_content"
-               android:text="Motivo de Consulta"
-               android:textSize="20dp"
-               android:layout_marginTop="10dp"
-               android:layout_marginLeft="20dp"/>
+            <!-- ///////////////////////////////////////// //////////// -->
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="20dp"
+                android:layout_marginTop="15dp"
+                android:text="Antecedente Maternos"
+                android:textSize="15dp" />
 
-           <View
-               android:id="@+id/separatorReazon"
-               android:layout_width="fill_parent"
-               android:layout_height="1dp"
-               android:background="@android:color/black" />-->
+            <Spinner
+                android:id="@+id/dropDownPreviusMon"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="20dp"></Spinner>
 
-           <EditText
-               android:id="@+id/EditPreviusMon"
-               android:layout_width="match_parent"
-               android:layout_height="wrap_content"
-               android:textSize="15dp"
-               android:hint="Antecedentes Materno"
-               android:layout_marginTop="10dp"
-               android:layout_marginLeft="20dp"/>
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="20dp"
+                android:layout_marginTop="15dp"
+                android:text="Antecedente Paternos"
+                android:textSize="15dp" />
 
-           <EditText
-               android:id="@+id/EditPreviusDad"
-               android:layout_width="match_parent"
-               android:layout_height="wrap_content"
-               android:textSize="15dp"
-               android:hint="Antecedentes Paterno"
-               android:layout_marginTop="10dp"
-               android:layout_marginLeft="20dp"/>
+            <Spinner
+                android:id="@+id/dropDownPreviusDad"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="20dp"></Spinner>
 
-           <TextView
-               android:layout_width="match_parent"
-               android:layout_height="wrap_content"
-               android:text="Sintomas"
-               android:textSize="15dp"
-               android:layout_marginTop="15dp"
-               android:layout_marginLeft="20dp"/>
+            <TextView
+                android:id="@+id/textView3"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="20dp"
+                android:layout_marginTop="15dp"
+                android:text="Sintomas"
+                android:textSize="15dp" />
 
-           <Spinner
-               android:id="@+id/DropDownSignal"
-               android:layout_width="match_parent"
-               android:layout_height="wrap_content">
-           </Spinner>
+            <Spinner
+                android:id="@+id/DropDownSignal"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"></Spinner>
 
-           <TextView
-               android:id="@+id/TextAllSignals"
-               android:layout_width="match_parent"
-               android:layout_height="50dp"
-               android:layout_marginLeft="20dp"
-               android:text="..."
-               android:textSize="10dp" />
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="60dp"
+                android:orientation="horizontal">
 
-           <EditText
-               android:id="@+id/EditDescription"
-               android:layout_width="match_parent"
-               android:layout_height="50dp"
-               android:hint="Descripción" />
+                <TextView
+                    android:id="@+id/TextAllSignals"
+                    android:layout_width="200dp"
+                    android:layout_height="50dp"
+                    android:layout_marginLeft="20dp"
+                    android:text="Sintomas"
+                    android:textSize="10dp" />
+
+                <TextView
+                    android:id="@+id/TextParentMon"
+                    android:layout_width="170dp"
+                    android:layout_height="50dp"
+                    android:layout_marginLeft="20dp"
+                    android:text="Sintomas"
+                    android:textSize="10dp" />
+
+                <TextView
+                    android:id="@+id/TextParentDad"
+                    android:layout_width="170dp"
+                    android:layout_height="50dp"
+                    android:layout_marginLeft="20dp"
+                    android:text="Sintomas"
+                    android:textSize="10dp" />
+
+            </LinearLayout>
+
 
             <!-- ////////////////////////////////////////////////////////////// -->
-           <TextView
-               android:layout_width="match_parent"
-               android:layout_height="wrap_content"
-               android:text="Consulta"
-               android:textSize="20dp"
-               android:layout_marginTop="10dp"
-               android:layout_marginLeft="20dp"/>
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="20dp"
+                android:layout_marginTop="10dp"
+                android:text="Consulta"
+                android:textSize="20dp" />
 
-           <View
-               android:id="@+id/separatorTypeTest"
-               android:layout_width="fill_parent"
-               android:layout_height="1dp"
-               android:background="@android:color/black" />
+            <View
+                android:id="@+id/separatorTypeTest"
+                android:layout_width="fill_parent"
+                android:layout_height="1dp"
+                android:background="@android:color/black" />
 
-           <TextView
-               android:layout_width="match_parent"
-               android:layout_height="wrap_content"
-               android:text="Tipo de Prueba"
-               android:textSize="15dp"
-               android:layout_marginTop="15dp"
-               android:layout_marginLeft="20dp"/>
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="20dp"
+                android:layout_marginTop="15dp"
+                android:text="Tipo de Prueba"
+                android:textSize="15dp" />
 
-           <Spinner
-               android:id="@+id/DropDownTypeTest"
-               android:layout_width="match_parent"
-               android:layout_height="wrap_content">
-           </Spinner>
+            <Spinner
+                android:id="@+id/DropDownTypeTest"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"></Spinner>
 
-           <TextView
-               android:layout_width="match_parent"
-               android:layout_height="wrap_content"
-               android:text="Estime Segun su Criterio el Grado de Colaboraciónd del Paciente"
-               android:textSize="15dp"
-               android:layout_marginTop="10dp"
-               android:layout_marginLeft="20dp"/>
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="20dp"
+                android:layout_marginTop="10dp"
+                android:text="Estime Segun su Criterio el Grado de Colaboraciónd del Paciente"
+                android:textSize="15dp" />
 
-           <Spinner
-               android:id="@+id/DropDownCoperation"
-               android:layout_width="match_parent"
-               android:layout_height="wrap_content">
-           </Spinner>
+            <Spinner
+                android:id="@+id/DropDownCoperation"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"></Spinner>
 
-           <Button
-               android:id="@+id/AppointmetProcess"
-               android:layout_width="match_parent"
-               android:layout_height="wrap_content"
-               android:text="Procesar"
-               android:layout_marginTop="30dp"
-               android:layout_marginEnd="0dp"/>
+            <Button
+                android:id="@+id/AppointmetProcess"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="0dp"
+                android:layout_marginTop="30dp"
+                android:text="Procesar" />
 
-       </LinearLayout>
+        </LinearLayout>
 
-   </LinearLayout>
+    </LinearLayout>
 
 
 </LinearLayout>
