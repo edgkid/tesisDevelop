@@ -10,6 +10,7 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.Spinner;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
@@ -40,6 +41,8 @@ public class TestFormActivity extends AppCompatActivity implements View.OnClickL
     TextView textSignal;
 
     Button buttonProcess;
+    Button logOut;
+    Button updated;
 
     Diagnostic diagnosticNotes;
 
@@ -79,6 +82,18 @@ public class TestFormActivity extends AppCompatActivity implements View.OnClickL
     @Override
     public void onClick(View v) {
 
+        switch (v.getId()){
+            case R.id.AppointmetProcess:
+                processTestForm();
+                break;
+            case R.id.buttonLogout:
+                Toast.makeText(this, "salir de la seción", Toast.LENGTH_SHORT).show();
+                break;
+            case R.id.buttonUpdate:
+                Toast.makeText(this, "Actualizar", Toast.LENGTH_SHORT).show();
+                break;
+
+        }
     }
 
     public void initializeFormViews (){
@@ -103,8 +118,14 @@ public class TestFormActivity extends AppCompatActivity implements View.OnClickL
         textParentDad = (TextView) findViewById(R.id.TextParentDad);
         textParentMon = (TextView) findViewById(R.id.TextParentMon);
         textSignal = (TextView) findViewById(R.id.TextAllSignals);
-        buttonProcess = (Button) findViewById(R.id.AppointmetProcess);
 
+        buttonProcess = (Button) findViewById(R.id.AppointmetProcess);
+        buttonProcess.setOnClickListener(this);
+
+        logOut = (Button) findViewById(R.id.buttonLogout);
+        logOut.setOnClickListener(this);
+        updated = (Button) findViewById(R.id.buttonUpdate);
+        updated.setOnClickListener(this);
     }
 
     public void initializeFormDropDowns(){
@@ -359,6 +380,14 @@ public class TestFormActivity extends AppCompatActivity implements View.OnClickL
         textPatientDate.setText("Fecha de Nacimiento: " + dateFormat.format(datePatient).toString());
         textAppointmentDate.setText("Fecha: " + dateFormat.format(date).toString());
         textPatientName.setText("Paciente: " + diagnosticNotes.getPatient());
+
+    }
+
+    public void processTestForm (){
+
+        int action = 0;
+        RequestDiagnostic requestDiagnostic = new RequestDiagnostic();
+        requestDiagnostic.sendDataDiagnostic(diagnosticNotes, action);
 
     }
 

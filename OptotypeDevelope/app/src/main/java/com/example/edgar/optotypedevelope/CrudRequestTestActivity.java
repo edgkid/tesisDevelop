@@ -70,15 +70,22 @@ public class CrudRequestTestActivity extends AppCompatActivity implements View.O
     public void nextActivity (){
 
         String imageByte = "";
+        ///Comento para trabajar sin conexion
         imageByte = test.getTag().toString();
         Log.d("paciente:", String.valueOf(patient.getIdPatient()));
 
+        ///Bloque real lo comento para trabjar sin conexion
         Intent testPresentationActivity = new Intent(this, TestPresentationActivity.class);
         testPresentationActivity.putExtra("imageTest",imageByte);
 
         testPresentationActivity.putExtra("idPatient", String.valueOf(patient.getIdPatient()));
 
         startActivity(testPresentationActivity);
+
+       //Bloque para trabajar sin conexion de Red
+        /*Intent testFormActivity = new Intent(this, TestFormActivity.class);
+        testFormActivity.putExtra("idPatient", "1");
+        startActivity(testFormActivity);*/
 
     }
 
