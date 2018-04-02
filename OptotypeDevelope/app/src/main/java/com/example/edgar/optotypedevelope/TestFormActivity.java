@@ -1,6 +1,6 @@
 package com.example.edgar.optotypedevelope;
 
-import android.support.annotation.StringRes;
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -8,11 +8,13 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
-import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.TextView;
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 
 public class TestFormActivity extends AppCompatActivity implements View.OnClickListener {
 
@@ -34,10 +36,6 @@ public class TestFormActivity extends AppCompatActivity implements View.OnClickL
     Spinner dropDownPreviusSignal;
     Spinner dropDownPreviusDad;
     Spinner dropDownPreviusMom;
-
-    //EditText textPreviusMon;
-    //EditText textPreviusDad;
-    //EditText textDescription;
 
     TextView textSignal;
 
@@ -62,6 +60,19 @@ public class TestFormActivity extends AppCompatActivity implements View.OnClickL
         actionDropDownMaintain();
         actionDropDownTypeTest();
         actionDropDownColaboration();
+        actionDropDownAntecendentMon();
+        actionDropDownAntecedentDad();
+        actionDropDownSignalDefect();
+
+        Intent intent = getIntent();
+        Bundle extras = intent.getExtras();
+
+        // se considera una buena practica y debe hacerse
+        if (extras != null){
+            Patient patient = new Patient();
+            diagnosticNotes.setIdPatient(extras.getString("idPatient"));
+            setPatientData();
+        }
 
     }
 
@@ -122,8 +133,6 @@ public class TestFormActivity extends AppCompatActivity implements View.OnClickL
         arrayAntecedent.add("Antecedentes");
         RequestAntecedentDefect requestAntecedentDefect = new RequestAntecedentDefect(this);
         requestAntecedentDefect.getAntecendetDefect(arrayAntecedent);
-        /*arrayAntecedent.add("opcion2");
-        arrayAntecedent.add("opcion3");//// esto va a ser llenado desde la tabla*/
 
         ArrayAdapter<CharSequence> adapterAntecedent = new ArrayAdapter(this, android.R.layout.simple_spinner_item, arrayAntecedent);
         dropDownPreviusMom.setAdapter(adapterAntecedent);
@@ -257,9 +266,92 @@ public class TestFormActivity extends AppCompatActivity implements View.OnClickL
             @Override
             public void onNothingSelected(AdapterView<?> parent) {
                 diagnosticNotes.setColaborate(dropDownColaboration.getSelectedItem().toString());
-                Log.d("Datos: ", diagnosticNotes.getColaborate());;
+                Log.d("Datos: ", diagnosticNotes.getColaborate());
             }
         });
+    }
+
+    public void actionDropDownAntecendentMon(){
+
+        dropDownPreviusMom.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener(){
+
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                textParentMon.setText(textParentMon.getText().toString() + "," + dropDownPreviusMom.getSelectedItem().toString() );
+                diagnosticNotes.setExtendsMon(textParentMon.getText().toString());
+                Log.d("Datos:", diagnosticNotes.getExtendsMon().toString());
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+                textParentMon.setText(textParentMon.getText().toString() + "," + dropDownPreviusMom.getSelectedItem().toString() );
+                diagnosticNotes.setExtendsMon(textParentMon.getText().toString());
+                Log.d("Datos:", diagnosticNotes.getExtendsMon().toString());
+            }
+        });
+    }
+
+    public void actionDropDownAntecedentDad(){
+
+        dropDownPreviusDad.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                textParentDad.setText(textParentDad.getText().toString() + "," + dropDownPreviusDad.getSelectedItem().toString() );
+                diagnosticNotes.setExtendDad(textParentDad.getText().toString());
+                Log.d("Datos:", diagnosticNotes.getExtendDad().toString());
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+                textParentDad.setText(textParentDad.getText().toString() + "," + dropDownPreviusDad.getSelectedItem().toString());
+                diagnosticNotes.setExtendDad(textParentDad.getText().toString());
+                Log.d("Datos:", diagnosticNotes.getExtendDad().toString());
+            }
+        });
+    }
+
+    public void actionDropDownSignalDefect(){
+
+        dropDownPreviusSignal.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                textSignal.setText(textSignal.getText().toString() + "," + dropDownPreviusSignal.getSelectedItem().toString());
+                diagnosticNotes.setSignalDefect(textSignal.getText().toString());
+                Log.d("Datos:", diagnosticNotes.getSignalDefect());
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+                textSignal.setText(textSignal.getText().toString() + "," + dropDownPreviusSignal.getSelectedItem().toString());
+                diagnosticNotes.setSignalDefect(textSignal.getText().toString());
+                Log.d("Datos:", diagnosticNotes.getSignalDefect());
+            }
+        });
+    }
+
+    public void setPatientData(){
+
+        String name = "";
+        String today = "";
+        Patient patient = new Patient();
+        RequestPatient requestPatient = new RequestPatient(this);
+
+        requestPatient.getPatientById(diagnosticNotes.getIdPatient(),patient);
+        name = patient.getName() + " " + patient.getMiddleName() + patient.getLastName() + " " + patient.getMaidenName();
+
+        diagnosticNotes.setPatient(name);
+        diagnosticNotes.setYears(patient.getYearsOld());
+        diagnosticNotes.setSex("M");
+
+        Date date = new Date();
+        DateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
+        diagnosticNotes.setDate(dateFormat.format(date).toString());
+
+        textPatientYearsOld.setText("edad: " + diagnosticNotes.getYears() +" años");
+        textPatientSex.setText("sexo: " + diagnosticNotes.getSex());
+        textAppointmentDate.setText("fecha: " + dateFormat.format(date).toString());
+        textPatientName.setText("Paciente: " + diagnosticNotes.getPatient());
+
     }
 
 }

@@ -47,6 +47,7 @@ public class CrudRequestTestActivity extends AppCompatActivity implements View.O
 
             @Override
             public void onClick(View v) {
+
                 nextActivity();
             }
         });
@@ -70,8 +71,13 @@ public class CrudRequestTestActivity extends AppCompatActivity implements View.O
 
         String imageByte = "";
         imageByte = test.getTag().toString();
+        Log.d("paciente:", String.valueOf(patient.getIdPatient()));
+
         Intent testPresentationActivity = new Intent(this, TestPresentationActivity.class);
         testPresentationActivity.putExtra("imageTest",imageByte);
+
+        testPresentationActivity.putExtra("idPatient", String.valueOf(patient.getIdPatient()));
+
         startActivity(testPresentationActivity);
 
     }

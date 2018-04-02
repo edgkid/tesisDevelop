@@ -19,6 +19,8 @@ public class TestPresentationActivity extends AppCompatActivity {
     Bitmap image = null;
     Context contectActivity;
 
+    String idPatient = null;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -40,6 +42,7 @@ public class TestPresentationActivity extends AppCompatActivity {
         // se considera una buena practica y debe hacerse
         if (extras != null){
             String receiver = extras.getString("imageTest");
+            idPatient = extras.getString("idPatient");
             byte[] byteCode = Base64.decode(receiver.toString(), Base64.DEFAULT);
             image = BitmapFactory.decodeByteArray(byteCode, 0 , byteCode.length);
         }
@@ -54,7 +57,9 @@ public class TestPresentationActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
+                Log.d("paciente: ", idPatient);
                 Intent formActivity = new Intent(contectActivity, TestFormActivity.class);
+                formActivity.putExtra("idPatient", idPatient);
                 startActivity(formActivity);
 
             }

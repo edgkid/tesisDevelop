@@ -276,7 +276,6 @@
                     android:layout_width="200dp"
                     android:layout_height="50dp"
                     android:layout_marginLeft="20dp"
-                    android:text="Sintomas"
                     android:textSize="10dp" />
 
                 <TextView
@@ -284,7 +283,6 @@
                     android:layout_width="170dp"
                     android:layout_height="50dp"
                     android:layout_marginLeft="20dp"
-                    android:text="Sintomas"
                     android:textSize="10dp" />
 
                 <TextView
@@ -292,7 +290,6 @@
                     android:layout_width="170dp"
                     android:layout_height="50dp"
                     android:layout_marginLeft="20dp"
-                    android:text="Sintomas"
                     android:textSize="10dp" />
 
             </LinearLayout>
