@@ -97,7 +97,7 @@ public class RequestPatient {
 
         try{
 
-            cursor = db.rawQuery("SELECT name, middleName, lastName, maidenName, yearsOld, idPatient, photo  FROM " + PatientDbContract.PatientEntry.TABLE_NAME, null);
+            cursor = db.rawQuery("SELECT name, middleName, lastName, maidenName, yearsOld, idPatient, photo FROM " + PatientDbContract.PatientEntry.TABLE_NAME, null);
 
             if (cursor.moveToFirst()) {
                 do {
@@ -153,7 +153,7 @@ public class RequestPatient {
         Cursor cursor = null;
 
         try{
-            cursor = db.rawQuery("SELECT name, lastName, middleName, maidenName, yearsOld, idPatient, nextAppointment  FROM " + PatientDbContract.PatientEntry.TABLE_NAME + " WHERE idPatient = " + idPatient, null);
+            cursor = db.rawQuery("SELECT name, lastName, middleName, maidenName, yearsOld, idPatient, nextAppointment, gender, patientDate  FROM " + PatientDbContract.PatientEntry.TABLE_NAME + " WHERE idPatient = " + idPatient, null);
 
             if (cursor.moveToFirst()){
                 patient.setName(cursor.getString(0));
@@ -163,6 +163,8 @@ public class RequestPatient {
                 patient.setYearsOld(cursor.getString(4));
                 patient.setIdPatient(cursor.getString(5));
                 patient.setNextAppointment(cursor.getString(6));
+                patient.setGender(cursor.getString(7));
+                patient.setPatientDate(cursor.getString(8));
             }
 
         }catch ( Exception e){}finally {
@@ -171,6 +173,8 @@ public class RequestPatient {
         }
 
     }
+
+
 
     public void getSomePatientForNewAppointment (ListView list, Patient patient, int action){
 

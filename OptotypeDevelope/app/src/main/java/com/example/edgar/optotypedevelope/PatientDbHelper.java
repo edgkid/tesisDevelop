@@ -32,6 +32,8 @@ public class PatientDbHelper extends DbApp {
         sql = sql + PatientDbContract.PatientEntry.PHOTO + " TEXT, ";
         sql = sql + PatientDbContract.PatientEntry.FKUSER + " TEXT, ";
         sql = sql + PatientDbContract.PatientEntry.NEXTAPPOINTMENT + " TEXT, ";
+        sql = sql + PatientDbContract.PatientEntry.PATIENTDATE + " TEXT, ";
+        sql = sql + PatientDbContract.PatientEntry.GENDER + " TEXT, ";
         sql = sql + " UNIQUE ( " + PatientDbContract.PatientEntry.ID + " ) ";
         sql = sql +" ) ";
 
@@ -57,6 +59,8 @@ public class PatientDbHelper extends DbApp {
         sql = sql + PatientDbContract.PatientEntry.PHOTO + " TEXT, ";
         sql = sql + PatientDbContract.PatientEntry.FKUSER + " TEXT, ";
         sql = sql + PatientDbContract.PatientEntry.NEXTAPPOINTMENT + " TEXT, ";
+        sql = sql + PatientDbContract.PatientEntry.PATIENTDATE + " TEXT, ";
+        sql = sql + PatientDbContract.PatientEntry.GENDER + " TEXT, ";
         sql = sql + " UNIQUE ( " + PatientDbContract.PatientEntry.ID + " ) ";
         sql = sql +" ) ";
 

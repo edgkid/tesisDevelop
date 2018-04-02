@@ -341,15 +341,23 @@ public class TestFormActivity extends AppCompatActivity implements View.OnClickL
 
         diagnosticNotes.setPatient(name);
         diagnosticNotes.setYears(patient.getYearsOld());
-        diagnosticNotes.setSex("M");
+        diagnosticNotes.setSex(patient.getGender());
 
         Date date = new Date();
+        Date datePatient = new Date();
         DateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
+        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("dd/mm/yyyy");
+
+        try {
+            datePatient = simpleDateFormat.parse(patient.getPatientDate());
+        }catch(Exception e){}
+
         diagnosticNotes.setDate(dateFormat.format(date).toString());
 
-        textPatientYearsOld.setText("edad: " + diagnosticNotes.getYears() +" años");
-        textPatientSex.setText("sexo: " + diagnosticNotes.getSex());
-        textAppointmentDate.setText("fecha: " + dateFormat.format(date).toString());
+        textPatientYearsOld.setText("Edad: " + diagnosticNotes.getYears() +" años");
+        textPatientSex.setText("Sexo: " + diagnosticNotes.getSex());
+        textPatientDate.setText("Fecha de Nacimiento: " + dateFormat.format(datePatient).toString());
+        textAppointmentDate.setText("Fecha: " + dateFormat.format(date).toString());
         textPatientName.setText("Paciente: " + diagnosticNotes.getPatient());
 
     }

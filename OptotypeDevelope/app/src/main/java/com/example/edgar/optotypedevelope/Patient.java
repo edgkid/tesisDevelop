@@ -12,6 +12,8 @@ public class Patient {
     private String middleName;
     private String maidenName;
     private String yearsOld;
+    private String patientDate;
+    private String gender;
     private String photo;
     private String nextAppointment;
     private String fkUser;
@@ -101,5 +103,21 @@ public class Patient {
 
     public void setNextAppointment(String nextAppointment) {
         this.nextAppointment = nextAppointment;
+    }
+
+    public String getPatientDate() {
+        return patientDate;
+    }
+
+    public void setPatientDate(String patientDate) {
+        this.patientDate = patientDate;
+    }
+
+    public String getGender() {
+        return gender;
+    }
+
+    public void setGender(String gender) {
+        this.gender = gender;
     }
 }

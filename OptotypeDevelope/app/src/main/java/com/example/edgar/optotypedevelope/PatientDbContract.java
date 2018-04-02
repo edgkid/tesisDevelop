@@ -21,6 +21,8 @@ public class PatientDbContract {
         public static final String PHOTO = "photo";
         public static final String FKUSER = "fkUser";
         public static final String NEXTAPPOINTMENT = "nextAppointment";
+        public static final String PATIENTDATE = "patientDate";
+        public static final String GENDER = "gender";
     }
 
 }
