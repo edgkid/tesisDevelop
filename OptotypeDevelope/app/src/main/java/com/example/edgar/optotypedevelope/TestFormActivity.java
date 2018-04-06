@@ -1,6 +1,9 @@
 package com.example.edgar.optotypedevelope;
 
+import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -45,12 +48,14 @@ public class TestFormActivity extends AppCompatActivity implements View.OnClickL
     Button updated;
 
     Diagnostic diagnosticNotes;
+    Context contextActivity;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_test_form);
 
+        contextActivity = this;
         diagnosticNotes = new Diagnostic();
 
         initializeFormViews();
@@ -388,6 +393,29 @@ public class TestFormActivity extends AppCompatActivity implements View.OnClickL
         int action = 0;
         RequestDiagnostic requestDiagnostic = new RequestDiagnostic();
         requestDiagnostic.sendDataDiagnostic(diagnosticNotes, action);
+        alertDialog();
+
+    }
+
+    public void alertDialog(){
+
+        AlertDialog.Builder alertDialog = new AlertDialog.Builder(this);
+        alertDialog.setTitle("Información");
+        alertDialog.setIcon(R.mipmap.ic_launcher);
+        alertDialog.setMessage("Los Datos recavados en la consulta fueron procesados")
+                .setCancelable(false)
+                .setPositiveButton("Aceptar", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        Intent newActivity = new Intent(contextActivity, DiagnosticActivity.class);
+                        newActivity.putExtra("idPatient",diagnosticNotes.getIdPatient());
+                        newActivity.putExtra("patientName", diagnosticNotes.getPatient());
+                        newActivity.putExtra("year",diagnosticNotes.getYears());
+                        startActivity(newActivity);
+                    }
+                });
+        AlertDialog alert = alertDialog.create();
+        alert.show();
 
     }
 

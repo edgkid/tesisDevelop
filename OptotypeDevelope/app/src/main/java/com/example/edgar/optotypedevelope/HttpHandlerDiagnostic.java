@@ -117,9 +117,9 @@ public class HttpHandlerDiagnostic {
             jsonParam.put("maintain", diagnostic.getMaintain());
             jsonParam.put("avRigth", diagnostic.getAvRigth());
             jsonParam.put("avLeft", diagnostic.getAvLeft());
-            jsonParam.put("antecedentMon", diagnostic.getExtendsMon());
-            jsonParam.put("antacedentDad", diagnostic.getExtendDad());
-            jsonParam.put("signalDefect", diagnostic.getSignalDefect());
+            jsonParam.put("antecedentMon", diagnostic.getExtendsMon().substring(14));
+            jsonParam.put("antacedentDad", diagnostic.getExtendDad().substring(14));
+            jsonParam.put("signalDefect", diagnostic.getSignalDefect().substring(14));
             jsonParam.put("typeTest", diagnostic.getTypeTest());
             jsonParam.put("colaboratedGrade", diagnostic.getColaborate());
             jsonParam.put("action", "0");

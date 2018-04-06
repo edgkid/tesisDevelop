@@ -48,8 +48,10 @@
         <activity
             android:name=".TestPresentationActivity"
             android:screenOrientation="landscape" />
-        <activity android:name=".TestFormActivity"
-            android:screenOrientation="landscape"></activity>
+        <activity
+            android:name=".TestFormActivity"
+            android:screenOrientation="landscape" />
+        <activity android:name=".DiagnosticActivity"></activity>
     </application>
 
 </manifest>
