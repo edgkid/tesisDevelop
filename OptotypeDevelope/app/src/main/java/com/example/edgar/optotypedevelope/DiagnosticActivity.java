@@ -43,7 +43,7 @@ public class DiagnosticActivity extends AppCompatActivity implements View.OnClic
         // se considera una buena practica y debe hacerse
         if (extras != null){
             textPatient.setText(textPatient.getText().toString() + extras.getString("patientName"));
-            textYears.setText(textYears.getText().toString()+ extras.getString("patientName"));
+            textYears.setText(textYears.getText().toString()+ extras.getString("year"));
             proccessPhoto(extras.getString("idPatient"));
         }
 
@@ -92,7 +92,8 @@ public class DiagnosticActivity extends AppCompatActivity implements View.OnClic
 
         switch (v.getId()){
             case R.id.diagnosticButton:
-                Toast.makeText(this, "volver", Toast.LENGTH_SHORT).show();
+                Intent newActivity = new Intent(this, DashBoardActivity.class);
+                startActivity(newActivity);
                 break;
             case R.id.buttonLogout:
                 Toast.makeText(this, "LogOut", Toast.LENGTH_SHORT).show();

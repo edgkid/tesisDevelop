@@ -43,6 +43,7 @@ public class CrudReadAppointmentActivity extends AppCompatActivity implements Vi
 
     Button buttonLogOut;
     Button buttonUpdate;
+    Button buttonDiagnostic;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -67,9 +68,11 @@ public class CrudReadAppointmentActivity extends AppCompatActivity implements Vi
         perfil = (ImageView) findViewById(R.id.idCrudRImagePeril);
         buttonLogOut = (Button) findViewById(R.id.buttonLogout);
         buttonUpdate = (Button) findViewById(R.id.buttonUpdate);
+        buttonDiagnostic = (Button) findViewById(R.id.buttonViewDiagnosticRead);
 
         buttonLogOut.setOnClickListener(this);
         buttonUpdate.setOnClickListener(this);
+        buttonDiagnostic.setOnClickListener(this);
 
         loadListPatientsToday();
 
@@ -84,6 +87,13 @@ public class CrudReadAppointmentActivity extends AppCompatActivity implements Vi
                 break;
             case R.id.buttonUpdate:
                 loadListPatientsToday();
+                break;
+            case R.id.buttonViewDiagnosticRead:
+                Intent newActivity = new Intent(this, DiagnosticActivity.class);
+                newActivity.putExtra("idPatient",patient.getIdPatient());
+                newActivity.putExtra("patientName", patient.getName() + " " + patient.getMiddleName() + " " +patient.getLastName() + " " + patient.getMaidenName());
+                newActivity.putExtra("year",patient.getYearsOld());
+                startActivity(newActivity);
                 break;
         }
 
