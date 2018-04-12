@@ -16,6 +16,8 @@ import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import java.util.ArrayList;
+
 public class CrudRequestTestActivity extends AppCompatActivity implements View.OnClickListener, MessageDialog.MessageDialogListener {
 
     ListView listPatients;
@@ -74,18 +76,22 @@ public class CrudRequestTestActivity extends AppCompatActivity implements View.O
         imageByte = test.getTag().toString();
         Log.d("paciente:", String.valueOf(patient.getIdPatient()));
 
-        ///Bloque real lo comento para trabjar sin conexion
-        Intent testPresentationActivity = new Intent(this, TestPresentationActivity.class);
-        testPresentationActivity.putExtra("imageTest",imageByte);
+        // este array List debera contener los Base 64 de las cartas ys sus filas
+        ArrayList<String> imagesTest = new ArrayList<String>();
+        imagesTest.add("Carta");
+        imagesTest.add("Fila_1");
+        imagesTest.add("Fila_2");
+        imagesTest.add("Fila_3");
+        imagesTest.add("Fila_4");
+        imagesTest.add("Fila_5");
+        imagesTest.add("Fila_6");
+        ////////////////////////////////////////////////
+        
+        Intent testFormActivity = new Intent(this, TestFormActivity.class);
+        testFormActivity.putExtra("idPatient", String.valueOf(patient.getIdPatient()));
+        testFormActivity.putStringArrayListExtra("listTest", imagesTest);
+        startActivity(testFormActivity);
 
-        testPresentationActivity.putExtra("idPatient", String.valueOf(patient.getIdPatient()));
-
-        startActivity(testPresentationActivity);
-
-       //Bloque para trabajar sin conexion de Red
-        /*Intent testFormActivity = new Intent(this, TestFormActivity.class);
-        testFormActivity.putExtra("idPatient", "1");
-        startActivity(testFormActivity);*/
 
     }
 
