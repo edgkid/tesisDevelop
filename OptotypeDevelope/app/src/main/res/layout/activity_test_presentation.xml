@@ -10,8 +10,6 @@
         android:id="@+id/optotypeTestInPresentation"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:src="@drawable/carta"
-        android:rotation="90"
-        android:layout_gravity="center" />
+        android:src="@drawable/carta"/>
 
 </LinearLayout>

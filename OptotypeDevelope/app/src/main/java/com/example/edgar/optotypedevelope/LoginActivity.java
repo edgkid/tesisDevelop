@@ -33,7 +33,6 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         buttonLogin = (Button) findViewById(R.id.buttonLogin);
         buttonLogin.setOnClickListener((View.OnClickListener) contextActivity);
 
-        initializeApp();
         verifyPreferencesLogin();
 
     }
@@ -45,6 +44,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         RequestUser requestUser = new RequestUser(resourceUser, this);
 
         if (requestUser.findUserOnSystem()){
+            initializeApp();
             callNewActivity();
         }else{
             Toast.makeText(this, "Problemas de conexion, imposible ingresar", Toast.LENGTH_SHORT).show();
@@ -67,17 +67,14 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         if (!user.equals("defaultUser") && !password.equals("defaultUser")){
             callNewActivity();
         }
-
     }
 
     /**
      * This metohd call a new window or activity
      */
     public void callNewActivity (){
-
         Intent dashBoardActivity = new Intent(this, DashBoardActivity.class);
         startActivity(dashBoardActivity);
-
     }
 
     /**
@@ -93,6 +90,4 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         newTables.findOrCreateTableSignalDefect();
         newTables.findOrCreateTableAntecedentDefect();
     }
-
-
 }
