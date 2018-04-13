@@ -85,7 +85,6 @@ public class TestFormActivity extends AppCompatActivity implements View.OnClickL
             testList = (ArrayList<String>) getIntent().getStringArrayListExtra("listTest");
             diagnosticNotes.setIdPatient(extras.getString("idPatient"));
             Log.d("message: ", testList.get(0));
-            Log.d("message: ", testList.get(1));
             setPatientData();
         }
 

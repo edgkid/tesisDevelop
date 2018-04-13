@@ -29,6 +29,7 @@ public class CrudRequestTestActivity extends AppCompatActivity implements View.O
     int action = 4;
     int distanceByTest;
     PatientsToday patient = null;
+    ArrayList<String> imagesTest = new ArrayList<String>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -70,22 +71,6 @@ public class CrudRequestTestActivity extends AppCompatActivity implements View.O
     }
 
     public void nextActivity (){
-
-        String imageByte = "";
-        ///Comento para trabajar sin conexion
-        imageByte = test.getTag().toString();
-        Log.d("paciente:", String.valueOf(patient.getIdPatient()));
-
-        // este array List debera contener los Base 64 de las cartas ys sus filas
-        ArrayList<String> imagesTest = new ArrayList<String>();
-        imagesTest.add("Carta");
-        imagesTest.add("Fila_1");
-        imagesTest.add("Fila_2");
-        imagesTest.add("Fila_3");
-        imagesTest.add("Fila_4");
-        imagesTest.add("Fila_5");
-        imagesTest.add("Fila_6");
-        ////////////////////////////////////////////////
 
         Intent testFormActivity = new Intent(this, TestFormActivity.class);
         testFormActivity.putExtra("idPatient", String.valueOf(patient.getIdPatient()));
@@ -166,7 +151,7 @@ public class CrudRequestTestActivity extends AppCompatActivity implements View.O
 
     public void requestTest (){
         RequestMedicalTest requestMedicalTest = new RequestMedicalTest("test",contextActivity);
-        requestMedicalTest.requestTest(patient,distanceByTest, action, test);
+        requestMedicalTest.requestTest(patient,distanceByTest, action, test, imagesTest);
         displayWaitDialog();
     }
 

@@ -23,6 +23,7 @@ import java.io.InputStreamReader;
 import java.io.OutputStreamWriter;
 import java.net.HttpURLConnection;
 import java.net.URL;
+import java.util.ArrayList;
 
 /**
  * Created by Edgar on 12/01/2018.
@@ -127,7 +128,7 @@ public class HttpHandlerMedicalTest {
         return value;
     }
 
-    public void connectToResource (final CrudRequestTestActivity ctx, final PatientsToday patient, final int distance, final int action, final ImageView test){
+    public void connectToResource (final CrudRequestTestActivity ctx, final PatientsToday patient, final int distance, final int action, final ImageView test, final ArrayList imageTest){
 
         Log.d("message: ", "Genera solicitud de conexion");
         Thread tr = new Thread(){
@@ -140,7 +141,7 @@ public class HttpHandlerMedicalTest {
                     public void run() {
 
                       if (verifyRespondeServer(result)){
-                            procesingJson(result,test);
+                            procesingJson(result,test, imageTest);
                         } else
                             Toast.makeText(ctx.getApplicationContext(),"Tfallo en solicitud", Toast.LENGTH_SHORT).show();
                         interrupt();
@@ -173,7 +174,7 @@ public class HttpHandlerMedicalTest {
         }
     }
 
-    public void procesingJson(String result, ImageView test){
+    public void procesingJson(String result, ImageView test, ArrayList imageTest){
 
         JSONArray array = null;
         Bitmap image = null;
@@ -184,10 +185,17 @@ public class HttpHandlerMedicalTest {
             for(int i=0; i<array.length(); i++){
 
                 JSONObject jsonObj  = array.getJSONObject(i);
+                imageTest.add(jsonObj.getString("imageTest"));
                 byte[] byteCode = Base64.decode(jsonObj.getString("imageTest"), Base64.DEFAULT);
                 test.setTag(jsonObj.getString("imageTest"));
                 image = BitmapFactory.decodeByteArray(byteCode, 0 , byteCode.length);
                 break;
+            }
+
+            for(int i=1; i<array.length(); i++){
+
+                JSONObject jsonObj  = array.getJSONObject(i);
+                imageTest.add(jsonObj.getString("imageTest"));
             }
 
         }catch (Exception e){
