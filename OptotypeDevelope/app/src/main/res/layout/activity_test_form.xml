@@ -207,14 +207,14 @@
                 android:orientation="horizontal">
 
                 <Button
-                    android:id="@+id/nextImage"
+                    android:id="@+id/lastImage"
                     android:layout_marginLeft="200dp"
                     android:layout_width="100dp"
                     android:layout_height="50dp" />
 
                 <Button
-                    android:id="@+id/lastImage"
-                    android:layout_marginLeft="30dp"
+                    android:id="@+id/nextImage"
+                    android:layout_marginLeft="300dp"
                     android:layout_width="100dp"
                     android:layout_height="50dp" />
 

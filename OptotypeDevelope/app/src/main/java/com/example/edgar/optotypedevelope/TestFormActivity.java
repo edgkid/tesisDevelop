@@ -46,9 +46,12 @@ public class TestFormActivity extends AppCompatActivity implements View.OnClickL
     Button buttonProcess;
     Button logOut;
     Button updated;
+    Button nexttest;
+    Button lastTest;
 
     Diagnostic diagnosticNotes;
     ArrayList<String> testList = null;
+    int positionTestList = -1;
     Context contextActivity;
 
     @Override
@@ -101,8 +104,36 @@ public class TestFormActivity extends AppCompatActivity implements View.OnClickL
             case R.id.buttonUpdate:
                 Toast.makeText(this, "Actualizar", Toast.LENGTH_SHORT).show();
                 break;
+            case R.id.nextImage:
+                positionTestList ++;
+                sendTestToClientProjector();
+                break;
+            case R.id.lastImage:
+                positionTestList --;
+                sendTestToClientProjector();
+                break;
 
         }
+    }
+
+    public void sendTestToClientProjector(){
+
+        int count = 0;
+
+        if (positionTestList <= -1 || positionTestList == testList.size()){
+            positionTestList = 0;
+        }else if (positionTestList == testList.size()){
+            Log.d("message: ", testList.get(positionTestList));
+        }
+
+        ClientProjector clientProjector = new ClientProjector();
+
+        while (count < 2){
+            clientProjector.sendMessage(testList.get(positionTestList));
+            count ++;
+        }
+
+
     }
 
     public void initializeFormViews (){
@@ -135,6 +166,11 @@ public class TestFormActivity extends AppCompatActivity implements View.OnClickL
         logOut.setOnClickListener(this);
         updated = (Button) findViewById(R.id.buttonUpdate);
         updated.setOnClickListener(this);
+
+        nexttest = (Button) findViewById(R.id.nextImage);
+        nexttest.setOnClickListener(this);
+        lastTest = (Button) findViewById(R.id.lastImage);
+        lastTest.setOnClickListener(this);
     }
 
     public void initializeFormDropDowns(){
