@@ -48,6 +48,7 @@ public class TestFormActivity extends AppCompatActivity implements View.OnClickL
     Button updated;
 
     Diagnostic diagnosticNotes;
+    ArrayList<String> testList = null;
     Context contextActivity;
 
     @Override
@@ -78,7 +79,10 @@ public class TestFormActivity extends AppCompatActivity implements View.OnClickL
         // se considera una buena practica y debe hacerse
         if (extras != null){
             Patient patient = new Patient();
+            testList = (ArrayList<String>) getIntent().getStringArrayListExtra("listTest");
             diagnosticNotes.setIdPatient(extras.getString("idPatient"));
+            Log.d("message: ", testList.get(0));
+            Log.d("message: ", testList.get(1));
             setPatientData();
         }
 
