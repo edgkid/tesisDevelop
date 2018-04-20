@@ -117,8 +117,6 @@ public class TestFormActivity extends AppCompatActivity implements View.OnClickL
 
     public void sendTestToClientProjector(){
 
-        int count = 0;
-
         if (positionTestList <= -1 || positionTestList == testList.size()){
             positionTestList = 0;
         }else if (positionTestList == testList.size()){
@@ -126,12 +124,7 @@ public class TestFormActivity extends AppCompatActivity implements View.OnClickL
         }
 
         ClientProjector clientProjector = new ClientProjector();
-
-        while (count < 2){
-            clientProjector.sendMessage(testList.get(positionTestList));
-            count ++;
-        }
-
+        clientProjector.sendMessage(testList.get(positionTestList));
 
     }
 

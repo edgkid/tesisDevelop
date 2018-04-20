@@ -214,7 +214,7 @@
 
                 <Button
                     android:id="@+id/nextImage"
-                    android:layout_marginLeft="300dp"
+                    android:layout_marginLeft="30dp"
                     android:layout_width="100dp"
                     android:layout_height="50dp" />
 

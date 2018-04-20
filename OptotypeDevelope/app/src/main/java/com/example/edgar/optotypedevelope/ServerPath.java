@@ -11,8 +11,7 @@ public class ServerPath {
     private String http;
 
     public ServerPath() {
-        this.ipAdddress = "192.168.1.5";
-        //this.ipAdddress = "10.2.74.229";
+        this.ipAdddress = "192.168.1.3";
         this.pathAddress = "/WSOptotype/";
         this.http = "http://";
     }

@@ -22,7 +22,7 @@ public class ClientProjector  {
 
     class BackgroundTask extends AsyncTask  {
 
-        String ip = "192.168.1.5";
+        String ip = "192.168.1.3";
         Socket socket;
         PrintWriter write;
 
