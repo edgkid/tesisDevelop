@@ -16,46 +16,54 @@
             android:id="@+id/imageViewIconEye"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:src="@drawable/ojo_icon"
             android:layout_above="@+id/editTextUserNameLogin"
             android:layout_centerHorizontal="true"
-            android:layout_marginBottom="38dp"/>
+            android:layout_marginBottom="38dp"
+            android:src="@drawable/ojo_icon" />
 
         <EditText
             android:id="@+id/editTextUserNameLogin"
             android:layout_width="500dp"
             android:layout_height="wrap_content"
-            android:inputType="textEmailAddress"
-            android:ems="10"
-            android:hint="@string/user_name_default"
-            android:layout_marginBottom="47dp"
             android:layout_above="@+id/editTextViewPassWord"
             android:layout_alignStart="@+id/editTextViewPassWord"
+            android:layout_centerHorizontal="true"
+            android:layout_marginBottom="47dp"
             android:layout_marginStart="13dp"
-            android:layout_centerHorizontal="true"/>
+            android:ems="10"
+            android:hint="@string/user_name_default"
+            android:inputType="textEmailAddress" />
 
         <EditText
             android:id="@+id/editTextViewPassWord"
             android:layout_width="500dp"
             android:layout_height="wrap_content"
-            android:inputType="textPassword"
-            android:ems="10"
-            android:hint="@string/password_default"
             android:layout_above="@+id/buttonLogin"
             android:layout_alignStart="@+id/buttonLogin"
+            android:layout_centerHorizontal="true"
             android:layout_marginBottom="47dp"
-            android:layout_centerHorizontal="true"/>
+            android:ems="10"
+            android:hint="@string/password_default"
+            android:inputType="textPassword" />
 
         <Button
             android:id="@+id/buttonLogin"
             android:layout_width="500dp"
             android:layout_height="wrap_content"
-            android:text="@string/button_login"
             android:layout_alignParentBottom="true"
             android:layout_alignParentEnd="true"
-            android:layout_marginEnd="14dp"
+            android:layout_centerHorizontal="true"
             android:layout_marginBottom="206dp"
-            android:layout_centerHorizontal="true"/>
+            android:layout_marginEnd="14dp"
+            android:text="@string/button_login" />
+
+        <Button
+            android:id="@+id/buttonConectionConfg"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_alignStart="@+id/buttonLogin"
+            android:layout_below="@+id/editTextViewPassWord"
+            android:layout_marginTop="72dp" />
 
     </RelativeLayout>
 

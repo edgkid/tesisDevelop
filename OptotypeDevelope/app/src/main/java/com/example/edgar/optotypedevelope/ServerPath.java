@@ -11,7 +11,10 @@ public class ServerPath {
     private String http;
 
     public ServerPath() {
-        this.ipAdddress = "192.168.1.3";
+        /*this.ipAdddress = "10.0.0.121";
+        this.pathAddress = "/WSOptotype/";
+        this.http = "http://";*/
+        this.ipAdddress = ConfgConnect.getIpWebService();
         this.pathAddress = "/WSOptotype/";
         this.http = "http://";
     }

@@ -144,6 +144,7 @@ public class CrudRequestTestActivity extends AppCompatActivity implements View.O
         requestTest();
     }
 
+
     public void setDistanceByTest(){
         MessageDialog messageDialog = new MessageDialog();
         messageDialog.show(getSupportFragmentManager(),"Message Dialog");

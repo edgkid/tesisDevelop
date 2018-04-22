@@ -22,7 +22,9 @@ public class ClientProjector  {
 
     class BackgroundTask extends AsyncTask  {
 
-        String ip = "192.168.1.3";
+        ///String ip = "192.168.1.3";
+        String ip = ConfgConnect.getIpShowTest();
+        String port = ConfgConnect.getPortConecction();
         Socket socket;
         PrintWriter write;
 
@@ -32,7 +34,7 @@ public class ClientProjector  {
             try {
 
                 String message = (String) params[0];
-                socket = new Socket(ip, 5000);
+                socket = new Socket(ip, Integer.parseInt(port));
                 write = new PrintWriter(socket.getOutputStream());
                 write.write(message);
                 write.flush();
