@@ -7,6 +7,7 @@ import android.content.DialogInterface;
 import android.os.Bundle;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatDialogFragment;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.AdapterView;
@@ -47,9 +48,17 @@ public class MessageDialog extends AppCompatDialogFragment  {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
 
+                        int value = 0;
                         String data = editText.getText().toString();
-                        listener.applyData(data);
 
+                        try{
+                            value = Integer.parseInt(data);
+                        }catch(Exception e){
+                            value = 0;
+                            data = "0";
+                        }finally{
+                            listener.applyData(data);
+                        }
 
                     }
                 });

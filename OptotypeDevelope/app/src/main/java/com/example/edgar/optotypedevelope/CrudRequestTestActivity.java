@@ -2,8 +2,10 @@ package com.example.edgar.optotypedevelope;
 
 import android.app.ProgressDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -138,10 +140,14 @@ public class CrudRequestTestActivity extends AppCompatActivity implements View.O
 
     @Override
     public void applyData(String data) {
-        distanceByTest = Integer.parseInt(data);
-        /*RequestMedicalTest requestMedicalTest = new RequestMedicalTest("test",contextActivity);
-        requestMedicalTest.requestTest(patient,distanceByTest, action, test);*/
-        requestTest();
+
+        if (Integer.parseInt(data) >= 2 && Integer.parseInt(data) <= 6){
+            distanceByTest = Integer.parseInt(data);
+            requestTest();
+        }else{
+            alertDialog();
+        }
+
     }
 
 
@@ -184,6 +190,24 @@ public class CrudRequestTestActivity extends AppCompatActivity implements View.O
         }).start();
 
         progressDialog.show();
+    }
+
+    public void alertDialog(){
+
+        AlertDialog.Builder alertDialog = new AlertDialog.Builder(contextActivity);
+        alertDialog.setTitle("Distancia Errada");
+        alertDialog.setIcon(R.mipmap.ic_launcher);
+        alertDialog.setMessage("Verifique que ingresa como dato 2 o 6 m")
+                .setCancelable(false)
+                .setPositiveButton("Aceptar", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        dialog.dismiss();
+                    }
+                });
+        AlertDialog alert = alertDialog.create();
+        alert.show();
 
     }
+
 }
