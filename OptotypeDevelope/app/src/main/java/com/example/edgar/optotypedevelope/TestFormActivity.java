@@ -15,6 +15,9 @@ import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import org.json.JSONArray;
+import org.json.JSONObject;
+
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -123,8 +126,24 @@ public class TestFormActivity extends AppCompatActivity implements View.OnClickL
             Log.d("message: ", testList.get(positionTestList));
         }
 
+        JSONObject jsonParam = null;
+
+        try{
+
+            jsonParam = new JSONObject();
+            jsonParam.put("position", positionTestList);
+            jsonParam.put("image", testList.get(positionTestList));
+
+        }catch (Exception e){
+
+            e.printStackTrace();
+            Log.d("message: ", "Exception cursor o DB");
+        }
+
+        Log.d("message: ", jsonParam.toString());
         ClientProjector clientProjector = new ClientProjector();
-        clientProjector.sendMessage(testList.get(positionTestList));
+        //clientProjector.sendMessage(testList.get(positionTestList));
+        clientProjector.sendMessage(jsonParam.toString());
 
     }
 
