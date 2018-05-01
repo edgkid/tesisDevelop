@@ -210,7 +210,8 @@
                     android:id="@+id/lastImage"
                     android:layout_marginLeft="200dp"
                     android:layout_width="100dp"
-                    android:layout_height="50dp" />
+                    android:layout_height="50dp"
+                    android:background="@drawable/icon_last_test"/>
 
                 <Button
                     android:id="@+id/nextImage"
