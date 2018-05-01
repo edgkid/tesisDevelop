@@ -126,24 +126,10 @@ public class TestFormActivity extends AppCompatActivity implements View.OnClickL
             Log.d("message: ", testList.get(positionTestList));
         }
 
-        JSONObject jsonParam = null;
+        Log.d("message: ", positionTestList + testList.get(positionTestList));
 
-        try{
-
-            jsonParam = new JSONObject();
-            jsonParam.put("position", positionTestList);
-            jsonParam.put("image", testList.get(positionTestList));
-
-        }catch (Exception e){
-
-            e.printStackTrace();
-            Log.d("message: ", "Exception cursor o DB");
-        }
-
-        Log.d("message: ", jsonParam.toString());
         ClientProjector clientProjector = new ClientProjector();
-        //clientProjector.sendMessage(testList.get(positionTestList));
-        clientProjector.sendMessage(jsonParam.toString());
+        clientProjector.sendMessage(positionTestList + testList.get(positionTestList));
 
     }
 

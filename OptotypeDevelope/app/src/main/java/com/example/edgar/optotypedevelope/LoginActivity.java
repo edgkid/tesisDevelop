@@ -28,8 +28,13 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
 
+        SharedPreferences conexionPreferences = this.getSharedPreferences("connectPreferences",Context.MODE_PRIVATE);
+        String ipWebService = conexionPreferences.getString("IpWebService", "192.168.1.2");
+        String ipShowClient = conexionPreferences.getString("IpShowTest", "192.168.1.2");
+        String portConnection = conexionPreferences.getString("PortConecction", "5000");
+
         contextActivity = this;
-        confgConnect = new ConfgConnect();
+        confgConnect = new ConfgConnect(ipWebService, ipShowClient, portConnection);
 
         editTextUserName = (EditText) findViewById(R.id.editTextUserNameLogin);
         editTextPaswword = (EditText) findViewById(R.id.editTextViewPassWord);
@@ -54,7 +59,6 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                 actionLogin();
                 break;
             case R.id.buttonConectionConfg:
-                //Toast.makeText(this, "aqui desplegare el dialogo", Toast.LENGTH_SHORT).show();
                 actionConfg();
                 break;
         }
@@ -129,6 +133,15 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         confgConnect.setIpWebService(ipWebService);
         confgConnect.setIpShowTest(ipShowClient);
         confgConnect.setPortConecction(portShowClient);
+
+        SharedPreferences conexionPreferences = this.getSharedPreferences("connectPreferences",Context.MODE_PRIVATE);
+        SharedPreferences.Editor editor = conexionPreferences.edit();
+        editor.putString("IpWebService", ipWebService);
+        editor.putString("IpShowTest", ipShowClient);
+        editor.putString("PortConecction", portShowClient);
+
+        editor.commit();
+
 
     }
 }

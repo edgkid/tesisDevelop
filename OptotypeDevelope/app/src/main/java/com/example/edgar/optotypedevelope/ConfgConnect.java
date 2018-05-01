@@ -1,5 +1,8 @@
 package com.example.edgar.optotypedevelope;
 
+import android.content.Context;
+import android.content.SharedPreferences;
+
 /**
  * Created by Edgar on 22/04/2018.
  */
@@ -10,11 +13,12 @@ public class ConfgConnect {
     private static String ipShowTest;
     private static String  portConecction;
 
-    public ConfgConnect() {
 
-        ipWebService = "192.168.43.108";
-        ipShowTest = "192.168.1.44";
-        portConecction = "5000";
+    public ConfgConnect(String ipWeb, String ipTest, String portConnection) {
+
+        ipWebService = ipWeb;
+        ipShowTest = ipTest;
+        portConecction = portConnection;
 
     }
 
