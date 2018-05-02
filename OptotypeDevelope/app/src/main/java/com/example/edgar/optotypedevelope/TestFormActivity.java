@@ -3,14 +3,18 @@ package com.example.edgar.optotypedevelope;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Base64;
 import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -45,6 +49,7 @@ public class TestFormActivity extends AppCompatActivity implements View.OnClickL
     Spinner dropDownPreviusMom;
 
     TextView textSignal;
+    ImageView imageViewControl;
 
     Button buttonProcess;
     Button logOut;
@@ -120,6 +125,8 @@ public class TestFormActivity extends AppCompatActivity implements View.OnClickL
 
     public void sendTestToClientProjector(){
 
+        Bitmap image = null;
+
         if (positionTestList <= -1 || positionTestList == testList.size()){
             positionTestList = 0;
         }else if (positionTestList == testList.size()){
@@ -127,6 +134,14 @@ public class TestFormActivity extends AppCompatActivity implements View.OnClickL
         }
 
         Log.d("message: ", positionTestList + testList.get(positionTestList));
+
+        byte[] byteCode = Base64.decode(testList.get(positionTestList), Base64.DEFAULT);
+        image = BitmapFactory.decodeByteArray(byteCode, 0 , byteCode.length);
+
+        if (image != null)
+            imageViewControl.setImageBitmap(image);
+        else
+            imageViewControl.setImageResource(R.drawable.imagenotfoud);
 
         ClientProjector clientProjector = new ClientProjector();
         clientProjector.sendMessage(positionTestList + testList.get(positionTestList));
@@ -158,6 +173,8 @@ public class TestFormActivity extends AppCompatActivity implements View.OnClickL
 
         buttonProcess = (Button) findViewById(R.id.AppointmetProcess);
         buttonProcess.setOnClickListener(this);
+
+        imageViewControl = (ImageView) findViewById(R.id.ImageTestControlTest);
 
         logOut = (Button) findViewById(R.id.buttonLogout);
         logOut.setOnClickListener(this);
