@@ -108,6 +108,21 @@ public class HttpHandlerDiagnostic {
         JSONObject jsonParam = null;
 
         try{
+
+            /*Log.d("print ",diagnostic.getYears());
+            Log.d("print ",diagnostic.getYears());
+            Log.d("print ",diagnostic.getSex());
+            Log.d("print ",diagnostic.getCenter());
+            Log.d("print ",diagnostic.getSustain());
+            Log.d("print ",diagnostic.getMaintain());
+            Log.d("print ",diagnostic.getAvRigth());
+            Log.d("print ",diagnostic.getAvLeft());
+            Log.d("print ",diagnostic.getExtendsMon().substring(14));
+            Log.d("print ",diagnostic.getExtendDad().substring(14));
+            Log.d("print ",diagnostic.getSignalDefect().substring(14));
+            Log.d("print ",diagnostic.getTypeTest());
+            Log.d("print ",diagnostic.getColaborate());*/
+
             jsonParam = new JSONObject();
             jsonParam.put("idPatient", diagnostic.getIdPatient());
             jsonParam.put("yearsOld", diagnostic.getYears());
@@ -117,9 +132,18 @@ public class HttpHandlerDiagnostic {
             jsonParam.put("maintain", diagnostic.getMaintain());
             jsonParam.put("avRigth", diagnostic.getAvRigth());
             jsonParam.put("avLeft", diagnostic.getAvLeft());
-            jsonParam.put("antecedentMon", diagnostic.getExtendsMon().substring(14));
-            jsonParam.put("antacedentDad", diagnostic.getExtendDad().substring(14));
-            jsonParam.put("signalDefect", diagnostic.getSignalDefect().substring(14));
+            if (diagnostic.getExtendsMon().length() > 14)
+                jsonParam.put("antecedentMon", diagnostic.getExtendsMon().substring(14));
+            else
+                jsonParam.put("antecedentMon", "");
+            if (diagnostic.getExtendDad().length() > 14)
+                jsonParam.put("antacedentDad", diagnostic.getExtendDad().substring(14));
+            else
+                jsonParam.put("antacedentDad", "");
+            if(diagnostic.getSignalDefect().length() > 14)
+                jsonParam.put("signalDefect", diagnostic.getSignalDefect().substring(14));
+            else
+                jsonParam.put("signalDefect", "");
             jsonParam.put("typeTest", diagnostic.getTypeTest());
             jsonParam.put("colaboratedGrade", diagnostic.getColaborate());
             jsonParam.put("action", "0");
@@ -131,7 +155,7 @@ public class HttpHandlerDiagnostic {
         }catch (Exception e){
 
             e.printStackTrace();
-            Log.d("message: ", "Exception cursor o DB");
+            Log.d("message: ", "Problemas generando JSON");
         }
 
     }
