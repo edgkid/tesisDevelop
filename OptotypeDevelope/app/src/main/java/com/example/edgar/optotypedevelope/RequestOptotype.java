@@ -25,14 +25,29 @@ public class RequestOptotype {
         this.context = context;
     }
 
-    public void findOptotypes (){
+    public void findOptotypes (String year){
+
+        String query = "SELECT optotypeName FROM " + OptotypeDbContract.OptotypeEntry.TABLE_NAME;
+
+        Log.d("message ", year);
+        if (year.equals("3") ){
+            query = query + " WHERE OptotypeYear <= 3 ORDER BY random() LIMIT 16";
+        }
+        if (year.equals("4")){
+            query = query + " WHERE OptotypeYear <= 4 ORDER BY random() LIMIT 16";
+        }
+        if (year.equals("5")){
+            query = query + " WHERE OptotypeYear <= 5 ORDER BY random() LIMIT 16";
+        }
+
+        Log.d("message ", query);
 
         OptotypeDbHelper optotypeDb = new OptotypeDbHelper(this.context);
         SQLiteDatabase db = optotypeDb.getReadableDatabase();
         Cursor cursor = null;
 
         try{
-            cursor = db.rawQuery("SELECT optotypeName FROM " + OptotypeDbContract.OptotypeEntry.TABLE_NAME, null);
+            cursor = db.rawQuery(query, null);
             Log.d("message: ", "va a verificar que existan o no elementos locales");
 
             if (cursor.moveToFirst()){

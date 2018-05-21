@@ -26,6 +26,7 @@ public class OptotypeDbHelper extends  DbApp {
         sql = sql + OptotypeDbContract.OptotypeEntry.ID + " TEXT, ";
         sql = sql + OptotypeDbContract.OptotypeEntry.OPTOTYPECODE + " TEXT, ";
         sql = sql + OptotypeDbContract.OptotypeEntry.OPTOTYPENAME + " TEXT, ";
+        sql = sql + OptotypeDbContract.OptotypeEntry.OPTOTYPEYEAR + " TEXT, ";
         sql = sql + OptotypeDbContract.OptotypeEntry.IMAGE + " TEXT, ";
         sql = sql + " UNIQUE ( " + OptotypeDbContract.OptotypeEntry.ID + " ) ";
         sql = sql +" ) ";

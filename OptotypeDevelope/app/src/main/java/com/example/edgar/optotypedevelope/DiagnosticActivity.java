@@ -45,6 +45,8 @@ public class DiagnosticActivity extends AppCompatActivity implements View.OnClic
             textPatient.setText(textPatient.getText().toString() + extras.getString("patientName"));
             textYears.setText(textYears.getText().toString()+ extras.getString("year"));
             proccessPhoto(extras.getString("idPatient"));
+            //// metodo para llenar datos
+            ///metodo para obtener resultados
         }
 
     }

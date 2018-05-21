@@ -35,6 +35,8 @@ public class InteractionActivity extends AppCompatActivity {
     ImageView imageOptotypeB;
     ImageView imageOptotypeC;
 
+    ImageView imageProgress;
+
     TextView textDebug;
     TextView textDebugB;
 
@@ -65,6 +67,8 @@ public class InteractionActivity extends AppCompatActivity {
         imageAnimation = (ImageView) findViewById(R.id.imageInteractionEmotion);
         imagePerfil = (ImageView) findViewById(R.id.imageViewInteractionPatient);
 
+        imageProgress = (ImageView) findViewById(R.id.progressBar);
+
         imageOptotypeA = (ImageView) findViewById(R.id.imageOptotypeOptionA);
         imageOptotypeB = (ImageView) findViewById(R.id.imageOptotypeOptionB);
         imageOptotypeC = (ImageView) findViewById(R.id.imageOptotypeOptionC);
@@ -79,6 +83,7 @@ public class InteractionActivity extends AppCompatActivity {
         Intent intentData = getIntent();
         patientExtras = intentData.getExtras();
 
+
         if (patientExtras != null){
             proccessBundle();
             proccessPhoto((String)patientExtras.get("IdPatient"));
@@ -88,6 +93,42 @@ public class InteractionActivity extends AppCompatActivity {
 
         }
 
+    }
+
+    public void proccessBundle(){
+
+        Log.d("message: ", patientExtras.get("Patient").toString() );
+        String []completeName = patientExtras.get("Patient").toString().split(" ");
+        String [] years = patientExtras.get("YearsOld").toString().split(" ");
+
+        patient.setName(completeName[1]);
+        patient.setMiddleName(completeName[2]);
+        patient.setLastName(completeName[3]);
+        patient.setMaidenName(completeName[4]);
+        patient.setYearsOld(years[1]);
+
+        textNames.setText("Nombre: " + patient.getName() + " " + patient.getMiddleName());
+        textLastNames.setText("Apellido: " + patient.getLastName() + " " + patient.getMaidenName());
+        textYearsOld.setText("Edad: " + patient.getYearsOld()+ " años");
+
+    }
+
+    public void proccessPhoto (String idPatient){
+
+        Bitmap image = null;
+        String code = null;
+        RequestPatient requestPatient = new RequestPatient(this);
+
+        code = requestPatient.getPhoto(idPatient);
+        if (code != null){
+            byte[] byteCode = Base64.decode(code, Base64.DEFAULT);
+            image = BitmapFactory.decodeByteArray(byteCode, 0 , byteCode.length);
+
+            if (image != null)
+                imagePerfil.setImageBitmap(image);
+            else
+                imagePerfil.setImageResource(R.drawable.usuario_icon);
+        }
     }
 
     public void initializeActivity(){
@@ -131,7 +172,7 @@ public class InteractionActivity extends AppCompatActivity {
         int position = 0;
         int sizeElements = 0;
 
-        elements.fillInteractionElements();
+        elements.fillInteractionElements(patient.getYearsOld());
         Double number = Math.floor(Math.random() * elements.getElements().size());
         position = number.intValue();
         sizeElements = elements.getElements().size();
@@ -147,7 +188,7 @@ public class InteractionActivity extends AppCompatActivity {
             if(this.flag){
                 initializeActivity();
                 this.flag = false;
-                elements.fillInteractionElements();
+                elements.fillInteractionElements(patient.getYearsOld());
             }
         }
     }
@@ -210,42 +251,6 @@ public class InteractionActivity extends AppCompatActivity {
             optotypeOption.setImageResource(R.drawable.usuario_icon);
 
         optotypeOption.setTag(image);
-    }
-
-
-    public void proccessBundle(){
-
-        Log.d("message: ", patientExtras.get("Patient").toString() );
-        String []completeName = patientExtras.get("Patient").toString().split(" ");
-        String [] years = patientExtras.get("YearsOld").toString().split(" ");
-
-        patient.setName(completeName[1]);
-        patient.setMiddleName(completeName[2]);
-        patient.setLastName(completeName[3]);
-        patient.setMaidenName(completeName[4]);
-        patient.setYearsOld(years[1]);
-
-        textNames.setText("Nombre: " + patient.getName() + " " + patient.getMiddleName());
-        textLastNames.setText("Apellido: " + patient.getLastName() + " " + patient.getMaidenName());
-        textYearsOld.setText("Edad: " + patient.getYearsOld()+ " años");
-    }
-
-    public void proccessPhoto (String idPatient){
-
-        Bitmap image = null;
-        String code = null;
-        RequestPatient requestPatient = new RequestPatient(this);
-
-        code = requestPatient.getPhoto(idPatient);
-        if (code != null){
-            byte[] byteCode = Base64.decode(code, Base64.DEFAULT);
-            image = BitmapFactory.decodeByteArray(byteCode, 0 , byteCode.length);
-
-            if (image != null)
-                imagePerfil.setImageBitmap(image);
-            else
-                imagePerfil.setImageResource(R.drawable.usuario_icon);
-        }
     }
 
     ///////////////////////////////Drag Section////////////////////////////////////////////////////
@@ -373,8 +378,6 @@ public class InteractionActivity extends AppCompatActivity {
         int sizeElements =0;
         int total = 0;
         option.setBackgroundColor(Color.rgb(255, 255, 255));
-        /*textDebug.setText(optotype.getTag().toString());
-        textDebugB.setText(option.getTag().toString());*/
 
         ArrayList<Optotype> optotypes = elements.getElements();
         Iterator<Optotype> iterator = optotypes.iterator();
@@ -396,11 +399,11 @@ public class InteractionActivity extends AppCompatActivity {
             }
             sizeElements ++;
 
-            if (controlInteraction.getTotalOptotypes() >= 12)
+            if (controlInteraction.getTotalOptotypes() >= 15)
                 break;
         }
 
-        if (controlInteraction.getTotalOptotypes() >= 12){
+        if (controlInteraction.getTotalOptotypes() >= 15){
             Toast.makeText(this, "fin de la interacción", Toast.LENGTH_SHORT).show();
             RequestInteraction requestInteraction = new RequestInteraction(this);
             requestInteraction.processInteraction(controlInteraction, patient);
@@ -412,9 +415,46 @@ public class InteractionActivity extends AppCompatActivity {
             startActivity(dashboardActivity);
         }
 
+        imageAnimation.setImageResource(R.drawable.emotion_example);
+        fillProgressBar();
+        //// Agregar sonido con nombre de la figura
+        ////Agregar sonido de Muy bien
+
     }
 
     public void workWithBackOption (ImageView optotype, ImageView option){
         option.setBackgroundColor(Color.rgb(255, 255, 255));
+        imageAnimation.setImageResource(R.drawable.triste);
+        //// Agregar sonido de oh! no
+    }
+
+    public void fillProgressBar(){
+
+        switch (controlInteraction.getTotalOptotypes()){
+            case 2:
+                imageProgress.setImageResource(R.drawable.completebar_2);
+                break;
+            case 4:
+                imageProgress.setImageResource(R.drawable.completebar_4);
+                break;
+            case 6:
+                imageProgress.setImageResource(R.drawable.completebar_6);
+                break;
+            case 8:
+                imageProgress.setImageResource(R.drawable.completebar_8);
+                break;
+            case 10:
+                imageProgress.setImageResource(R.drawable.completebar_10);
+                break;
+            case 12:
+                imageProgress.setImageResource(R.drawable.completebar_12);
+                break;
+            case 14:
+                imageProgress.setImageResource(R.drawable.completebar_14);
+                break;
+            case 16:
+                imageProgress.setImageResource(R.drawable.completebar_16);
+                break;
+        }
     }
 }

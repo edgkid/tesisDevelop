@@ -15,6 +15,7 @@ public class OptotypeDbContract {
         public static final String ID = "idOptotype";
         public static final String OPTOTYPECODE = "optotypeCode";
         public static final String OPTOTYPENAME = "optotypeName";
+        public static final String OPTOTYPEYEAR = "OptotypeYear";
         public static final String IMAGE = "image";
 
     }

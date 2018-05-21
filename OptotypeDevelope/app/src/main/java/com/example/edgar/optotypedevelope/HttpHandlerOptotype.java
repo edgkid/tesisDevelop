@@ -144,6 +144,7 @@ public class HttpHandlerOptotype {
                 values.put(OptotypeDbContract.OptotypeEntry.ID, jsonObj.getString("idOptotype"));
                 values.put(OptotypeDbContract.OptotypeEntry.OPTOTYPECODE, jsonObj.getString("optotypeCode"));
                 values.put(OptotypeDbContract.OptotypeEntry.OPTOTYPENAME, jsonObj.getString("optotypeName"));
+                values.put(OptotypeDbContract.OptotypeEntry.OPTOTYPEYEAR, jsonObj.getString("optotypeYear"));
                 values.put(OptotypeDbContract.OptotypeEntry.IMAGE, jsonObj.getString("image"));
 
                 db.insert(OptotypeDbContract.OptotypeEntry.TABLE_NAME, null, values);

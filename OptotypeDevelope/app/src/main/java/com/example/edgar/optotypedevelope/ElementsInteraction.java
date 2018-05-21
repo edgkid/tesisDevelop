@@ -25,13 +25,13 @@ public class ElementsInteraction {
         return elements;
     }
 
-    public void fillInteractionElements (){
+    public void fillInteractionElements (String year){
 
         ArrayList <Optotype> optotypes = new ArrayList<Optotype>();
         int count = 1;
         Log.d("message: ", "ingresa en la carga de de optotipos");
         RequestOptotype requestOptotype = new RequestOptotype("optotypes",context);
-        requestOptotype.findOptotypes();
+        requestOptotype.findOptotypes(year);
         optotypes = requestOptotype.takeOptotypes();
 
         for (Optotype element : optotypes){
