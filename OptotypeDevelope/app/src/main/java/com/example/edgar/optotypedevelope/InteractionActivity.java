@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Color;
+import android.media.MediaPlayer;
 import android.os.Build;
 import android.support.annotation.RequiresApi;
 import android.support.annotation.StringDef;
@@ -314,25 +315,43 @@ public class InteractionActivity extends AppCompatActivity {
 
     public void actionDrag (int dragEvent, View view, int option){
 
+        MediaPlayer soundDrag = null;
+
         switch (dragEvent){
             //Accion para mover elemento
             case DragEvent.ACTION_DRAG_ENTERED:
                 //identificar si es correcta la selección
                 if (option == 1 ) {
-                    if (imageOptotypeA.getTag().equals(imageOptotype.getTag()))
+                    if (imageOptotypeA.getTag().equals(imageOptotype.getTag())) {
                         imageOptotypeA.setBackgroundColor(Color.rgb(0, 255, 102));
-                    else
+                        soundDrag = MediaPlayer.create(this, R.raw.ding);
+                        soundDrag.start();
+                    }else{
                         imageOptotypeA.setBackgroundColor(Color.rgb(183,28,28));
+                        soundDrag = MediaPlayer.create(this, R.raw.wrong);
+                        soundDrag.start();
+                    }
                 }else if(option == 2){
-                    if (imageOptotypeB.getTag().equals(imageOptotype.getTag()))
+                    if (imageOptotypeB.getTag().equals(imageOptotype.getTag())){
                         imageOptotypeB.setBackgroundColor(Color.rgb(0, 255, 102));
-                    else
+                        soundDrag = MediaPlayer.create(this, R.raw.ding);
+                        soundDrag.start();
+                    }else{
                         imageOptotypeB.setBackgroundColor(Color.rgb(183,28,28));
+                        soundDrag = MediaPlayer.create(this, R.raw.wrong);
+                        soundDrag.start();
+                    }
                 }else if (option == 3){
-                    if (imageOptotypeC.getTag().equals(imageOptotype.getTag()))
+                    if (imageOptotypeC.getTag().equals(imageOptotype.getTag())){
                         imageOptotypeC.setBackgroundColor(Color.rgb(0, 255, 102));
-                    else
+                        soundDrag = MediaPlayer.create(this, R.raw.ding);
+                        soundDrag.start();
+                    }else{
                         imageOptotypeC.setBackgroundColor(Color.rgb(183,28,28));
+                        soundDrag = MediaPlayer.create(this, R.raw.wrong);
+                        soundDrag.start();
+                    }
+
                 }
                 break;
 
@@ -419,6 +438,7 @@ public class InteractionActivity extends AppCompatActivity {
         fillProgressBar();
         //// Agregar sonido con nombre de la figura
         ////Agregar sonido de Muy bien
+        interactionSound(true);
 
     }
 
@@ -426,6 +446,7 @@ public class InteractionActivity extends AppCompatActivity {
         option.setBackgroundColor(Color.rgb(255, 255, 255));
         imageAnimation.setImageResource(R.drawable.triste);
         //// Agregar sonido de oh! no
+        interactionSound(false);
     }
 
     public void fillProgressBar(){
@@ -457,4 +478,43 @@ public class InteractionActivity extends AppCompatActivity {
                 break;
         }
     }
+
+    public void interactionSound(boolean value){
+
+        MediaPlayer interactionSound = null;
+        int sound = (int) (Math.random() * 3) + 1;
+
+        //Log.d("sonido: ", Integer.toString(sound));
+        if (value){
+            switch (sound){
+                case 1:
+                    interactionSound = MediaPlayer.create(this, R.raw.yes);
+                    break;
+                case 2:
+                    interactionSound = MediaPlayer.create(this, R.raw.woohoo);
+                    break;
+                case 3:
+                    interactionSound = MediaPlayer.create(this, R.raw.bienhecho);
+                    break;
+            }
+        }else{
+
+            switch (sound){
+                case 1:
+                    interactionSound = MediaPlayer.create(this, R.raw.incorrect);
+                    break;
+                case 2:
+                    interactionSound = MediaPlayer.create(this, R.raw.heno);
+                    break;
+                case 3:
+                    interactionSound = MediaPlayer.create(this, R.raw.ooh);
+                    break;
+            }
+        }
+
+        interactionSound.start();
+
+
+    }
+
 }
