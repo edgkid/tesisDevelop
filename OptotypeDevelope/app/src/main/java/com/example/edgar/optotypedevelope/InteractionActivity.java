@@ -1,7 +1,9 @@
 package com.example.edgar.optotypedevelope;
 
 import android.content.ClipData;
+import android.content.Context;
 import android.content.Intent;
+import android.content.res.Resources;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Color;
@@ -16,9 +18,15 @@ import android.util.Log;
 import android.view.DragEvent;
 import android.view.View;
 import android.widget.ImageView;
+import android.widget.MediaController;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import java.io.BufferedOutputStream;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Iterator;
 
@@ -44,6 +52,7 @@ public class InteractionActivity extends AppCompatActivity {
     ElementsInteraction elements;
     Interaction controlInteraction;
 
+    Context contextActivity;
     Patient patient = new Patient();
     Bundle patientExtras;
     boolean flag = true;
@@ -54,6 +63,7 @@ public class InteractionActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_interaction);
 
+        contextActivity = this;
         controlInteraction = new Interaction();
         elements = new ElementsInteraction(this);
 
@@ -192,7 +202,11 @@ public class InteractionActivity extends AppCompatActivity {
                 elements.fillInteractionElements(patient.getYearsOld());
             }
         }
+
+        SoundInteraction soundInteraction = new SoundInteraction(image.split("_")[0], this);
+        soundInteraction.playSound();
     }
+
 
     public void assignOptotypeOptions(int position, int size, String image){
 
@@ -253,6 +267,7 @@ public class InteractionActivity extends AppCompatActivity {
 
         optotypeOption.setTag(image);
     }
+
 
     ///////////////////////////////Drag Section////////////////////////////////////////////////////
     View.OnLongClickListener  logClickListener = new View.OnLongClickListener() {

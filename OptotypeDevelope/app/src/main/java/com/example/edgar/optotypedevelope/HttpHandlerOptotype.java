@@ -12,8 +12,11 @@ import org.json.JSONObject;
 
 import java.io.BufferedInputStream;
 import java.io.BufferedReader;
+import java.io.DataOutputStream;
+import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.io.OutputStreamWriter;
 import java.net.HttpURLConnection;
 import java.net.URL;
 
@@ -93,6 +96,66 @@ public class HttpHandlerOptotype {
         return value;
     }
 
+    public String sendRequestPost (){
+
+        String line = "";
+        URL url = null;
+        int responseCode;
+        StringBuilder result = null;
+        DataOutputStream printout;
+        InputStream inputStreamResponse = null;
+        String path = serverPath.getHttp() + serverPath.getIpAdddress() + serverPath.getPathAddress()+ this.request;
+
+        try{
+
+            url = new URL (path);
+            Log.d("message: ", path);
+            HttpURLConnection connection = (HttpURLConnection) url.openConnection();
+
+            connection.setRequestMethod("POST");
+            connection.setRequestProperty("Content-Type", "application/JSON");
+            connection.setRequestProperty("charset", "utf-8");
+            connection.setDoOutput(true);
+
+            OutputStreamWriter wr = new OutputStreamWriter(connection.getOutputStream());
+            /*wr.write(listParam.toString());
+            wr.flush();
+            wr.close();*/
+
+            //Log.d("message: ", listParam.toString() );
+
+            responseCode = connection.getResponseCode();
+
+            if( responseCode == HttpURLConnection.HTTP_OK){
+                inputStreamResponse = connection.getInputStream();
+                Log.d("message code:", String.valueOf(responseCode));
+
+                result = new StringBuilder();
+                InputStream input = new BufferedInputStream(connection.getInputStream());
+                BufferedReader reader = new BufferedReader(new InputStreamReader(input));
+
+                while ((line = reader.readLine()) !=null ){
+                    result.append(line);
+                }
+            }else
+                Log.d("message: ", "Como que no conecto");
+
+            if (inputStreamResponse != null){
+                try{
+                    inputStreamResponse.close();
+                }
+                catch(Exception ex){
+                    Log.d(this.getClass().toString(), "Error cerrando InputStream", ex);
+                }
+            }
+
+        }catch (IOException e){
+            e.printStackTrace();
+        }
+
+        return result.toString();
+    }
+
     public void connectToResource (final InteractionActivity ctx){
 
         Log.d("message: ", "Genera solicitud de conexion");
@@ -119,6 +182,7 @@ public class HttpHandlerOptotype {
         tr.start();
 
     }
+
 
     public void procesingJson (String result){
 
