@@ -203,8 +203,8 @@ public class InteractionActivity extends AppCompatActivity {
             }
         }
 
-        SoundInteraction soundInteraction = new SoundInteraction(image.split("_")[0], this);
-        soundInteraction.playSound();
+        SoundInteraction soundInteraction = new SoundInteraction();
+        soundInteraction.playSound(this, image.split("_")[0]);
     }
 
 
@@ -529,7 +529,100 @@ public class InteractionActivity extends AppCompatActivity {
 
         interactionSound.start();
 
+    }
+
+    public void playSound(Context context, String value){
+
+        MediaPlayer mediaPlayer = null;
+
+        switch (value){
+            case "arbol":
+                mediaPlayer = MediaPlayer.create(this, R.raw.arbol);
+                break;
+            case "avion":
+                mediaPlayer = MediaPlayer.create(this, R.raw.avion);
+                break;
+            case "bandera":
+                mediaPlayer = MediaPlayer.create(this, R.raw.thisiscorrect);
+                break;
+            case "barco":
+                mediaPlayer = MediaPlayer.create(this, R.raw.barco);
+                break;
+            case "bonbillo":
+                mediaPlayer = MediaPlayer.create(this, R.raw.thisiscorrect);
+                break;
+            case "botella":
+                mediaPlayer = MediaPlayer.create(this, R.raw.thisiscorrect);
+                break;
+            case "camara":
+                mediaPlayer = MediaPlayer.create(this, R.raw.thisiscorrect);
+                break;
+            case "cambur":
+                mediaPlayer = MediaPlayer.create(this, R.raw.thisiscorrect);
+                break;
+            case "camion":
+                mediaPlayer = MediaPlayer.create(this, R.raw.thisiscorrect);
+                break;
+            case "carro":
+                mediaPlayer = MediaPlayer.create(this, R.raw.thisiscorrect);
+                break;
+            case "casa":
+                mediaPlayer = MediaPlayer.create(this, R.raw.thisiscorrect);
+                break;
+            case "circulo":
+                mediaPlayer = MediaPlayer.create(this, R.raw.thisiscorrect);
+                break;
+            case "corazon":
+                mediaPlayer = MediaPlayer.create(this, R.raw.corazon);
+                break;
+            case "cuadrado":
+                mediaPlayer = MediaPlayer.create(this, R.raw.thisiscorrect);
+                break;
+            case "estrella":
+                mediaPlayer = MediaPlayer.create(this, R.raw.thisiscorrect);
+                break;
+            case "flor":
+                mediaPlayer = MediaPlayer.create(this, R.raw.flor);
+                break;
+            case "helado":
+                mediaPlayer = MediaPlayer.create(this, R.raw.helado);
+                break;
+            case "hueso":
+                mediaPlayer = MediaPlayer.create(this, R.raw.thisiscorrect);
+                break;
+            case "lapiz":
+                mediaPlayer = MediaPlayer.create(this, R.raw.thisiscorrect);
+                break;
+            case "mariposa":
+                mediaPlayer = MediaPlayer.create(this, R.raw.thisiscorrect);
+                break;
+            case "pelota":
+                mediaPlayer = MediaPlayer.create(this, R.raw.thisiscorrect);
+                break;
+            case "pez":
+                mediaPlayer = MediaPlayer.create(this, R.raw.thisiscorrect);
+                break;
+            case "snellen":
+                mediaPlayer = MediaPlayer.create(this, R.raw.thisiscorrect);
+                break;
+            case "sol":
+                mediaPlayer = MediaPlayer.create(this, R.raw.thisiscorrect);
+                break;
+            case "telefono":
+                mediaPlayer = MediaPlayer.create(this, R.raw.thisiscorrect);
+                break;
+            case "televisor":
+                mediaPlayer = MediaPlayer.create(this, R.raw.thisiscorrect);
+                break;
+            case "tetero":
+                mediaPlayer = MediaPlayer.create(this, R.raw.thisiscorrect);
+                break;
+
+        }
+
+        mediaPlayer.start();
 
     }
+
 
 }
