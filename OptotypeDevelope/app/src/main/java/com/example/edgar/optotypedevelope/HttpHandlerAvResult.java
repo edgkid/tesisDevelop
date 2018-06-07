@@ -143,14 +143,6 @@ public class HttpHandlerAvResult {
 
                 JSONObject jsonObj  = array.getJSONObject(i);
 
-                Log.d("explorar: ", jsonObj.getString("idAvResult"));
-                Log.d("explorar: ", jsonObj.getString("description"));
-                Log.d("explorar: ", jsonObj.getString("lastDate"));
-                Log.d("explorar: ", jsonObj.getString("avRight"));
-                Log.d("explorar: ", jsonObj.getString("avLeft"));
-                Log.d("explorar: ", jsonObj.getString("center"));
-                Log.d("explorar: ", jsonObj.getString("sustain"));
-                Log.d("explorar: ", jsonObj.getString("maintain"));
                 values.put(AvLastResultToDayDbContract.AvLastResultToDayDbContractEntry._ID, Integer.parseInt(jsonObj.getString("idAvResult")));
                 values.put(AvLastResultToDayDbContract.AvLastResultToDayDbContractEntry.ID, jsonObj.getString("idAvResult"));
                 values.put(AvLastResultToDayDbContract.AvLastResultToDayDbContractEntry.IDPATIENT, jsonObj.getString("idPatient"));

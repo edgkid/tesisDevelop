@@ -189,16 +189,16 @@ public class CrudReadAppointmentActivity extends AppCompatActivity implements Vi
         yearsOld.setText("Edad: " + patient.getYearsOld() + " años");
 
         Log.d("explorar:", "voy a buscar datos de consulta");
-        gettAvDataByPatient();
+        //gettAvDataByPatient();
 
-        lastAppointment.setText((avPatient.getLastAppointmentDate() != null)? "Ultima Consulta: " + avPatient.getLastAppointmentDate(): "Ultima Consulta: " + patient.getNextAppointment());
+        /*lastAppointment.setText((avPatient.getLastAppointmentDate() != null)? "Ultima Consulta: " + avPatient.getLastAppointmentDate(): "Ultima Consulta: " + patient.getNextAppointment());
         nextAppointment.setText("Proxima Consulta: " + patient.getNextAppointment());
         avRight.setText((avPatient.getAvRight() != null)? "Av Derecho: " + avPatient.getAvRight(): "Av Derecho: 0");
         avLeft.setText((avPatient.getAvLeft() != null)? "Av Izquierdo: " + avPatient.getAvLeft(): "Av Izquierdo: 0");
         center.setText((avPatient.getCenter() != null)? "Centra: " + avPatient.getCenter(): "Centra: ?");
         sustain.setText((avPatient.getSustain() != null)? "Sostiene: " + avPatient.getSustain(): "Sostiene: ?");
         maintain.setText((avPatient.getMaintain() != null)? "Mantiene: " + avPatient.getMaintain(): "Mantiene: ?");
-        description.setText((avPatient.getDescription() != null)? avPatient.getDescription(): "No Existe datos de consulta");
+        description.setText((avPatient.getDescription() != null)? avPatient.getDescription(): "No Existe datos de consulta");*/
     }
 
     public void gettAvDataByPatient(){

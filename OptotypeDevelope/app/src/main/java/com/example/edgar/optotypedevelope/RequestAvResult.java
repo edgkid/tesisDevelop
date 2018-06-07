@@ -85,4 +85,8 @@ public class RequestAvResult {
         }
 
     }
+
+    public void getDataAppointmentData (){
+
+    }
 }

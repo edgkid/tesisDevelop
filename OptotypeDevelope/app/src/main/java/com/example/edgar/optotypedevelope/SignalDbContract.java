@@ -12,7 +12,6 @@ public class SignalDbContract {
 
 
         public static final String TABLE_NAME = "signal_db_app";
-
         public static final String ID = "idSignal";
         public static final String SIGNALNAME = "signalName";
     }

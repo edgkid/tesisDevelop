@@ -203,8 +203,7 @@ public class InteractionActivity extends AppCompatActivity {
             }
         }
 
-        SoundInteraction soundInteraction = new SoundInteraction();
-        soundInteraction.playSound(this, image.split("_")[0]);
+        playSound(this, image.split("_")[0]);
     }
 
 

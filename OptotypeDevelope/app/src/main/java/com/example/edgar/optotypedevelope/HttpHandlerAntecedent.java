@@ -42,7 +42,7 @@ public class HttpHandlerAntecedent {
         String retunrValue = "";
 
         try{
-            Log.d("path: ", path);
+            Log.d("message", path);
 
             url = new URL (path);
             HttpURLConnection connection = (HttpURLConnection) url.openConnection();
